@@ -32,6 +32,8 @@ node --test tests/*.test.mjs
 - `assets/JS/whatsapp.mjs`: validazione del numero e generazione sicura del collegamento.
 - `assets/CSS/style.css`: stile responsive e artwork tipografico originale per copertine e spazi video.
 
+Il percorso “Come funziona” usa una linea di preparazione che si completa una volta quando entra in vista; schede e manuali compaiono con un lieve ingresso. Le animazioni vengono omesse con `prefers-reduced-motion` e i contenuti restano visibili quando `IntersectionObserver` non è disponibile.
+
 ## Prima della pubblicazione
 
 Aggiornare solo con informazioni approvate: numero WhatsApp in formato internazionale, URL social, concorsi e prove coperti, titoli e dettagli dei manuali, disponibilità e consegna, video, gruppi, presentazione del preparatore e dati dell’attività. Il catalogo supporta più prodotti per corpo. Verificare autorizzazioni e requisiti di lancio prima di disattivare la modalità anteprima; tutte le pagine attuali sono `noindex`. Nessun pagamento, analytics, pixel, contatto o profilo social fittizio è attivo.

@@ -212,7 +212,7 @@ function renderHome() {
 
     <section class="section how-section" aria-labelledby="how-title">
       <div class="how-intro"><span class="eyebrow">03 — Come funziona</span><h2 id="how-title">Semplice, chiaro, <em>insieme.</em></h2><p>Nessun carrello o pagamento integrato nel sito. I dettagli si concordano direttamente.</p></div>
-      <ol class="steps-list">
+      <ol class="steps-list preparation-route">
         <li><span class="step-number">01</span><div><h3>Scegli il materiale</h3><p>Esplora il percorso e valuta i materiali disponibili.</p></div></li>
         <li><span class="step-number">02</span><div><h3>Scrivi su WhatsApp</h3><p>Chiedi informazioni sul manuale o sul percorso che ti interessa.</p></div></li>
         <li><span class="step-number">03</span><div><h3>Concorda i dettagli</h3><p>Modalità di acquisto e consegna digitale vengono definite direttamente.</p></div></li>
@@ -314,6 +314,32 @@ function mount() {
   document.body.insertAdjacentHTML("beforeend", renderDialog());
   setupMenu();
   setupDialog();
+  setupMotion();
+}
+
+function setupMotion() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const Observer = window.IntersectionObserver;
+  if (reduceMotion || typeof Observer !== "function") return;
+
+  const targets = document.querySelectorAll(".pathway-card, .manual-card, .community-item, .preparation-route");
+  if (!targets.length) return;
+
+  targets.forEach((element) => {
+    const siblings = Array.from(element.parentElement.children);
+    element.style.setProperty("--motion-index", String(siblings.indexOf(element)));
+  });
+  root.classList.add("motion-ready");
+
+  const observer = new Observer((entries, activeObserver) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      activeObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+
+  targets.forEach((element) => observer.observe(element));
 }
 
 function setupMenu() {
