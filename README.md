@@ -26,14 +26,15 @@ node --input-type=module --check < assets/JS/site.js
 node --test tests/*.test.mjs
 ```
 
-I test verificano la validazione del numero WhatsApp, l'assenza di prezzi nei dati, il `noindex` di tutte le pagine e la coerenza tra ogni pulsante WhatsApp (`data-wa`) e il relativo `href` statico. Se cambi i messaggi in `assets/JS/content.js`, gli href nelle pagine vanno rigenerati: il test segnala il disallineamento.
+I test verificano la validazione del numero WhatsApp, la coerenza tra ogni pulsante WhatsApp (`data-wa`) e il relativo `href` statico, il `noindex` e l'assenza di prezzi o link vuoti. Controllano anche che ogni pagina abbia un solo `h1`, un `main`, lo skip link e nessun `id` duplicato. Se cambi i messaggi in `assets/JS/content.js`, gli href nelle pagine vanno rigenerati: il test segnala il disallineamento.
 
 ## Struttura
 
 - `index.html` e le tre cartelle dei percorsi: contenuto completo già in HTML, con metadati `noindex`. Le pagine funzionano anche senza JavaScript.
 - `assets/CSS/style.css`: direzione grafica, componenti, responsive, movimento.
-- `assets/JS/content.js`: fonte unica per numero WhatsApp, orari, social, percorsi, manuali, community e messaggi WhatsApp.
+- `assets/JS/content.js`: numero WhatsApp e messaggi delle azioni. Il testo pubblicato vive nelle pagine HTML.
 - `assets/JS/site.js`: miglioramento progressivo — menu mobile accessibile, ingresso delle sezioni allo scorrimento, parallasse leggera sull'artwork, rigenerazione dei link WhatsApp dai contenuti.
+- Pagine dei corpi: hero, materiali, gruppo, video/social e contatto finale. Il blocco canali riusa il componente della homepage; i contenuti specifici del corpo sono gli unici a variare.
 - `assets/JS/whatsapp.mjs`: validazione del numero e codifica sicura del messaggio.
 - `assets/fonts/`: Bricolage Grotesque, Instrument Sans e Instrument Serif (sole varianti latine, licenza SIL Open Font License), serviti localmente.
 - `tests/`: test delle funzioni di contatto e dei contenuti pubblicati.

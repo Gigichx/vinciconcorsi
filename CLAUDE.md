@@ -69,13 +69,13 @@ Quattro pagine statiche, contenuto completo già nell'HTML:
 - `polizia-di-stato/index.html`
 - `guardia-di-finanza/index.html`
 
-La pagina dei corpi usa un template coerente (hero, profilo, materiali, gruppo, video/social, contatto) con contenuti e segno grafico specifici. Non duplicare la homepage.
+La pagina dei corpi usa un template coerente (hero, materiali, gruppo, video/social, contatto finale) con contenuti e segno grafico specifici. Non duplicare la homepage né ripetere blocchi di copy identici nelle tre pagine: se un contenuto è comune, vive nella homepage o in un componente condiviso. Header, footer e fascia di contatto sono l'unica ripetizione ammessa, perché ogni pagina statica deve restare completa senza JavaScript.
 
 - `assets/CSS/style.css`: tokens, componenti, layout responsive, movimento. Font locali in `assets/fonts/`.
-- `assets/JS/content.js`: fonte unica per contatti, orari, social, percorsi, manuali, community e **messaggi WhatsApp**.
-- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus), l'ingresso delle sezioni, la parallasse leggera e rigenera gli href WhatsApp da `content.js`.
+- `assets/JS/content.js`: **solo** numero WhatsApp e messaggi delle azioni. Il testo pubblicato vive nell'HTML.
+- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), l'ingresso delle sezioni, la parallasse leggera e rigenera gli href WhatsApp da `content.js`.
 - `assets/JS/whatsapp.mjs`: valida il numero e codifica il messaggio con `encodeURIComponent`.
-- `tests/`: verificano contatti, assenza di prezzi, `noindex`, assenza di link vuoti e coerenza tra `data-wa` e href statici.
+- `tests/`: verificano numero e link WhatsApp, `noindex`, assenza di prezzi e link vuoti, un solo `h1` per pagina, `main`, skip link e assenza di `id` duplicati.
 
 Regole tecniche:
 
@@ -99,7 +99,7 @@ Proposta per l'anteprima, da validare con il cliente.
 
 ## Modalità anteprima
 
-- `previewMode` resta attivo; barra discreta in cima a ogni pagina.
+- La modalità anteprima è dichiarata da una barra discreta e statica in cima a ogni pagina (nessuna variabile runtime).
 - Tutte le pagine sono `noindex, nofollow`. `robots.txt` non è una protezione della riservatezza.
 - Nessun analytics, pixel, checkout o pagamento integrato. Nessuna pubblicazione in produzione, nessuna modifica al dominio.
 - Nessun prezzo nel sito; nessun video o player finto; nessun link vuoto o `href="#"`.
@@ -108,7 +108,7 @@ Proposta per l'anteprima, da validare con il cliente.
 
 ## Accessibilità e prestazioni
 
-HTML semantico e gerarchia dei titoli; link per navigare, pulsanti per agire; focus visibile e navigazione da tastiera; menu mobile con `aria-expanded`, Escape e ripristino del focus; contrasti adeguati; nessun overflow orizzontale; `prefers-reduced-motion` rispettato; contenuti visibili senza JavaScript; immagini e SVG con dimensioni definite; font con fallback locali e `font-display: swap`.
+HTML semantico e gerarchia dei titoli; link per navigare, pulsanti per agire; focus visibile e navigazione da tastiera; menu mobile con `aria-expanded`, Escape e ripristino del focus; `aria-current` sulla voce di percorso nel footer; contrasti del testo verificati ≥ 4.5:1 (sulla fascia vermiglia il testo resta quasi pieno, non affidato all'opacità); nessun overflow orizzontale; `prefers-reduced-motion` rispettato; contenuti visibili senza JavaScript; immagini e SVG con dimensioni definite; font con fallback locali e `font-display: swap`.
 
 ## Comandi e verifiche
 
@@ -143,5 +143,6 @@ Incorporare i dati approvati; validare catalogo, contatti, gruppi, video e socia
 - 16/11/2026 · Direzione grafica: avorio, antracite, vermiglio, verde solo WhatsApp; Bricolage Grotesque + Instrument Sans + Instrument Serif; artwork «Scala V»; sezione scura unica.
 - 16/11/2026 · Perimetro prodotto: un manuale reale (Carabinieri), richieste di informazioni per gli altri due corpi; nessun prezzo pubblicato.
 - 16/11/2026 · Contatto: numero WhatsApp confermato dal cliente, usato in tutti i link con messaggi distinti per informazioni, manuale e gruppo.
+- 16/11/2026 · Revisione del redesign: `content.js` ridotto a numero e messaggi WhatsApp, rimosso il blocco «Per chi è pensato» duplicato nelle tre pagine dei corpi, canali unificati nel componente della homepage, contrasto della fascia di contatto portato sopra 4.5:1, `aria-current` nel footer e test strutturali sulle pagine.
 
 Da registrare quando confermate: identità visiva approvata, catalogo completo, gestione video, hosting e processo di deploy, perimetro del lancio, dati legali.

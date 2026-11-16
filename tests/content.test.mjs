@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { brand, manuals, pathways, socials, waMessages } from "../assets/JS/content.js";
+import { waMessages, whatsappNumber } from "../assets/JS/content.js";
 import { createWhatsAppUrl } from "../assets/JS/whatsapp.mjs";
 
 const pages = [
@@ -16,22 +16,14 @@ function readPage(page) {
 }
 
 test("il numero WhatsApp confermato è valido e produce un link wa.me", () => {
-  assert.equal(brand.whatsappNumber, "+393277897381");
+  assert.equal(whatsappNumber, "+393277897381");
   assert.equal(
-    createWhatsAppUrl(brand.whatsappNumber, "Ciao, vorrei informazioni."),
+    createWhatsAppUrl(whatsappNumber, "Ciao, vorrei informazioni."),
     "https://wa.me/393277897381?text=Ciao%2C%20vorrei%20informazioni.",
   );
 });
 
-test("un solo manuale reale, in PDF, senza prezzo pubblicato", () => {
-  assert.equal(manuals.length, 1);
-  assert.equal(manuals[0].bodyId, "carabinieri");
-  assert.equal(manuals[0].format, "PDF");
-  assert.equal(manuals[0].price, null);
-  assert.equal(pathways.length, 3);
-});
-
-test("ogni pulsante WhatsApp nelle pagine ha un messaggio dedicato e un href coerente", () => {
+test("ogni pulsante WhatsApp ha un messaggio dedicato e un href coerente", () => {
   for (const page of pages) {
     const html = readPage(page);
     const anchors = [...html.matchAll(/<a\b[^>]*>/g)].map((match) => match[0]);
@@ -41,7 +33,7 @@ test("ogni pulsante WhatsApp nelle pagine ha un messaggio dedicato e un href coe
     for (const anchor of withWhatsApp) {
       const key = anchor.match(/data-wa="([^"]+)"/)[1];
       const href = anchor.match(/href="([^"]+)"/)[1];
-      const expected = createWhatsAppUrl(brand.whatsappNumber, waMessages[key]);
+      const expected = createWhatsAppUrl(whatsappNumber, waMessages[key]);
 
       assert.ok(expected, `${page}: manca il messaggio per "${key}"`);
       assert.equal(
@@ -63,8 +55,14 @@ test("le pagine sono noindex, senza link vuoti e senza prezzi", () => {
   }
 });
 
-test("i social valorizzati sono URL https", () => {
-  for (const social of socials) {
-    assert.ok(social.url === null || social.url.startsWith("https://"), social.name);
+test("ogni pagina ha un solo h1, un main, lo skip link e nessun id duplicato", () => {
+  for (const page of pages) {
+    const html = readPage(page);
+    const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
+
+    assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `${page}: h1 non unico`);
+    assert.match(html, /<main id="main-content" tabindex="-1">/, page);
+    assert.match(html, /class="skip-link" href="#main-content"/, page);
+    assert.equal(new Set(ids).size, ids.length, `${page}: id duplicati`);
   }
 });
