@@ -1,10 +1,10 @@
-# Vinci Concorsi · Anteprima
+# Vinciconcorsi · Anteprima
 
-Anteprima navigabile in italiano, con homepage e percorsi dedicati a Carabinieri, Polizia di Stato e Guardia di Finanza. Il sito è statico e non richiede framework, dipendenze o build.
+Anteprima statica in italiano con homepage e tre percorsi dedicati a Carabinieri, Polizia di Stato e Guardia di Finanza. Nessun framework, nessuna dipendenza, nessuna build: solo HTML, CSS e JavaScript.
 
-## Avvio e verifica
+## Avvio
 
-Con Python 3 dalla cartella del progetto:
+Dalla cartella del progetto:
 
 ```sh
 python3 -m http.server 8000
@@ -16,7 +16,9 @@ Apri <http://localhost:8000/>. Le pagine dei percorsi sono:
 - <http://localhost:8000/polizia-di-stato/>
 - <http://localhost:8000/guardia-di-finanza/>
 
-Per fermare il server: `Ctrl+C`. Per un controllo rapido dei file JavaScript moderni:
+Per fermare il server: `Ctrl+C`.
+
+## Controlli
 
 ```sh
 node --input-type=module --check < assets/JS/content.js
@@ -24,18 +26,35 @@ node --input-type=module --check < assets/JS/site.js
 node --test tests/*.test.mjs
 ```
 
+I test verificano la validazione del numero WhatsApp, l'assenza di prezzi nei dati, il `noindex` di tutte le pagine e la coerenza tra ogni pulsante WhatsApp (`data-wa`) e il relativo `href` statico. Se cambi i messaggi in `assets/JS/content.js`, gli href nelle pagine vanno rigenerati: il test segnala il disallineamento.
+
 ## Struttura
 
-- `index.html` e le tre cartelle dei percorsi: pagine HTML con metadati noindex.
-- `assets/JS/content.js`: modalità anteprima, marchio, recapito WhatsApp, social, percorsi, catalogo dimostrativo, video, community e modulo partner disattivato.
-- `assets/JS/site.js`: template condivisi, navigazione, CTA e finestra WhatsApp accessibile.
-- `assets/JS/whatsapp.mjs`: validazione del numero e generazione sicura del collegamento.
-- `assets/CSS/style.css`: stile responsive e artwork tipografico originale per copertine e spazi video.
+- `index.html` e le tre cartelle dei percorsi: contenuto completo già in HTML, con metadati `noindex`. Le pagine funzionano anche senza JavaScript.
+- `assets/CSS/style.css`: direzione grafica, componenti, responsive, movimento.
+- `assets/JS/content.js`: fonte unica per numero WhatsApp, orari, social, percorsi, manuali, community e messaggi WhatsApp.
+- `assets/JS/site.js`: miglioramento progressivo — menu mobile accessibile, ingresso delle sezioni allo scorrimento, parallasse leggera sull'artwork, rigenerazione dei link WhatsApp dai contenuti.
+- `assets/JS/whatsapp.mjs`: validazione del numero e codifica sicura del messaggio.
+- `assets/fonts/`: Bricolage Grotesque, Instrument Sans e Instrument Serif (sole varianti latine, licenza SIL Open Font License), serviti localmente.
+- `tests/`: test delle funzioni di contatto e dei contenuti pubblicati.
 
-Il percorso “Come funziona” usa una linea di preparazione che si completa una volta quando entra in vista; schede e manuali compaiono con un lieve ingresso. Le animazioni vengono omesse con `prefers-reduced-motion` e i contenuti restano visibili quando `IntersectionObserver` non è disponibile.
+## Direzione grafica
+
+- Avorio caldo `#f7f2e6`, antracite `#16181a`, arancio vermiglio `#d9451b` usato con parsimonia, verde riservato alle azioni WhatsApp `#16754a`.
+- Bricolage Grotesque per titoli e interfaccia, Instrument Sans per il testo, Instrument Serif corsivo per poche parole editoriali.
+- Apertura asimmetrica con la scultura CSS/SVG «Scala V»: cinque piattaforme sovrapposte, l'ultima vermiglia.
+- Numerazione delle sezioni, filetti sottili, intestazioni editoriali, lista percorsi a righe invece di riquadri uguali, una sola sezione scura di forte impatto e una chiusura vermiglia.
+- Movimento breve e intenzionale, annullato con `prefers-reduced-motion`; nessun carosello, nessun player finto, nessun cursore personalizzato.
+
+## Regole editoriali dell'anteprima
+
+- Tutte le pagine sono `noindex`; nessun analytics, pixel, checkout o misurazione.
+- Nessun prezzo è pubblicato: prezzi e disponibilità si concordano su WhatsApp.
+- Un solo manuale è confermato (Manuale attitudinale Allievo Carabiniere). Per Polizia di Stato e Guardia di Finanza esistono solo richieste di informazioni sui materiali.
+- Nessun video è incorporato: i canali social reali sono collegati, i contenuti riservati non sono pubblicati.
+- I gruppi sono community di Vinciconcorsi, non canali ufficiali dei Corpi; l'ingresso è su richiesta e approvato dal preparatore.
+- La copertina del manuale è dichiarata come proposta grafica, non come copertina definitiva.
 
 ## Prima della pubblicazione
 
-Aggiornare solo con informazioni approvate: numero WhatsApp in formato internazionale, URL social, concorsi e prove coperti, titoli e dettagli dei manuali, disponibilità e consegna, video, gruppi, presentazione del preparatore e dati dell’attività. Il catalogo supporta più prodotti per corpo. Verificare autorizzazioni e requisiti di lancio prima di disattivare la modalità anteprima; tutte le pagine attuali sono `noindex`. Nessun pagamento, analytics, pixel o contatto fittizio è attivo. I tre profili social e il titolo del manuale Carabinieri provengono dalle risposte del cliente (13/11/2026) ma vanno ancora verificati; il numero WhatsApp resta vuoto finché non è provato.
-
-La scelta di una realizzazione statica senza dipendenze è limitata a questa anteprima, così da poterla avviare subito e aggiornare i contenuti da un unico modulo. Non sono stati configurati hosting o deploy.
+Confermare i titoli dei manuali mancanti, i link ai video, i tempi di consegna e aggiornamento, i dati dell'attività e le informative, il dominio e l'hosting. Verificare con un messaggio di prova il numero WhatsApp e i profili social. Solo dopo queste verifiche si può togliere `noindex` e disattivare la modalità anteprima.
