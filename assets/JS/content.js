@@ -6,10 +6,11 @@ export const brand = {
   whatsappNumber: null,
 };
 
+// URL indicati dal cliente il 13/11/2026 (parametri di tracciamento rimossi). Non ancora verificati: controllare che si aprano sui profili giusti.
 export const socials = [
-  { name: "Instagram", url: null },
-  { name: "TikTok", url: null },
-  { name: "Facebook", url: null },
+  { name: "Instagram", url: "https://www.instagram.com/vinciconcorsi" },
+  { name: "TikTok", url: "https://www.tiktok.com/@vinciconcorsi" },
+  { name: "Facebook", url: "https://www.facebook.com/share/1A8JRnibJz/" },
 ];
 
 export const pathways = [
@@ -59,6 +60,13 @@ export const catalog = pathways.map((pathway, index) => ({
   delivery: null,
   demonstrative: true,
 }));
+
+// Unico manuale definito dal cliente (13/11/2026). Prezzo noto ma da NON mostrare sul sito (solo su WhatsApp). Edizione, pagine, indice e durata degli aggiornamenti: da raccogliere.
+Object.assign(catalog[0], {
+  title: "Manuale attitudinale Allievo Carabiniere",
+  format: "PDF",
+  demonstrative: false,
+});
 
 export const videos = [
   { id: "presentazione", title: "Video di presentazione", available: false },

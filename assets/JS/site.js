@@ -23,8 +23,8 @@ function whatsappUrl(message) {
 function requestMessage(kind, pathway, manual) {
   if (kind === "group") return `Ciao, vorrei richiedere l'accesso al gruppo di preparazione per ${pathway.name}.`;
   if (kind === "manual") {
-    const title = manual && !manual.demonstrative ? manual.title : "[MANUALE]";
-    return `Ciao, vorrei informazioni per acquistare ${title}.`;
+    if (!manual || manual.demonstrative) return `Ciao, vorrei informazioni sui manuali per ${pathway.name}.`;
+    return `Ciao, vorrei informazioni per acquistare ${manual.title}.`;
   }
   if (kind === "general") return "Ciao, vorrei informazioni sulla preparazione per [CORPO].";
   return `Ciao, vorrei informazioni sulla preparazione per ${pathway.name}.`;
@@ -114,14 +114,14 @@ function renderManualCard(manual) {
         <span class="cover-line" aria-hidden="true"></span>
         <span class="cover-title">${escapeHtml(manual.coverLabel)}</span>
         <span class="cover-subtitle">${escapeHtml(pathway.shortName)}</span>
-        <span class="cover-footer">MATERIALE DIMOSTRATIVO</span>
+        <span class="cover-footer">${manual.demonstrative ? "MATERIALE DIMOSTRATIVO" : "COPERTINA DIMOSTRATIVA"}</span>
       </div>
       <div class="manual-details">
         <span class="eyebrow">${escapeHtml(pathway.shortName)} · Manuale digitale</span>
         <h3>${escapeHtml(title)}</h3>
-        <p class="manual-note">Titolo, contenuti e disponibilità da confermare.</p>
+        <p class="manual-note">${manual.demonstrative ? "Titolo, contenuti e disponibilità da confermare." : `Formato ${escapeHtml(manual.format)}. Prezzo, pagamento e consegna si concordano su WhatsApp.`}</p>
         <span class="digital-label">Manuale digitale · Nessuna spedizione</span>
-        ${contactAction({ kind: "manual", pathway, manual, label: "Acquista su WhatsApp", className: "text-link button-link" })}
+        ${contactAction({ kind: "manual", pathway, manual, label: manual.demonstrative ? "Chiedi informazioni su WhatsApp" : "Acquista su WhatsApp", className: "text-link button-link" })}
       </div>
     </article>`;
 }
