@@ -80,6 +80,8 @@ La pagina dei corpi usa un template coerente (hero, materiali, gruppo, video/soc
 Regole tecniche:
 
 - Ogni azione WhatsApp usa `<a href="https://wa.me/393277897381?text=…">` con `data-wa="chiave"`. L'href statico garantisce il funzionamento senza JavaScript; `site.js` lo rigenera dal modulo dei contenuti. I test falliscono se non sono allineati.
+- Percorsi relativi per asset e navigazione (`assets/...` dalla homepage, `../assets/...` dalle pagine interne): il sito deve funzionare sia dalla radice sia dalla sottocartella `/vinciconcorsi/` di GitHub Pages. Nessun `href`/`src` che inizi con `/` e nessun `url("/assets/...")` nel CSS.
+- Il numero WhatsApp non compare come testo né come link `tel:`: resta solo negli href dei link `wa.me`. Il test controlla che non torni visibile.
 - Il contenuto deve restare leggibile e navigabile senza JavaScript. Non introdurre testi vecchi nell'HTML.
 - Niente framework, build, CMS, backend, autenticazione o dipendenze non necessarie.
 - Non caricare nel repository il CSV o le risposte integrali del cliente: contengono dati privati.
@@ -100,6 +102,7 @@ Proposta per l'anteprima, da validare con il cliente.
 ## Modalità anteprima
 
 - La modalità anteprima è dichiarata da una barra discreta e statica in cima a ogni pagina (nessuna variabile runtime).
+- Il numero di telefono non è pubblicato come testo: l'unico contatto visibile è il pulsante WhatsApp.
 - Tutte le pagine sono `noindex, nofollow`. `robots.txt` non è una protezione della riservatezza.
 - Nessun analytics, pixel, checkout o pagamento integrato. Nessuna pubblicazione in produzione, nessuna modifica al dominio.
 - Nessun prezzo nel sito; nessun video o player finto; nessun link vuoto o `href="#"`.
@@ -143,6 +146,7 @@ Incorporare i dati approvati; validare catalogo, contatti, gruppi, video e socia
 - 16/11/2026 · Direzione grafica: avorio, antracite, vermiglio, verde solo WhatsApp; Bricolage Grotesque + Instrument Sans + Instrument Serif; artwork «Scala V»; sezione scura unica.
 - 16/11/2026 · Perimetro prodotto: un manuale reale (Carabinieri), richieste di informazioni per gli altri due corpi; nessun prezzo pubblicato.
 - 16/11/2026 · Contatto: numero WhatsApp confermato dal cliente, usato in tutti i link con messaggi distinti per informazioni, manuale e gruppo.
+- 16/11/2026 · Pubblicazione di prova su GitHub Pages in sottocartella: percorsi relativi per asset e navigazione, numero di telefono non più visibile come testo (resta nei link WhatsApp).
 - 16/11/2026 · Revisione del redesign: `content.js` ridotto a numero e messaggi WhatsApp, rimosso il blocco «Per chi è pensato» duplicato nelle tre pagine dei corpi, canali unificati nel componente della homepage, contrasto della fascia di contatto portato sopra 4.5:1, `aria-current` nel footer e test strutturali sulle pagine.
 
 Da registrare quando confermate: identità visiva approvata, catalogo completo, gestione video, hosting e processo di deploy, perimetro del lancio, dati legali.

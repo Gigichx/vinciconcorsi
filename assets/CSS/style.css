@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: "Bricolage Grotesque";
-  src: url("/assets/fonts/bricolage-grotesque-var.woff2") format("woff2-variations");
+  src: url("../fonts/bricolage-grotesque-var.woff2") format("woff2-variations");
   font-weight: 200 800;
   font-style: normal;
   font-display: swap;
@@ -13,7 +13,7 @@
 
 @font-face {
   font-family: "Instrument Sans";
-  src: url("/assets/fonts/instrument-sans-var.woff2") format("woff2-variations");
+  src: url("../fonts/instrument-sans-var.woff2") format("woff2-variations");
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
@@ -21,7 +21,7 @@
 
 @font-face {
   font-family: "Instrument Serif";
-  src: url("/assets/fonts/instrument-serif-italic.woff2") format("woff2");
+  src: url("../fonts/instrument-serif-italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -1527,19 +1527,6 @@ svg {
   color: #fff7ea;
   font-size: 0.93rem;
   line-height: 1.55;
-}
-
-.contact-number {
-  margin-top: 0.9rem;
-  padding-bottom: 0.15rem;
-  border-bottom: 1px solid rgba(255, 247, 234, 0.55);
-  font-size: 1rem;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-}
-
-.contact-number:hover {
-  border-color: #fff7ea;
 }
 
 .contact-facts {

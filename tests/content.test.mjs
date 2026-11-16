@@ -55,6 +55,19 @@ test("le pagine sono noindex, senza link vuoti e senza prezzi", () => {
   }
 });
 
+test("le pagine funzionano da una sottocartella e non mostrano il numero", () => {
+  for (const page of pages) {
+    const html = readPage(page);
+    for (const match of html.matchAll(/(?:href|src)="([^"]*)"/g)) {
+      const url = match[1];
+      if (url.startsWith("http") || url.startsWith("#") || url.startsWith("mailto:")) continue;
+      assert.ok(!url.startsWith("/"), `${page}: percorso assoluto ${url}`);
+    }
+    assert.doesNotMatch(html, /href="tel:/, `${page}: numero telefonico cliccabile`);
+    assert.doesNotMatch(html, /\+39 327 789/, `${page}: numero visibile in pagina`);
+  }
+});
+
 test("ogni pagina ha un solo h1, un main, lo skip link e nessun id duplicato", () => {
   for (const page of pages) {
     const html = readPage(page);

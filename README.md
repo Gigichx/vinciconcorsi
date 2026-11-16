@@ -30,7 +30,7 @@ I test verificano la validazione del numero WhatsApp, la coerenza tra ogni pulsa
 
 ## Struttura
 
-- `index.html` e le tre cartelle dei percorsi: contenuto completo già in HTML, con metadati `noindex`. Le pagine funzionano anche senza JavaScript.
+- `index.html` e le tre cartelle dei percorsi: contenuto completo già in HTML, con metadati `noindex`. Le pagine funzionano anche senza JavaScript e usano percorsi relativi, così il sito si apre anche dalla sottocartella GitHub Pages (`/vinciconcorsi/`).
 - `assets/CSS/style.css`: direzione grafica, componenti, responsive, movimento.
 - `assets/JS/content.js`: numero WhatsApp e messaggi delle azioni. Il testo pubblicato vive nelle pagine HTML.
 - `assets/JS/site.js`: miglioramento progressivo — menu mobile accessibile, ingresso delle sezioni allo scorrimento, parallasse leggera sull'artwork, rigenerazione dei link WhatsApp dai contenuti.
@@ -51,6 +51,7 @@ I test verificano la validazione del numero WhatsApp, la coerenza tra ogni pulsa
 
 - Tutte le pagine sono `noindex`; nessun analytics, pixel, checkout o misurazione.
 - Nessun prezzo è pubblicato: prezzi e disponibilità si concordano su WhatsApp.
+- Il numero di telefono non è mostrato come testo: ogni contatto passa dal pulsante WhatsApp.
 - Un solo manuale è confermato (Manuale attitudinale Allievo Carabiniere). Per Polizia di Stato e Guardia di Finanza esistono solo richieste di informazioni sui materiali.
 - Nessun video è incorporato: i canali social reali sono collegati, i contenuti riservati non sono pubblicati.
 - I gruppi sono community di Vinciconcorsi, non canali ufficiali dei Corpi; l'ingresso è su richiesta e approvato dal preparatore.
