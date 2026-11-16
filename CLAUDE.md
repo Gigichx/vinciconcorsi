@@ -17,6 +17,33 @@ Fase corrente: realizzare un'anteprima navigabile e graficamente curata mentre r
 Non attendere i contenuti definitivi per costruire struttura e componenti. Usa segnaposto espliciti e sostituibili.
 La creazione di questo documento non implica che frontend, hosting o deploy siano già presenti.
 
+## Stato al 16 novembre 2026 e risposte del cliente
+
+Il repository contiene un'anteprima statica (HTML, CSS e JavaScript senza build né dipendenze) con homepage e tre pagine dei corpi: è lo stack in uso, da rispettare. Il testo "Stato iniziale" qui sopra è storico. Non è stato configurato hosting né deploy.
+
+Il cliente ha compilato il questionario il 13/11/2026. Il file delle risposte contiene email e telefono privati e NON va aggiunto al repository. Dati confermati utilizzabili:
+
+- Referente e marchio: "Vinciconcorsi di Salvatore Siciliano". Nel form il nome da mostrare è scritto "Vinciconcorsi" in una parola: da confermare prima di fissare il wordmark (oggi "Vinci Concorsi").
+- Corpi: Carabinieri, Polizia di Stato, Guardia di Finanza. Ruoli indicati: "Allievi e Ispettori" (non specificati per corpo). Prove indicate: scritta e orale. Pubblico: chi prepara il primo concorso e chi riprova.
+- Manuale definito: "Manuale attitudinale Allievo Carabiniere", PDF, prezzo €10 (NON mostrare i prezzi sul sito), anteprima possibile solo dell'indice, aggiornamenti gratuiti "per un periodo" (durata da definire). Dichiarati 2-3 manuali al lancio, gli altri non sono ancora descritti.
+- Pagamento: bonifico. Consegna: invio via WhatsApp da parte del cliente, indicata "entro 1 ora" (da conciliare con verifica del bonifico e orari; non scriverla come promessa). Problemi col file: rinvio o sostituzione.
+- WhatsApp: un solo numero Business per acquisti, informazioni e gruppi; risponde solo il titolare, tutti i giorni 16-21, in genere "entro qualche ora". Il numero è stato fornito ma NON è verificato (differisce dal telefono di contatto): resta `null` in `content.js` finché non c'è un messaggio di prova riuscito.
+- Gruppi WhatsApp esistenti per i tre corpi: accesso su richiesta con approvazione del titolare e regole di comportamento da accettare.
+- Video già online (YouTube, TikTok, Instagram, Facebook), da 4 a 10 al lancio; alcuni pubblici e altri riservati (quali, per chi e dove ospitati: da chiarire; nessun link ricevuto). Non assumere un'area riservata.
+- Social indicati: TikTok, Instagram, Facebook (inseriti ripuliti dai parametri di tracciamento, da verificare; il link Facebook è di condivisione). Manca il canale YouTube.
+- "Ditte": il cliente preferisce parlarne a voce; il modulo partner resta disattivato.
+- Sito: nessun sito, dominio né hosting. Aggiornerà i contenuti il titolare, frequenza non nota. Priorità: farsi trovare su Google, immagine credibile, facilità di aggiornamento. Lancio desiderato entro un mese, budget da discutere a voce, costi annuali a parte.
+- Sezione facoltativa non compilata: logo, colori, foto, biografia e qualifiche, testimonianze, dati dell'attività, informative.
+
+Da chiarire con il cliente (bloccanti per copy e homepage definitivi):
+
+1. Servizio principale: la descrizione cita preparazione personalizzata ai test psico-attitudinali e al colloquio con la commissione e il "Perito Selettore", mentre altre risposte indicano "solo manuali" o prove "scritta e orale". Il posizionamento dipende da questo. Chiedere anche il significato di "metodo introspezione personalizzata" e di "Perito Selettore", senza attribuire qualifiche non documentate.
+2. Catalogo reale: quanti manuali, per quale corpo e ruolo, con edizione e pagine.
+3. Servizi individuali (lezioni, piani di studio, risposte personalizzate, dirette TikTok): prezzi, prenotazione, gratuito o a pagamento. Potrebbero richiedere una quarta intenzione di contatto.
+4. Video riservati e relativi link; durata degli aggiornamenti; tempi di consegna con bonifico.
+5. Conferma nome, referente, numero WhatsApp e URL social; dati legali e qualifiche pubblicabili.
+6. Frequenza degli aggiornamenti (decide se serve un CMS), budget, intestazione di dominio e hosting.
+
 ## Obiettivo commerciale
 
 Vinci Concorsi presenta materiali digitali per la preparazione ai concorsi e porta gli utenti a conversazioni WhatsApp pertinenti.
@@ -29,7 +56,7 @@ Non equiparare clic WhatsApp, conversazione ricevuta e vendita.
 - Tre ambiti: Carabinieri, Polizia di Stato, Guardia di Finanza.
 - Video facilmente accessibili nella parte alta del sito.
 - Manuali digitali: nessuna spedizione.
-- Tre percorsi principali di acquisto tramite WhatsApp, uno per corpo.
+- Percorsi di acquisto tramite WhatsApp per i manuali. Al 13/11/2026 è definito un solo manuale (Carabinieri): finché Polizia di Stato e Guardia di Finanza non sono confermati, i loro pulsanti sono richieste di informazioni, non di acquisto.
 - Numero WhatsApp per informazioni e accesso/richiesta di accesso ai gruppi.
 - Collegamenti TikTok, Instagram e Facebook.
 - Possibile collegamento alle “ditte”, significato ancora da chiarire.
@@ -253,7 +280,11 @@ Prima del lancio:
 
 ## Decisioni da aggiornare nel tempo
 
-Mantieni qui o in un documento collegato le sole decisioni confermate, con data e motivazione:
+Mantieni qui o in un documento collegato le sole decisioni confermate, con data e motivazione. Registrate finora:
+
+- 16/11/2026 · Stack: anteprima statica senza build, già presente nel repository; si valuta Astro solo se emergono pagine o contenuti che lo giustificano. Perimetro: Carabinieri come unico manuale reale, gli altri come richieste di informazioni.
+
+Da registrare quando confermate:
 - Stack effettivamente adottato.
 - Identità visiva approvata.
 - Catalogo reale.

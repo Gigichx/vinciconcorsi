@@ -36,6 +36,6 @@ Il percorso “Come funziona” usa una linea di preparazione che si completa un
 
 ## Prima della pubblicazione
 
-Aggiornare solo con informazioni approvate: numero WhatsApp in formato internazionale, URL social, concorsi e prove coperti, titoli e dettagli dei manuali, disponibilità e consegna, video, gruppi, presentazione del preparatore e dati dell’attività. Il catalogo supporta più prodotti per corpo. Verificare autorizzazioni e requisiti di lancio prima di disattivare la modalità anteprima; tutte le pagine attuali sono `noindex`. Nessun pagamento, analytics, pixel, contatto o profilo social fittizio è attivo.
+Aggiornare solo con informazioni approvate: numero WhatsApp in formato internazionale, URL social, concorsi e prove coperti, titoli e dettagli dei manuali, disponibilità e consegna, video, gruppi, presentazione del preparatore e dati dell’attività. Il catalogo supporta più prodotti per corpo. Verificare autorizzazioni e requisiti di lancio prima di disattivare la modalità anteprima; tutte le pagine attuali sono `noindex`. Nessun pagamento, analytics, pixel o contatto fittizio è attivo. I tre profili social e il titolo del manuale Carabinieri provengono dalle risposte del cliente (13/11/2026) ma vanno ancora verificati; il numero WhatsApp resta vuoto finché non è provato.
 
 La scelta di una realizzazione statica senza dipendenze è limitata a questa anteprima, così da poterla avviare subito e aggiornare i contenuti da un unico modulo. Non sono stati configurati hosting o deploy.
