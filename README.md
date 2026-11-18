@@ -32,7 +32,7 @@ I test verificano la validazione del numero WhatsApp, la coerenza tra ogni pulsa
 
 - `index.html` e le tre cartelle dei percorsi: contenuto completo già in HTML, con metadati `noindex`. Le pagine funzionano anche senza JavaScript e usano percorsi relativi, così il sito si apre anche dalla sottocartella GitHub Pages (`/vinciconcorsi/`).
 - `assets/CSS/style.css`: direzione grafica, componenti, responsive, movimento.
-- `assets/JS/content.js`: numero WhatsApp e messaggi delle azioni. Il testo pubblicato vive nelle pagine HTML.
+- `assets/JS/content.js`: numero WhatsApp, messaggi delle azioni e mappa del selettore (`routerKey`). Il testo pubblicato vive nelle pagine HTML.
 - `assets/JS/site.js`: miglioramento progressivo — menu mobile accessibile, ingresso delle sezioni allo scorrimento, parallasse leggera sull'artwork, rigenerazione dei link WhatsApp dai contenuti.
 - Pagine dei corpi: hero, materiali, gruppo, video/social e contatto finale. Il blocco canali riusa il componente della homepage; i contenuti specifici del corpo sono gli unici a variare.
 - `assets/JS/whatsapp.mjs`: validazione del numero e codifica sicura del messaggio.
@@ -41,10 +41,12 @@ I test verificano la validazione del numero WhatsApp, la coerenza tra ogni pulsa
 
 ## Direzione grafica
 
-- Avorio caldo `#f7f2e6`, antracite `#16181a`, arancio vermiglio `#d9451b` usato con parsimonia, verde riservato alle azioni WhatsApp `#16754a`.
+- Avorio luminoso `#fffdf8`, blu navy `#0d2350`, rosso acceso `#e2231a` usato con parsimonia, verde riservato alle azioni WhatsApp `#0a7f45`.
 - Bricolage Grotesque per titoli e interfaccia, Instrument Sans per il testo, Instrument Serif corsivo per poche parole editoriali.
 - Apertura asimmetrica con la scultura CSS/SVG «Scala V»: cinque piattaforme sovrapposte, l'ultima vermiglia.
-- Numerazione delle sezioni, filetti sottili, intestazioni editoriali, lista percorsi a righe invece di riquadri uguali, una sola sezione scura di forte impatto e una chiusura vermiglia.
+- Numerazione delle sezioni, filetti sottili, intestazioni editoriali, lista percorsi a righe invece di riquadri uguali, una sola sezione scura di forte impatto e una chiusura blu con filetto tricolore sopra il footer.
+- Titoli display in peso 800, spaziatura stretta.
+- Conversione: barra WhatsApp fissa su mobile, selettore percorso/necessità in homepage, FAQ su prezzo e tempi, passi d'acquisto in tre tempi.
 - Movimento breve e intenzionale, annullato con `prefers-reduced-motion`; nessun carosello, nessun player finto, nessun cursore personalizzato.
 
 ## Regole editoriali dell'anteprima

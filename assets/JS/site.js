@@ -1,4 +1,4 @@
-import { waMessages, whatsappNumber } from "./content.js";
+import { routerKey, waMessages, whatsappNumber } from "./content.js";
 import { createWhatsAppUrl } from "./whatsapp.mjs";
 
 const root = document.documentElement;
@@ -85,6 +85,31 @@ function setupReveal() {
   root.classList.add("motion-on");
 }
 
+/**
+ * Selettore della homepage: due scelte e il link WhatsApp cambia messaggio.
+ * Senza JavaScript il blocco resta nascosto e valgono i pulsanti statici.
+ */
+function setupRouter() {
+  const router = document.querySelector("[data-router]");
+  if (!router) return;
+
+  const corpo = router.querySelector('[data-router="corpo"]');
+  const bisogno = router.querySelector('[data-router="bisogno"]');
+  const cta = router.querySelector("[data-router-cta]");
+  if (!corpo || !bisogno || !cta) return;
+
+  const update = () => {
+    const key = routerKey(corpo.value, bisogno.value);
+    const url = createWhatsAppUrl(whatsappNumber, waMessages[key]);
+    if (url) cta.href = url;
+  };
+
+  corpo.addEventListener("change", update);
+  bisogno.addEventListener("change", update);
+  update();
+  router.hidden = false;
+}
+
 /** Parallasse leggera sull'artwork dell'apertura, solo con puntatore preciso. */
 function setupArtParallax() {
   const art = document.querySelector("[data-parallax]");
@@ -119,5 +144,6 @@ root.classList.add("enhanced");
 
 hydrateWhatsAppLinks();
 setupMenu();
+setupRouter();
 setupReveal();
 setupArtParallax();
