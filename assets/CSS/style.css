@@ -1,9 +1,13 @@
 :root {
   color-scheme: light;
-  --ink: #101d2a;
+  --ink: #0b1f5c;
   --ink-soft: #253444;
-  --paper: #f5f1e8;
-  --cream: #ebe6da;
+  --paper: #ffffff;
+  --paper-2: #eef3fb;
+  --vermilion: #d62b2b;
+  --vermilion-deep: #a81f1f;
+  --vermilion-light: #ef5a5a;
+  --cream: var(--paper-2);
   --white: #fffdf8;
   --brass: #a88751;
   --brass-text: #765d35;
@@ -225,8 +229,8 @@ h1 em, h2 em { color: var(--brass); font-weight: 400; }
 }
 .button:hover { transform: translateY(-2px); }
 .button:active { transform: translateY(0) scale(.985); }
-.button-dark { color: var(--paper); background: var(--ink); }
-.button-dark:hover { border-color: var(--ink); color: var(--ink); background: transparent; }
+.button-dark { color: var(--paper); background: var(--vermilion); }
+.button-dark:hover { border-color: var(--vermilion-deep); color: var(--vermilion-deep); background: transparent; }
 .button-light { border-color: var(--brass-light); color: var(--ink); background: var(--paper); }
 .button-light:hover { color: var(--paper); background: transparent; }
 .text-link {
@@ -799,3 +803,6 @@ h1 em, h2 em { color: var(--brass); font-weight: 400; }
     transform: none;
   }
 }
+
+.hero h1::after{content:"";display:block;height:4px;width:12rem;margin-top:1.25rem;
+background:linear-gradient(90deg,#1f9d55 0 33.3%,#e6e6e6 33.3% 66.6%,#d62b2b 66.6%)}
