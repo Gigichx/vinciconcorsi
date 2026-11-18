@@ -10,12 +10,16 @@ const prefersReducedMotion = () =>
  * Qui vengono rigenerati dai contenuti, così numero e messaggi restano in un
  * unico posto.
  */
+function setWhatsAppLink(link, key) {
+  const message = waMessages[key];
+  if (!message) return;
+  const url = createWhatsAppUrl(whatsappNumber, message);
+  if (url) link.href = url;
+}
+
 function hydrateWhatsAppLinks() {
   for (const link of document.querySelectorAll("[data-wa]")) {
-    const message = waMessages[link.dataset.wa];
-    if (!message) continue;
-    const url = createWhatsAppUrl(whatsappNumber, message);
-    if (url) link.href = url;
+    setWhatsAppLink(link, link.dataset.wa);
   }
 }
 
@@ -29,17 +33,16 @@ function setupMenu() {
     toggle.setAttribute("aria-expanded", String(open));
     nav.classList.toggle("is-open", open);
   };
+  const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
 
-  toggle.addEventListener("click", () => {
-    setOpen(toggle.getAttribute("aria-expanded") !== "true");
-  });
+  toggle.addEventListener("click", () => setOpen(!isOpen()));
 
   nav.addEventListener("click", (event) => {
     if (event.target.closest("a")) setOpen(false);
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape" || !nav.classList.contains("is-open")) return;
+    if (event.key !== "Escape" || !isOpen()) return;
     setOpen(false);
     toggle.focus();
   });
@@ -99,43 +102,13 @@ function setupRouter() {
   if (!corpo || !bisogno || !cta) return;
 
   const update = () => {
-    const key = routerKey(corpo.value, bisogno.value);
-    const url = createWhatsAppUrl(whatsappNumber, waMessages[key]);
-    if (url) cta.href = url;
+    setWhatsAppLink(cta, routerKey(corpo.value, bisogno.value));
   };
 
   corpo.addEventListener("change", update);
   bisogno.addEventListener("change", update);
   update();
   router.hidden = false;
-}
-
-/** Parallasse leggera sull'artwork dell'apertura, solo con puntatore preciso. */
-function setupArtParallax() {
-  const art = document.querySelector("[data-parallax]");
-  if (!art || prefersReducedMotion()) return;
-  if (!window.matchMedia("(pointer: fine)").matches) return;
-
-  const clamp = (value) => Math.max(-1, Math.min(1, value));
-  let frame = 0;
-  let x = 0;
-  let y = 0;
-
-  window.addEventListener(
-    "pointermove",
-    (event) => {
-      const rect = art.getBoundingClientRect();
-      x = clamp((event.clientX - rect.left - rect.width / 2) / rect.width);
-      y = clamp((event.clientY - rect.top - rect.height / 2) / rect.height);
-      if (frame) return;
-      frame = window.requestAnimationFrame(() => {
-        art.style.setProperty("--px", `${(x * 9).toFixed(1)}px`);
-        art.style.setProperty("--py", `${(y * 7).toFixed(1)}px`);
-        frame = 0;
-      });
-    },
-    { passive: true },
-  );
 }
 
 // Solo con lo script in esecuzione il menu diventa a scomparsa: senza
@@ -146,4 +119,3 @@ hydrateWhatsAppLinks();
 setupMenu();
 setupRouter();
 setupReveal();
-setupArtParallax();

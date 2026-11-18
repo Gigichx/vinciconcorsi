@@ -17,7 +17,7 @@ Il 16 novembre 2026 il cliente ha confermato i dati elencati sotto e la nuova di
 
 ### Marchio e attività
 
-- Nome da mostrare: **Vinciconcorsi**, una parola sola. Il wordmark è tipografico e provvisorio.
+- Nome da mostrare: **Vinciconcorsi**, una parola sola. Il wordmark è tipografico e provvisorio; accanto c'è il segnaposto `assets/img/logo.svg`, da sostituire con il logo fornito dal cliente (quadrato, sfondo trasparente), usato in header e footer di tutte le pagine.
 - Attività: preparazione personalizzata ai concorsi, con attenzione a test psico-attitudinali e colloquio con la commissione esaminatrice e il perito selettore.
 - Corpi: Carabinieri, Polizia di Stato, Guardia di Finanza.
 - Pubblico: chi affronta il primo concorso e chi ha già tentato e vuole riprovare.
@@ -33,7 +33,8 @@ Il 16 novembre 2026 il cliente ha confermato i dati elencati sotto e la nuova di
 
 - Instagram: https://www.instagram.com/vinciconcorsi/
 - TikTok: https://www.tiktok.com/@vinciconcorsi
-- Facebook: https://www.facebook.com/share/1A8JRnibJz/ (link di condivisione fornito dal cliente: non sostituirlo)
+- Facebook: https://www.facebook.com/share/1DbkodjGTd/ (link di condivisione fornito dal cliente: non sostituirlo)
+- I link condivisi dal cliente contengono parametri di tracciamento (`_r`, `_t`, `jplx`, `mibextid`): nel sito si usano gli URL puliti, che portano agli stessi profili.
 
 ### Manuali
 
@@ -72,8 +73,9 @@ Quattro pagine statiche, contenuto completo già nell'HTML:
 La pagina dei corpi usa un template coerente (hero, materiali, gruppo, video/social, contatto finale) con contenuti e segno grafico specifici. Non duplicare la homepage né ripetere blocchi di copy identici nelle tre pagine: se un contenuto è comune, vive nella homepage o in un componente condiviso. Header, footer e fascia di contatto sono l'unica ripetizione ammessa, perché ogni pagina statica deve restare completa senza JavaScript.
 
 - `assets/CSS/style.css`: tokens, componenti, layout responsive, movimento. Font locali in `assets/fonts/`.
+- `assets/img/logo.svg`: segnaposto del logo, unico file da sostituire quando il cliente fornisce il marchio definitivo.
 - `assets/JS/content.js`: **solo** numero WhatsApp, messaggi delle azioni e mappa `routerKey` del selettore. Il testo pubblicato vive nell'HTML.
-- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), l'ingresso delle sezioni, la parallasse leggera e rigenera gli href WhatsApp da `content.js`.
+- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), l'ingresso delle sezioni e rigenera gli href WhatsApp da `content.js`.
 - `assets/JS/whatsapp.mjs`: valida il numero e codifica il messaggio con `encodeURIComponent`.
 - `tests/`: verificano numero e link WhatsApp, `noindex`, assenza di prezzi e link vuoti, un solo `h1` per pagina, `main`, skip link e assenza di `id` duplicati.
 
@@ -96,10 +98,12 @@ Proposta per l'anteprima, da validare con il cliente.
 - Tipografia: Bricolage Grotesque per titoli e interfaccia, Instrument Sans per il testo, Instrument Serif corsivo per poche parole editoriali all'interno dei titoli.
 - Composizioni asimmetriche ma leggibili, intestazioni con numero di sezione e filetto, liste invece di griglie di riquadri identici, alternanza chiaro/scuro: una sola sezione scura di forte impatto (Il metodo), una chiusura blu.
 - Titoli display in peso 800, spaziatura stretta: più vicini al materiale promozionale approvato dal cliente.
-- Artwork originale «Scala V»: cinque piattaforme sovrapposte che salgono verso destra, l'ultima vermiglia, realizzate in SVG; parallasse leggera su desktop, animazione sospesa con `prefers-reduced-motion`.
+- Apertura: a destra il poster del video di presentazione dentro una cornice telefono verticale (9:16), con tasto play ed etichetta «Guarda la presentazione»; il poster porta alla sezione Video e dichiara «video in arrivo», nessun player finto. Quando il cliente fornirà il file, il poster si sostituisce con un `<video poster controls playsinline>` locale, senza embed di terzi.
+- Sotto l'apertura, l'indice dei tre percorsi numerati 01–03 (Carabinieri, Polizia di Stato, Guardia di Finanza) con la V del marchio come firma: su desktop tre colonne, su mobile tre righe.
+- Nessun poligono, nessuna parallasse: l'unico movimento è l'ingresso della pagina, sospeso con `prefers-reduced-motion`.
 - Segni originali per i tre percorsi (V, cerchi aperti, gradini), nessuno stemma.
 - Movimento: ingresso della pagina misurato, comparsa delle sezioni allo scorrimento, microinterazioni su righe e pulsanti. Nessun carosello automatico, nessun cursore personalizzato, nessuna animazione continua necessaria alla comprensione.
-- Mobile: il messaggio e le azioni dell'apertura compaiono prima dell'artwork; le anteprime vanno verificate a 360–390 px, oltre che a 1440 px.
+- Mobile: il messaggio e le azioni dell'apertura compaiono prima del poster del video; le anteprime vanno verificate a 360–390 px, oltre che a 1440 px.
 
 ## Modalità anteprima
 
@@ -154,5 +158,8 @@ Incorporare i dati approvati; validare catalogo, contatti, gruppi, video e socia
 - 18/11/2026 · Grafica e conversione: palette blu/rosso acceso con avorio luminoso, titoli peso 800, filetto tricolore, barra WhatsApp mobile, selettore a due scelte, FAQ d'acquisto e passi d'acquisto. Contrasti ricalcolati ≥ 4.5:1.
 - 16/11/2026 · Pubblicazione di prova su GitHub Pages in sottocartella: percorsi relativi per asset e navigazione, numero di telefono non più visibile come testo (resta nei link WhatsApp).
 - 16/11/2026 · Revisione del redesign: `content.js` ridotto a numero e messaggi WhatsApp, rimosso il blocco «Per chi è pensato» duplicato nelle tre pagine dei corpi, canali unificati nel componente della homepage, contrasto della fascia di contatto portato sopra 4.5:1, `aria-current` nel footer e test strutturali sulle pagine.
+
+- 18/11/2026 · Hero: la scultura «Scala V» è sostituita dall'indice cliccabile dei tre percorsi con la V del marchio come firma; rimossi poligoni, gruppi di stile `.plate*`/`.art-*` e parallasse. L'indice passa poi sotto l'apertura per lasciare la colonna destra al poster del video di presentazione, ancora segnaposto.
+- 18/11/2026 · Materiale del cliente: le locandine con persone in divisa e stemmi dei Corpi non vanno online, restano riferimento interno. Nome e qualifica della psicologa e i punti delle locandine entrano solo dopo conferma esplicita del cliente.
 
 Da registrare quando confermate: identità visiva approvata, catalogo completo, gestione video, hosting e processo di deploy, perimetro del lancio, dati legali.

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Segnaposto: sostituire questo file con il logo definitivo (quadrato, sfondo trasparente). -->
+  <rect x="3.5" y="3.5" width="41" height="41" rx="10" fill="none" stroke="#fffdf8" stroke-opacity="0.5" stroke-width="1.5" stroke-dasharray="4 5"/>
+  <path d="M16 31 24 17l8 14" fill="none" stroke="#fffdf8" stroke-opacity="0.5" stroke-width="1.8" stroke-linejoin="miter"/>
+</svg>
