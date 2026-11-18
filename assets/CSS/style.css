@@ -30,21 +30,21 @@
 :root {
   color-scheme: light;
 
-  --paper: #f7f2e6;
-  --paper-2: #efe7d6;
-  --ink: #16181a;
-  --ink-soft: #5a5b53;
-  --ink-faint: #6a695c;
-  --vermilion: #d9451b;
-  --vermilion-deep: #b03410;
-  --vermilion-light: #f0724a;
-  --wa: #16754a;
-  --wa-deep: #0f5b39;
-  --rule: rgba(22, 24, 26, 0.14);
-  --rule-strong: rgba(22, 24, 26, 0.3);
-  --on-dark: #f7f2e6;
-  --on-dark-soft: rgba(247, 242, 230, 0.7);
-  --on-dark-rule: rgba(247, 242, 230, 0.2);
+  --paper: #fffdf8;
+  --paper-2: #eef3fb;
+  --ink: #0d2350;
+  --ink-soft: #3b4a63;
+  --ink-faint: #55637a;
+  --vermilion: #e2231a;
+  --vermilion-deep: #b3140f;
+  --vermilion-light: #ff5a45;
+  --wa: #0a7f45;
+  --wa-deep: #076637;
+  --rule: rgba(13, 35, 80, 0.14);
+  --rule-strong: rgba(13, 35, 80, 0.3);
+  --on-dark: #fffdf8;
+  --on-dark-soft: rgba(255, 253, 248, 0.7);
+  --on-dark-rule: rgba(255, 253, 248, 0.2);
 
   --display: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   --body: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
@@ -135,7 +135,7 @@ svg {
 
 ::selection {
   background: var(--vermilion);
-  color: #fff7ea;
+  color: var(--on-dark);
 }
 
 :focus-visible {
@@ -217,7 +217,7 @@ svg {
 }
 
 .kicker-light {
-  color: rgba(247, 242, 230, 0.62);
+  color: rgba(255, 253, 248, 0.62);
 }
 
 .kicker-light .kicker-index {
@@ -249,6 +249,7 @@ svg {
 
 .section-title {
   font-size: clamp(2.3rem, 4.9vw, 4.3rem);
+  font-weight: 800;
   line-height: 0.98;
   letter-spacing: -0.045em;
 }
@@ -331,11 +332,11 @@ svg {
 
 .btn-primary:hover {
   background: var(--vermilion-deep);
-  color: #fff7ea;
+  color: var(--on-dark);
 }
 
 .btn-quiet {
-  border-color: var(--rule-strong);
+  border-color: var(--ink);
   color: var(--ink);
 }
 
@@ -347,27 +348,28 @@ svg {
 
 .btn-wa {
   background: var(--wa);
-  color: #fffdf5;
+  color: var(--on-dark);
 }
 
 .btn-wa:hover {
   background: var(--wa-deep);
-  color: #fffdf5;
+  color: var(--on-dark);
 }
 
 .btn-outline-wa {
-  border-color: var(--wa);
-  color: var(--wa-deep);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 .btn-outline-wa:hover {
-  background: var(--wa);
-  color: #fffdf5;
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--on-dark);
 }
 
 .btn-ink {
   background: var(--ink);
-  color: #fff7ea;
+  color: var(--on-dark);
 }
 
 .btn-ink:hover {
@@ -414,7 +416,7 @@ svg {
   gap: 0.5rem;
   padding: 0.5rem var(--gutter);
   background: var(--ink);
-  color: rgba(247, 242, 230, 0.78);
+  color: rgba(255, 253, 248, 0.78);
   font-size: 0.64rem;
   letter-spacing: 0.13em;
   line-height: 1.4;
@@ -434,8 +436,8 @@ svg {
   position: sticky;
   z-index: 40;
   top: 0;
-  border-bottom: 1px solid var(--rule);
-  background: rgba(247, 242, 230, 0.95);
+  border-bottom: 1px solid var(--on-dark-rule);
+  background: rgba(13, 35, 80, 0.96);
   backdrop-filter: blur(10px);
 }
 
@@ -452,7 +454,7 @@ svg {
   flex: 0 0 auto;
   align-items: center;
   gap: 0.55rem;
-  color: var(--ink);
+  color: var(--on-dark);
   text-decoration: none;
 }
 
@@ -478,6 +480,14 @@ svg {
   color: var(--vermilion);
 }
 
+.wordmark-light .wordmark-period {
+  color: var(--vermilion-light);
+}
+
+.site-header .wordmark-period {
+  color: var(--vermilion-light);
+}
+
 .wordmark-sub {
   margin-left: 0.4rem;
   padding-left: 0.75rem;
@@ -487,6 +497,11 @@ svg {
   letter-spacing: 0.16em;
   line-height: 1.35;
   text-transform: uppercase;
+}
+
+.site-header .wordmark-sub {
+  border-color: var(--on-dark-rule);
+  color: rgba(255, 253, 248, 0.7);
 }
 
 .site-nav {
@@ -514,6 +529,10 @@ svg {
   transition: border-color 0.2s ease;
 }
 
+.site-header .site-nav-list a {
+  color: var(--on-dark);
+}
+
 .site-nav-list a:hover {
   border-color: var(--vermilion);
 }
@@ -524,8 +543,20 @@ svg {
   letter-spacing: 0.08em;
 }
 
+.site-header .nav-num {
+  color: rgba(255, 253, 248, 0.62);
+}
+
 .menu-toggle {
   display: none;
+}
+
+.site-header .site-nav-cta {
+  border-color: var(--on-dark);
+}
+
+.site-header .menu-toggle {
+  border-color: var(--on-dark-rule);
 }
 
 /* ---------- Apertura ---------- */
@@ -548,7 +579,7 @@ svg {
   max-width: 13ch;
   margin: 0 0 1.5rem;
   font-size: clamp(2.85rem, 7.4vw, 6.9rem);
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: -0.055em;
   line-height: 0.88;
 }
@@ -630,7 +661,7 @@ svg {
 
 .art-orbit {
   fill: none;
-  stroke: rgba(22, 24, 26, 0.14);
+  stroke: rgba(13, 35, 80, 0.14);
   stroke-dasharray: 2 7;
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
@@ -644,28 +675,28 @@ svg {
 }
 
 .art-shadow {
-  fill: rgba(22, 24, 26, 0.09);
+  fill: rgba(13, 35, 80, 0.09);
 }
 
 .plate-top {
-  fill: #ece2cd;
-  stroke: rgba(22, 24, 26, 0.3);
+  fill: #dce7f7;
+  stroke: rgba(13, 35, 80, 0.3);
   stroke-width: 1;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
 .plate-edge {
-  fill: #ddd0b3;
-  stroke: rgba(22, 24, 26, 0.3);
+  fill: #c7d7f0;
+  stroke: rgba(13, 35, 80, 0.3);
   stroke-width: 1;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
 .plate-side {
-  fill: #d0c1a0;
-  stroke: rgba(22, 24, 26, 0.3);
+  fill: #aec4e4;
+  stroke: rgba(13, 35, 80, 0.3);
   stroke-width: 1;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
@@ -673,17 +704,17 @@ svg {
 
 .plate-accent .plate-top {
   fill: var(--vermilion);
-  stroke: rgba(22, 24, 26, 0.35);
+  stroke: rgba(13, 35, 80, 0.35);
 }
 
 .plate-accent .plate-edge {
-  fill: #b93d17;
-  stroke: rgba(22, 24, 26, 0.35);
+  fill: var(--vermilion-deep);
+  stroke: rgba(13, 35, 80, 0.35);
 }
 
 .plate-accent .plate-side {
-  fill: #a53513;
-  stroke: rgba(22, 24, 26, 0.35);
+  fill: #861b16;
+  stroke: rgba(13, 35, 80, 0.35);
 }
 
 .art-dot {
@@ -1003,7 +1034,7 @@ svg {
 
 .method-quote figcaption {
   max-width: 44ch;
-  color: rgba(247, 242, 230, 0.52);
+  color: rgba(255, 253, 248, 0.52);
   font-size: 0.76rem;
   line-height: 1.6;
 }
@@ -1012,7 +1043,7 @@ svg {
   margin-top: clamp(2rem, 4vw, 3.4rem);
   padding-top: 1.05rem;
   border-top: 1px solid var(--on-dark-rule);
-  color: rgba(247, 242, 230, 0.62);
+  color: rgba(255, 253, 248, 0.62);
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -1046,9 +1077,9 @@ svg {
   overflow: hidden;
   background: var(--vermilion-deep);
   box-shadow:
-    12px 14px 0 rgba(22, 24, 26, 0.09),
-    0 30px 60px -30px rgba(22, 24, 26, 0.5);
-  color: #fff6e7;
+    12px 14px 0 rgba(13, 35, 80, 0.09),
+    0 30px 60px -30px rgba(13, 35, 80, 0.5);
+  color: var(--on-dark);
   transform: rotate(-2deg);
   transition:
     transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
@@ -1152,8 +1183,8 @@ svg {
   .manual:hover .manual-cover {
     transform: rotate(-0.4deg) translateY(-5px);
     box-shadow:
-      16px 20px 0 rgba(22, 24, 26, 0.09),
-      0 36px 70px -30px rgba(22, 24, 26, 0.55);
+      16px 20px 0 rgba(13, 35, 80, 0.09),
+      0 36px 70px -30px rgba(13, 35, 80, 0.55);
   }
 }
 
@@ -1489,16 +1520,26 @@ svg {
 
 .contact {
   padding-block: clamp(3rem, 6.5vw, 6rem);
-  background: #b8370f;
-  color: #fff7ea;
+  background: var(--ink);
+  color: var(--on-dark);
+}
+
+.contact .btn-ink {
+  border-color: var(--on-dark);
+  background: var(--wa);
+  color: var(--on-dark);
+}
+
+.contact .btn-ink:hover {
+  background: var(--wa-deep);
 }
 
 .contact .kicker {
-  color: #fff7ea;
+  color: var(--on-dark);
 }
 
 .contact .kicker-index {
-  color: #fff7ea;
+  color: var(--on-dark);
 }
 
 .contact-grid {
@@ -1524,7 +1565,7 @@ svg {
 .contact-lede {
   max-width: 28ch;
   margin-bottom: 1.1rem;
-  color: #fff7ea;
+  color: var(--on-dark);
   font-size: 0.93rem;
   line-height: 1.55;
 }
@@ -1535,12 +1576,12 @@ svg {
   gap: 1rem;
   margin-top: clamp(2rem, 4vw, 3.2rem);
   padding-top: 1.2rem;
-  border-top: 1px solid rgba(255, 247, 234, 0.35);
+  border-top: 1px solid rgba(255, 253, 248, 0.35);
 }
 
 .contact-facts dt {
   margin-bottom: 0.3rem;
-  color: #fff7ea;
+  color: var(--on-dark);
   font-size: 0.6rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1555,7 +1596,7 @@ svg {
 .contact-note {
   max-width: 62ch;
   margin-top: 1.4rem;
-  color: #fff7ea;
+  color: var(--on-dark);
   font-size: 0.74rem;
   line-height: 1.6;
 }
@@ -1572,8 +1613,15 @@ svg {
 
 .site-footer {
   padding-block: clamp(2.8rem, 5.5vw, 4.5rem) 1.8rem;
+  border-top: 4px solid;
+  border-image: linear-gradient(
+    90deg,
+    #0d2350 0 33.333%,
+    #fffdf8 33.333% 66.667%,
+    #e2231a 66.667% 100%
+  ) 1;
   background: var(--ink);
-  color: rgba(247, 242, 230, 0.86);
+  color: rgba(255, 253, 248, 0.86);
 }
 
 .footer-top {
@@ -1590,7 +1638,7 @@ svg {
 .footer-brand p {
   max-width: 34ch;
   margin-top: 1.3rem;
-  color: rgba(247, 242, 230, 0.58);
+  color: rgba(255, 253, 248, 0.58);
   font-size: 0.86rem;
   line-height: 1.65;
 }
@@ -1610,7 +1658,7 @@ svg {
 
 .footer-label {
   margin-bottom: 0.55rem;
-  color: rgba(247, 242, 230, 0.58);
+  color: rgba(255, 253, 248, 0.58);
   font-size: 0.6rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1618,14 +1666,14 @@ svg {
 
 .footer-col a {
   border-bottom: 1px solid transparent;
-  color: rgba(247, 242, 230, 0.82);
+  color: rgba(255, 253, 248, 0.82);
   font-size: 0.86rem;
   line-height: 1.6;
   text-decoration: none;
 }
 
 .footer-col a:hover {
-  border-color: rgba(247, 242, 230, 0.55);
+  border-color: rgba(255, 253, 248, 0.55);
   color: #fff;
 }
 
@@ -1636,8 +1684,8 @@ svg {
   justify-content: space-between;
   gap: 1rem 2rem;
   padding-top: 1.1rem;
-  border-top: 1px solid rgba(247, 242, 230, 0.16);
-  color: rgba(247, 242, 230, 0.6);
+  border-top: 1px solid rgba(255, 253, 248, 0.16);
+  color: rgba(255, 253, 248, 0.6);
   font-size: 0.7rem;
   line-height: 1.65;
 }
@@ -1647,7 +1695,7 @@ svg {
 }
 
 .footer-bottom strong {
-  color: rgba(247, 242, 230, 0.75);
+  color: rgba(255, 253, 248, 0.75);
   font-weight: 500;
 }
 
@@ -1718,8 +1766,8 @@ svg {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(22, 24, 26, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(22, 24, 26, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(13, 35, 80, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 35, 80, 0.06) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
@@ -1832,7 +1880,7 @@ svg {
 }
 
 .body-group .section-label {
-  color: rgba(247, 242, 230, 0.6);
+  color: rgba(255, 253, 248, 0.6);
 }
 
 .body-group .section-index {
@@ -1858,15 +1906,14 @@ svg {
   margin-top: 1.4rem;
 }
 
-/* Verde WhatsApp leggermente più chiaro: sul fondo antracite il bordo del
-   pulsante deve restare distinguibile. */
 .body-group .btn-wa {
-  background: #17804f;
-  color: #fffdf5;
+  border-color: var(--on-dark);
+  background: var(--wa);
+  color: var(--on-dark);
 }
 
 .body-group .btn-wa:hover {
-  background: #126b43;
+  background: var(--wa-deep);
 }
 
 .body-note {
@@ -2044,6 +2091,7 @@ svg {
     border: 1px solid var(--rule-strong);
     border-radius: 2px;
     background: transparent;
+    color: var(--on-dark);
     font-size: 0.68rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -2055,7 +2103,7 @@ svg {
     display: block;
     width: 16px;
     height: 1px;
-    background: var(--ink);
+    background: var(--on-dark);
     transition:
       background-color 0.25s ease,
       transform 0.25s ease;
@@ -2068,7 +2116,7 @@ svg {
     left: 0;
     width: 16px;
     height: 1px;
-    background: var(--ink);
+    background: var(--on-dark);
     transition: transform 0.25s ease;
   }
 
@@ -2109,9 +2157,9 @@ svg {
     align-items: stretch;
     gap: 0;
     padding: 0.4rem var(--gutter) 1.2rem;
-    border-bottom: 1px solid var(--rule);
-    background: var(--paper);
-    box-shadow: 0 24px 40px -28px rgba(22, 24, 26, 0.4);
+    border-bottom: 1px solid var(--on-dark-rule);
+    background: var(--ink);
+    box-shadow: 0 24px 40px -28px rgba(13, 35, 80, 0.4);
   }
 
   .enhanced .site-nav.is-open {
@@ -2129,7 +2177,7 @@ svg {
     width: 100%;
     justify-content: flex-start;
     padding: 0.9rem 0;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--on-dark-rule);
     font-size: 0.92rem;
   }
 
@@ -2341,7 +2389,7 @@ svg {
     justify-content: space-between;
     gap: 1rem;
     padding-bottom: 0.6rem;
-    border-bottom: 1px solid rgba(255, 247, 234, 0.2);
+    border-bottom: 1px solid var(--on-dark-rule);
   }
 
   .contact-facts div:last-child {
