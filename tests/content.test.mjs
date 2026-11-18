@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { waMessages, whatsappNumber } from "../assets/JS/content.js";
+import { routerKey, waMessages, whatsappNumber } from "../assets/JS/content.js";
 import { createWhatsAppUrl } from "../assets/JS/whatsapp.mjs";
 
 const pages = [
@@ -55,6 +55,20 @@ test("le pagine sono noindex, senza link vuoti e senza prezzi", () => {
   }
 });
 
+test("il selettore sceglie il messaggio giusto per percorso e necessità", () => {
+  assert.equal(routerKey("Carabinieri", "manuale"), "manualCarabinieri");
+  assert.equal(routerKey("Polizia di Stato", "manuale"), "materialiPolizia");
+  assert.equal(routerKey("Guardia di Finanza", "gruppo"), "gruppoGdf");
+  assert.equal(routerKey("", "info"), "info");
+  assert.equal(routerKey("Carabinieri", "altro"), "info");
+});
+
+test("il selettore WhatsApp resta nascosto senza JavaScript", () => {
+  const html = readPage("index.html");
+  assert.match(html, /data-router hidden/);
+  assert.match(html, /data-router-cta/);
+});
+
 test("le pagine funzionano da una sottocartella e non mostrano il numero", () => {
   for (const page of pages) {
     const html = readPage(page);
@@ -76,6 +90,7 @@ test("ogni pagina ha un solo h1, un main, lo skip link e nessun id duplicato", (
     assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `${page}: h1 non unico`);
     assert.match(html, /<main id="main-content" tabindex="-1">/, page);
     assert.match(html, /class="skip-link" href="#main-content"/, page);
+    assert.match(html, /class="mobile-cta" href="https:\/\/wa\.me\/393277897381\?text=/, `${page}: CTA mobile`);
     assert.equal(new Set(ids).size, ids.length, `${page}: id duplicati`);
   }
 });

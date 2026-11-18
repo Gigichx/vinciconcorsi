@@ -19,6 +19,10 @@ export const waMessages = {
     "Ciao Salvatore, vorrei informazioni per acquistare il Manuale attitudinale Allievo Carabiniere.",
   indiceCarabinieri:
     "Ciao Salvatore, vorrei ricevere l'indice del Manuale attitudinale Allievo Carabiniere.",
+  prezzoCarabinieri:
+    "Ciao Salvatore, vorrei conoscere il prezzo del Manuale attitudinale Allievo Carabiniere.",
+  tempiCarabinieri:
+    "Ciao Salvatore, vorrei sapere i tempi di consegna del Manuale attitudinale Allievo Carabiniere.",
   materialiPolizia:
     "Ciao Salvatore, vorrei informazioni sui materiali per il concorso in Polizia di Stato.",
   materialiGdf:
@@ -30,3 +34,29 @@ export const waMessages = {
   gruppoGdf:
     "Ciao Salvatore, vorrei richiedere l'accesso al gruppo di preparazione per Guardia di Finanza.",
 };
+
+/**
+ * Il selettore della homepage traduce due scelte in una chiave di messaggio.
+ * "Non ho ancora scelto" ricade sul messaggio generico.
+ */
+const routerByBody = {
+  Carabinieri: {
+    info: "infoCarabinieri",
+    manuale: "manualCarabinieri",
+    gruppo: "gruppoCarabinieri",
+  },
+  "Polizia di Stato": {
+    info: "infoPolizia",
+    manuale: "materialiPolizia",
+    gruppo: "gruppoPolizia",
+  },
+  "Guardia di Finanza": {
+    info: "infoGdf",
+    manuale: "materialiGdf",
+    gruppo: "gruppoGdf",
+  },
+};
+
+export function routerKey(corpo, bisogno) {
+  return routerByBody[corpo]?.[bisogno] ?? "info";
+}

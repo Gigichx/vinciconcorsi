@@ -72,7 +72,7 @@ Quattro pagine statiche, contenuto completo già nell'HTML:
 La pagina dei corpi usa un template coerente (hero, materiali, gruppo, video/social, contatto finale) con contenuti e segno grafico specifici. Non duplicare la homepage né ripetere blocchi di copy identici nelle tre pagine: se un contenuto è comune, vive nella homepage o in un componente condiviso. Header, footer e fascia di contatto sono l'unica ripetizione ammessa, perché ogni pagina statica deve restare completa senza JavaScript.
 
 - `assets/CSS/style.css`: tokens, componenti, layout responsive, movimento. Font locali in `assets/fonts/`.
-- `assets/JS/content.js`: **solo** numero WhatsApp e messaggi delle azioni. Il testo pubblicato vive nell'HTML.
+- `assets/JS/content.js`: **solo** numero WhatsApp, messaggi delle azioni e mappa `routerKey` del selettore. Il testo pubblicato vive nell'HTML.
 - `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), l'ingresso delle sezioni, la parallasse leggera e rigenera gli href WhatsApp da `content.js`.
 - `assets/JS/whatsapp.mjs`: valida il numero e codifica il messaggio con `encodeURIComponent`.
 - `tests/`: verificano numero e link WhatsApp, `noindex`, assenza di prezzi e link vuoti, un solo `h1` per pagina, `main`, skip link e assenza di `id` duplicati.
@@ -86,14 +86,16 @@ Regole tecniche:
 - Niente framework, build, CMS, backend, autenticazione o dipendenze non necessarie.
 - Non caricare nel repository il CSV o le risposte integrali del cliente: contengono dati privati.
 
-## Direzione grafica adottata (16/11/2026)
+## Direzione grafica adottata (18/11/2026)
 
 Proposta per l'anteprima, da validare con il cliente.
 
-- Fondo avorio caldo `#f7f2e6`, superfici crema `#efe7d6`, testi antracite `#16181a` / `#5a5b53`.
-- Arancio vermiglio `#d9451b` (testo piccolo: `#b03410`) usato con intenzione: numeri di sezione, segni, dettagli, chiusura. Verde `#16754a` riservato alle azioni WhatsApp.
+- Fondo avorio luminoso `#fffdf8`, superfici azzurro tenue `#eef3fb`, testi blu navy `#0d2350` / `#3b4a63`.
+- Rosso acceso `#e2231a` (testo piccolo: `#b3140f`) usato con intenzione: numeri di sezione, segni, dettagli. Verde `#0a7f45` riservato alle azioni WhatsApp. Blu `#14337a` per la chiusura e le superfici profonde.
+- Filetto tricolore unico sopra il footer; nessun altro segno della bandiera.
 - Tipografia: Bricolage Grotesque per titoli e interfaccia, Instrument Sans per il testo, Instrument Serif corsivo per poche parole editoriali all'interno dei titoli.
-- Composizioni asimmetriche ma leggibili, intestazioni con numero di sezione e filetto, liste invece di griglie di riquadri identici, alternanza chiaro/scuro: una sola sezione scura di forte impatto (Il metodo), una chiusura vermiglia.
+- Composizioni asimmetriche ma leggibili, intestazioni con numero di sezione e filetto, liste invece di griglie di riquadri identici, alternanza chiaro/scuro: una sola sezione scura di forte impatto (Il metodo), una chiusura blu.
+- Titoli display in peso 800, spaziatura stretta: più vicini al materiale promozionale approvato dal cliente.
 - Artwork originale «Scala V»: cinque piattaforme sovrapposte che salgono verso destra, l'ultima vermiglia, realizzate in SVG; parallasse leggera su desktop, animazione sospesa con `prefers-reduced-motion`.
 - Segni originali per i tre percorsi (V, cerchi aperti, gradini), nessuno stemma.
 - Movimento: ingresso della pagina misurato, comparsa delle sezioni allo scorrimento, microinterazioni su righe e pulsanti. Nessun carosello automatico, nessun cursore personalizzato, nessuna animazione continua necessaria alla comprensione.
@@ -103,6 +105,9 @@ Proposta per l'anteprima, da validare con il cliente.
 
 - La modalità anteprima è dichiarata da una barra discreta e statica in cima a ogni pagina (nessuna variabile runtime).
 - Il numero di telefono non è pubblicato come testo: l'unico contatto visibile è il pulsante WhatsApp.
+- Barra WhatsApp fissa in basso su mobile (max 960 px), con padding del body per non coprire il footer.
+- Selettore WhatsApp in homepage: due scelte (percorso e necessità) generano il messaggio; resta `hidden` senza JavaScript.
+- FAQ con le obiezioni d'acquisto (prezzo, tempi, idoneità) e passi d'acquisto in tre tempi nella sezione manuali.
 - Tutte le pagine sono `noindex, nofollow`. `robots.txt` non è una protezione della riservatezza.
 - Nessun analytics, pixel, checkout o pagamento integrato. Nessuna pubblicazione in produzione, nessuna modifica al dominio.
 - Nessun prezzo nel sito; nessun video o player finto; nessun link vuoto o `href="#"`.
@@ -146,6 +151,7 @@ Incorporare i dati approvati; validare catalogo, contatti, gruppi, video e socia
 - 16/11/2026 · Direzione grafica: avorio, antracite, vermiglio, verde solo WhatsApp; Bricolage Grotesque + Instrument Sans + Instrument Serif; artwork «Scala V»; sezione scura unica.
 - 16/11/2026 · Perimetro prodotto: un manuale reale (Carabinieri), richieste di informazioni per gli altri due corpi; nessun prezzo pubblicato.
 - 16/11/2026 · Contatto: numero WhatsApp confermato dal cliente, usato in tutti i link con messaggi distinti per informazioni, manuale e gruppo.
+- 18/11/2026 · Grafica e conversione: palette blu/rosso acceso con avorio luminoso, titoli peso 800, filetto tricolore, barra WhatsApp mobile, selettore a due scelte, FAQ d'acquisto e passi d'acquisto. Contrasti ricalcolati ≥ 4.5:1.
 - 16/11/2026 · Pubblicazione di prova su GitHub Pages in sottocartella: percorsi relativi per asset e navigazione, numero di telefono non più visibile come testo (resta nei link WhatsApp).
 - 16/11/2026 · Revisione del redesign: `content.js` ridotto a numero e messaggi WhatsApp, rimosso il blocco «Per chi è pensato» duplicato nelle tre pagine dei corpi, canali unificati nel componente della homepage, contrasto della fascia di contatto portato sopra 4.5:1, `aria-current` nel footer e test strutturali sulle pagine.
 
