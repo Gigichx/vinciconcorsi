@@ -1,6 +1,0 @@
-Unisce la palette di main ai nuovi componenti di conversione
-
-Mantiene header blu, copertina rossa e CTA verde della chiusura scelti su main; riapplica selettore WhatsApp, barra mobile, passi d'acquisto, FAQ e filetto tricolore. Titoli display estesi al peso 800 e pannello mobile senza overflow.
-
-🤖 Generated with Codebuff
-Co-Authored-By: Codebuff <noreply@codebuff.com>
