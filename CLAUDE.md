@@ -91,7 +91,7 @@ Regole tecniche:
 Proposta per l'anteprima, da validare con il cliente.
 
 - Fondo avorio luminoso `#fffdf8`, superfici azzurro tenue `#eef3fb`, testi blu navy `#0d2350` / `#3b4a63`.
-- Rosso acceso `#e2231a` (testo piccolo: `#b3140f`) usato con intenzione: numeri di sezione, segni, dettagli. Verde `#0a7f45` riservato alle azioni WhatsApp. Blu `#14337a` per la chiusura e le superfici profonde.
+- Rosso acceso `#e2231a` (testo piccolo: `#b3140f`) usato con intenzione: numeri di sezione, segni, dettagli. Verde `#0a7f45` riservato alle azioni WhatsApp. Header e chiusura usano il navy `#0d2350`; la copertina del manuale resta rossa.
 - Filetto tricolore unico sopra il footer; nessun altro segno della bandiera.
 - Tipografia: Bricolage Grotesque per titoli e interfaccia, Instrument Sans per il testo, Instrument Serif corsivo per poche parole editoriali all'interno dei titoli.
 - Composizioni asimmetriche ma leggibili, intestazioni con numero di sezione e filetto, liste invece di griglie di riquadri identici, alternanza chiaro/scuro: una sola sezione scura di forte impatto (Il metodo), una chiusura blu.

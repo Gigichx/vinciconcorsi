@@ -37,16 +37,14 @@
   --ink-faint: #55637a;
   --vermilion: #e2231a;
   --vermilion-deep: #b3140f;
-  --vermilion-light: #ff6a4d;
+  --vermilion-light: #ff5a45;
   --wa: #0a7f45;
   --wa-deep: #076637;
-  --blue: #14337a;
-  --blue-deep: #0b1f4b;
   --rule: rgba(13, 35, 80, 0.14);
   --rule-strong: rgba(13, 35, 80, 0.3);
   --on-dark: #fffdf8;
-  --on-dark-soft: rgba(255, 253, 248, 0.74);
-  --on-dark-rule: rgba(255, 253, 248, 0.22);
+  --on-dark-soft: rgba(255, 253, 248, 0.7);
+  --on-dark-rule: rgba(255, 253, 248, 0.2);
 
   --display: "Bricolage Grotesque", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   --body: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
@@ -119,7 +117,7 @@ h2,
 h3,
 h4 {
   font-family: var(--display);
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.04;
   text-wrap: balance;
@@ -338,7 +336,7 @@ svg {
 }
 
 .btn-quiet {
-  border-color: var(--rule-strong);
+  border-color: var(--ink);
   color: var(--ink);
 }
 
@@ -359,25 +357,23 @@ svg {
 }
 
 .btn-outline-wa {
-  border-color: var(--wa);
-  color: var(--wa-deep);
-}
-
-.btn-outline-wa:hover {
-  background: var(--wa);
-  color: var(--on-dark);
-}
-
-/* Sul fondo blu della chiusura il pulsante deve staccarsi: carta chiara,
-   testo blu, vermiglio al passaggio. */
-.btn-ink {
-  background: var(--paper);
+  border-color: var(--ink);
   color: var(--ink);
 }
 
-.btn-ink:hover {
-  background: var(--vermilion);
+.btn-outline-wa:hover {
+  border-color: var(--ink);
+  background: var(--ink);
   color: var(--on-dark);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--on-dark);
+}
+
+.btn-ink:hover {
+  background: #000;
 }
 
 .btn .i-wa {
@@ -441,8 +437,8 @@ svg {
   z-index: 40;
   top: 0;
   overflow-x: clip;
-  border-bottom: 1px solid var(--rule);
-  background: rgba(255, 253, 248, 0.95);
+  border-bottom: 1px solid var(--on-dark-rule);
+  background: rgba(13, 35, 80, 0.96);
   backdrop-filter: blur(10px);
 }
 
@@ -459,7 +455,7 @@ svg {
   flex: 0 0 auto;
   align-items: center;
   gap: 0.55rem;
-  color: var(--ink);
+  color: var(--on-dark);
   text-decoration: none;
 }
 
@@ -485,6 +481,14 @@ svg {
   color: var(--vermilion);
 }
 
+.wordmark-light .wordmark-period {
+  color: var(--vermilion-light);
+}
+
+.site-header .wordmark-period {
+  color: var(--vermilion-light);
+}
+
 .wordmark-sub {
   margin-left: 0.4rem;
   padding-left: 0.75rem;
@@ -494,6 +498,11 @@ svg {
   letter-spacing: 0.16em;
   line-height: 1.35;
   text-transform: uppercase;
+}
+
+.site-header .wordmark-sub {
+  border-color: var(--on-dark-rule);
+  color: rgba(255, 253, 248, 0.7);
 }
 
 .site-nav {
@@ -521,6 +530,10 @@ svg {
   transition: border-color 0.2s ease;
 }
 
+.site-header .site-nav-list a {
+  color: var(--on-dark);
+}
+
 .site-nav-list a:hover {
   border-color: var(--vermilion);
 }
@@ -531,8 +544,20 @@ svg {
   letter-spacing: 0.08em;
 }
 
+.site-header .nav-num {
+  color: rgba(255, 253, 248, 0.62);
+}
+
 .menu-toggle {
   display: none;
+}
+
+.site-header .site-nav-cta {
+  border-color: var(--on-dark);
+}
+
+.site-header .menu-toggle {
+  border-color: var(--on-dark-rule);
 }
 
 /* ---------- Apertura ---------- */
@@ -556,8 +581,8 @@ svg {
   margin: 0 0 1.5rem;
   font-size: clamp(2.85rem, 7.4vw, 6.9rem);
   font-weight: 800;
-  letter-spacing: -0.05em;
-  line-height: 0.86;
+  letter-spacing: -0.055em;
+  line-height: 0.88;
 }
 
 .hero-line {
@@ -655,7 +680,7 @@ svg {
 }
 
 .plate-top {
-  fill: #e9eef8;
+  fill: #dce7f7;
   stroke: rgba(13, 35, 80, 0.3);
   stroke-width: 1;
   stroke-linejoin: round;
@@ -663,7 +688,7 @@ svg {
 }
 
 .plate-edge {
-  fill: #d8e0ee;
+  fill: #c7d7f0;
   stroke: rgba(13, 35, 80, 0.3);
   stroke-width: 1;
   stroke-linejoin: round;
@@ -671,7 +696,7 @@ svg {
 }
 
 .plate-side {
-  fill: #c6d1e3;
+  fill: #aec4e4;
   stroke: rgba(13, 35, 80, 0.3);
   stroke-width: 1;
   stroke-linejoin: round;
@@ -684,12 +709,12 @@ svg {
 }
 
 .plate-accent .plate-edge {
-  fill: #b3140f;
+  fill: var(--vermilion-deep);
   stroke: rgba(13, 35, 80, 0.35);
 }
 
 .plate-accent .plate-side {
-  fill: #8f0f0b;
+  fill: #861b16;
   stroke: rgba(13, 35, 80, 0.35);
 }
 
@@ -1051,7 +1076,7 @@ svg {
   flex-direction: column;
   padding: clamp(1.1rem, 2vw, 1.6rem);
   overflow: hidden;
-  background: var(--blue);
+  background: var(--vermilion-deep);
   box-shadow:
     12px 14px 0 rgba(13, 35, 80, 0.09),
     0 30px 60px -30px rgba(13, 35, 80, 0.5);
@@ -1497,8 +1522,18 @@ svg {
 
 .contact {
   padding-block: clamp(3rem, 6.5vw, 6rem);
-  background: var(--blue);
+  background: var(--ink);
   color: var(--on-dark);
+}
+
+.contact .btn-ink {
+  border-color: var(--on-dark);
+  background: var(--wa);
+  color: var(--on-dark);
+}
+
+.contact .btn-ink:hover {
+  background: var(--wa-deep);
 }
 
 .contact .kicker {
@@ -1883,9 +1918,8 @@ svg {
   margin-top: 1.4rem;
 }
 
-/* Verde WhatsApp leggermente più chiaro: sul fondo antracite il bordo del
-   pulsante deve restare distinguibile. */
 .body-group .btn-wa {
+  border-color: var(--on-dark);
   background: var(--wa);
   color: var(--on-dark);
 }
@@ -2196,6 +2230,7 @@ svg {
     border: 1px solid var(--rule-strong);
     border-radius: 2px;
     background: transparent;
+    color: var(--on-dark);
     font-size: 0.68rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -2207,7 +2242,7 @@ svg {
     display: block;
     width: 16px;
     height: 1px;
-    background: var(--ink);
+    background: var(--on-dark);
     transition:
       background-color 0.25s ease,
       transform 0.25s ease;
@@ -2220,7 +2255,7 @@ svg {
     left: 0;
     width: 16px;
     height: 1px;
-    background: var(--ink);
+    background: var(--on-dark);
     transition: transform 0.25s ease;
   }
 
@@ -2261,8 +2296,8 @@ svg {
     align-items: stretch;
     gap: 0;
     padding: 0.4rem var(--gutter) 1.2rem;
-    border-bottom: 1px solid var(--rule);
-    background: var(--paper);
+    border-bottom: 1px solid var(--on-dark-rule);
+    background: var(--ink);
     box-shadow: 0 24px 40px -28px rgba(13, 35, 80, 0.4);
   }
 
@@ -2281,7 +2316,7 @@ svg {
     width: 100%;
     justify-content: flex-start;
     padding: 0.9rem 0;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--on-dark-rule);
     font-size: 0.92rem;
   }
 
@@ -2493,7 +2528,7 @@ svg {
     justify-content: space-between;
     gap: 1rem;
     padding-bottom: 0.6rem;
-    border-bottom: 1px solid rgba(255, 253, 248, 0.2);
+    border-bottom: 1px solid var(--on-dark-rule);
   }
 
   .contact-facts div:last-child {
