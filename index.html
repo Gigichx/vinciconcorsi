@@ -23,10 +23,8 @@
     <header class="site-header">
       <div class="shell site-header-inner">
         <a class="wordmark" href="./" aria-label="Vinciconcorsi — pagina iniziale">
-          <svg class="wordmark-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M3.5 4.5 12 20.5 20.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
-            <circle class="mark-dot" cx="20.5" cy="4.5" r="1.7"/>
-          </svg>
+          <!-- Logo: il file definitivo va in assets/img/logo.svg (quadrato, sfondo trasparente). -->
+          <img class="wordmark-logo" src="assets/img/logo.svg" alt="" width="30" height="30">
           <span class="wordmark-text">vinciconcorsi<span class="wordmark-period">.</span></span>
           <span class="wordmark-sub">Preparazione concorsi</span>
         </a>
@@ -68,62 +66,59 @@
                 <a class="btn btn-primary" href="#percorsi">Trova il tuo percorso
                   <svg class="i-arrow" viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M1 6h15M11.5 1.5 16 6l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
                 </a>
-                <a class="btn btn-quiet" href="#video">Scopri i video
-                  <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
-                </a>
               </div>
             </div>
 
-            <figure class="hero-art" data-parallax>
-              <span class="art-coord" aria-hidden="true">Artwork 01</span>
-              <span class="art-vertical" aria-hidden="true">Progressione · V</span>
-              <svg class="art-svg" viewBox="40 100 490 480" role="img" aria-labelledby="art-title art-desc" focusable="false">
-                <title id="art-title">Scala V, scultura grafica</title>
-                <desc id="art-desc">Cinque piattaforme sovrapposte salgono verso destra; l'ultima è arancione vermiglio.</desc>
-                <g class="art-grid" aria-hidden="true">
-                  <line x1="60" y1="100" x2="60" y2="560"/>
-                  <line x1="500" y1="100" x2="500" y2="560"/>
-                  <line x1="60" y1="520" x2="500" y2="520"/>
-                  <line x1="60" y1="556" x2="500" y2="556"/>
-                </g>
-                <circle class="art-orbit" cx="292" cy="306" r="190" aria-hidden="true"/>
-                <g class="art-float" aria-hidden="true">
-                  <path class="art-ascent" d="M52 546 398 172"/>
-                  <ellipse class="art-shadow" cx="248" cy="514" rx="172" ry="15"/>
-                  <g class="plate plate-accent">
-                    <polygon class="plate-side" points="326,246 452,196 452,210 326,260"/>
-                    <polygon class="plate-edge" points="272,220 326,246 326,260 272,234"/>
-                    <polygon class="plate-top" points="272,220 398,170 452,196 326,246"/>
-                  </g>
-                  <g class="plate">
-                    <polygon class="plate-side" points="282,304 408,254 408,268 282,318"/>
-                    <polygon class="plate-edge" points="228,278 282,304 282,318 228,292"/>
-                    <polygon class="plate-top" points="228,278 354,228 408,254 282,304"/>
-                  </g>
-                  <g class="plate">
-                    <polygon class="plate-side" points="238,362 364,312 364,326 238,376"/>
-                    <polygon class="plate-edge" points="184,336 238,362 238,376 184,350"/>
-                    <polygon class="plate-top" points="184,336 310,286 364,312 238,362"/>
-                  </g>
-                  <g class="plate">
-                    <polygon class="plate-side" points="194,420 320,370 320,384 194,434"/>
-                    <polygon class="plate-edge" points="140,394 194,420 194,434 140,408"/>
-                    <polygon class="plate-top" points="140,394 266,344 320,370 194,420"/>
-                  </g>
-                  <g class="plate">
-                    <polygon class="plate-side" points="150,478 276,428 276,442 150,492"/>
-                    <polygon class="plate-edge" points="96,452 150,478 150,492 96,466"/>
-                    <polygon class="plate-top" points="96,452 222,402 276,428 150,478"/>
-                  </g>
-                </g>
-                <circle class="art-dot" cx="398" cy="170" r="5" aria-hidden="true"/>
-              </svg>
-              <figcaption class="hero-art-caption">
-                <span class="art-caption-title">Scala ascendente</span>
-                <span class="art-caption-meta">Segno V / progressione</span>
-              </figcaption>
-            </figure>
+            <a class="hero-video" href="#video">
+              <span class="hero-video-phone">
+                <span class="hero-video-screen">
+                  <span class="hero-video-top">vinciconcorsi<span aria-hidden="true">.</span></span>
+                  <span class="hero-video-claim">Preparazione ai test<br>e al <em>colloquio.</em></span>
+                  <span class="hero-video-note" aria-hidden="true">01 · Presentazione</span>
+                  <span class="hero-video-play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M9 6.2 18.4 12 9 17.8z" fill="currentColor"/></svg>
+                  </span>
+                </span>
+              </span>
+              <span class="hero-video-label">
+                <span class="hero-video-label-main">Guarda la presentazione</span>
+                <span class="hero-video-label-meta">Anteprima · video in arrivo</span>
+              </span>
+            </a>
           </div>
+
+          <nav class="hero-index" aria-labelledby="hero-index-title">
+            <div class="hero-index-head">
+              <p class="hero-index-title" id="hero-index-title">Scegli il percorso</p>
+              <svg class="hero-index-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M3.5 4.5 12 20.5 20.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
+                <circle cx="20.5" cy="4.5" r="1.7" fill="currentColor"/>
+              </svg>
+            </div>
+            <ol class="hero-index-list">
+              <li>
+                <a href="carabinieri/">
+                  <span class="hero-index-num">01</span>
+                  <span class="hero-index-name">Carabinieri</span>
+                  <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="polizia-di-stato/">
+                  <span class="hero-index-num">02</span>
+                  <span class="hero-index-name">Polizia di Stato</span>
+                  <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
+                </a>
+              </li>
+              <li>
+                <a href="guardia-di-finanza/">
+                  <span class="hero-index-num">03</span>
+                  <span class="hero-index-name">Guardia di Finanza</span>
+                  <svg class="i-arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 12 12 4M5.5 4H12v6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg>
+                </a>
+              </li>
+            </ol>
+          </nav>
 
           <div class="hero-foot">
             <ul class="hero-facts">
@@ -131,11 +126,6 @@
               <li>Colloquio con la commissione</li>
               <li>Tre percorsi</li>
             </ul>
-            <a class="hero-video-link" href="#video">
-              <span class="hero-video-dot" aria-hidden="true"></span>
-              Video sui canali social
-              <svg class="i-arrow" viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M1 6h15M11.5 1.5 16 6l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-            </a>
           </div>
         </div>
       </section>
@@ -417,7 +407,7 @@
                 </a>
               </li>
               <li class="reveal">
-                <a class="channel-row" href="https://www.facebook.com/share/1A8JRnibJz/" target="_blank" rel="noopener noreferrer">
+                <a class="channel-row" href="https://www.facebook.com/share/1DbkodjGTd/" target="_blank" rel="noopener noreferrer">
                   <span class="channel-num">03</span>
                   <span class="channel-name">Facebook</span>
                   <span class="channel-cta">Segui la pagina su Facebook
@@ -534,7 +524,7 @@
             <h2 class="contact-title" id="contatti-title">Il primo passo?<br><em>Parliamone.</em></h2>
             <div class="contact-action">
               <p class="contact-lede">Informazioni, manuali o accesso ai gruppi: scrivi su WhatsApp.</p>
-              <a class="btn btn-ink" href="https://wa.me/393277897381?text=Ciao%20Salvatore%2C%20vorrei%20informazioni%20sulla%20preparazione%20per%20i%20concorsi." data-wa="info" target="_blank" rel="noopener noreferrer">
+              <a class="btn btn-wa" href="https://wa.me/393277897381?text=Ciao%20Salvatore%2C%20vorrei%20informazioni%20sulla%20preparazione%20per%20i%20concorsi." data-wa="info" target="_blank" rel="noopener noreferrer">
                 <svg class="i-wa" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.2 4h13.6v9.4H8.9L4.6 17v-3.6H3.2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 8.6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                 Scrivi su WhatsApp
               </a>
@@ -554,11 +544,8 @@
       <div class="shell">
         <div class="footer-top">
           <div class="footer-brand">
-            <a class="wordmark wordmark-light" href="./" aria-label="Vinciconcorsi — pagina iniziale">
-              <svg class="wordmark-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M3.5 4.5 12 20.5 20.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
-                <circle class="mark-dot" cx="20.5" cy="4.5" r="1.7"/>
-              </svg>
+            <a class="wordmark" href="./" aria-label="Vinciconcorsi — pagina iniziale">
+              <img class="wordmark-logo" src="assets/img/logo.svg" alt="" width="30" height="30">
               <span class="wordmark-text">vinciconcorsi<span class="wordmark-period">.</span></span>
             </a>
             <p>Preparazione personalizzata ai concorsi: test psico-attitudinali e colloquio con la commissione esaminatrice.</p>
@@ -583,7 +570,7 @@
               <span class="footer-label">Seguici</span>
               <a href="https://www.tiktok.com/@vinciconcorsi" target="_blank" rel="noopener noreferrer">TikTok</a>
               <a href="https://www.instagram.com/vinciconcorsi/" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://www.facebook.com/share/1A8JRnibJz/" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://www.facebook.com/share/1DbkodjGTd/" target="_blank" rel="noopener noreferrer">Facebook</a>
             </div>
           </nav>
         </div>
