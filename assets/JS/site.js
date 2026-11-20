@@ -71,6 +71,73 @@ function setupHeroVideo() {
 }
 
 /**
+ * Segna nella navigazione la sezione che si sta leggendo. Solo homepage:
+ * nelle pagine dei corpi le voci puntano alle sezioni della homepage.
+ */
+function setupNavCurrent() {
+  const links = [...document.querySelectorAll('.site-nav-list a[href^="#"]')];
+  if (!links.length || !("IntersectionObserver" in window)) return;
+
+  const bySection = new Map();
+  for (const link of links) {
+    const section = document.querySelector(link.getAttribute("href"));
+    if (section) bySection.set(section, link);
+  }
+  if (!bySection.size) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        for (const link of bySection.values()) link.removeAttribute("aria-current");
+        bySection.get(entry.target).setAttribute("aria-current", "true");
+      }
+    },
+    { rootMargin: "-45% 0px -50% 0px" },
+  );
+
+  for (const section of bySection.keys()) observer.observe(section);
+}
+
+/**
+ * Video delle schede: il tasto sopra il poster avvia la riproduzione e mette in
+ * pausa gli altri video della pagina. Senza JavaScript restano i comandi nativi.
+ */
+function setupVideoCards() {
+  const buttons = [...document.querySelectorAll("[data-video-play]")];
+  if (!buttons.length) return;
+
+  const videos = [...document.querySelectorAll("video")];
+  const pauseOthers = (current) => {
+    for (const video of videos) {
+      if (video !== current && !video.paused) video.pause();
+    }
+  };
+
+  for (const button of buttons) {
+    const card = button.closest(".video-card");
+    const video = card && card.querySelector("video");
+    if (!video) continue;
+
+    button.addEventListener("click", () => {
+      pauseOthers(video);
+      video.play();
+    });
+    video.addEventListener("play", () => {
+      pauseOthers(video);
+      button.hidden = true;
+    });
+    video.addEventListener("pause", () => {
+      button.hidden = false;
+    });
+    video.addEventListener("ended", () => {
+      video.currentTime = 0;
+      button.hidden = false;
+    });
+  }
+}
+
+/**
  * Scorrimento fluido con Lenis (MIT, copia locale in assets/vendor).
  * Lavora sullo scroll nativo, quindi ancore, sticky e tastiera restano validi.
  * Con prefers-reduced-motion, senza la libreria o senza JavaScript resta lo
@@ -184,6 +251,8 @@ root.classList.add("enhanced");
 hydrateWhatsAppLinks();
 setupMenu();
 setupHeroVideo();
+setupVideoCards();
+setupNavCurrent();
 setupRouter();
 setupReveal();
 setupSmoothScroll();

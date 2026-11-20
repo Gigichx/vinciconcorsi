@@ -52,8 +52,19 @@
 
   --gutter: clamp(20px, 5vw, 64px);
   --max: 1280px;
+  --title-size: clamp(2.3rem, 4.9vw, 4.3rem);
   --section-y: clamp(4rem, 7.5vw, 7.5rem);
   --header-h: 78px;
+
+  /* Scala degli spazi: 6 · 12 · 18 · 24 · 36 · 48 px.
+     Ogni distanza usa un passo della scala, mai un valore improvvisato. */
+  --space-1: 0.375rem;
+  --space-2: 0.75rem;
+  --space-3: 1.125rem;
+  --space-4: 1.5rem;
+  --space-5: 2.25rem;
+  --space-6: 3rem;
+  --space-7: clamp(3rem, 5vw, 4.5rem);
 }
 
 *,
@@ -205,70 +216,33 @@ svg {
 /* ---------- Tipografia condivisa ---------- */
 
 .kicker {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  margin: 0 0 1.4rem;
+  margin: 0 0 var(--space-3);
   color: var(--ink-soft);
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   line-height: 1.4;
   text-transform: uppercase;
-}
-
-.kicker-index {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--vermilion-deep);
-  font-family: var(--display);
-  font-size: 0.92rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.kicker-index::after {
-  content: "";
-  width: 24px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.45;
 }
 
 .kicker-light {
   color: rgba(255, 253, 248, 0.62);
 }
 
-.kicker-light .kicker-index {
-  color: var(--vermilion-light);
-}
-
+/* L'etichetta si centra sulla prima riga del titolo, qualunque sia la sua dimensione. */
 .section-label {
-  display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
   margin: 0;
-  padding-top: 0.35rem;
+  padding-top: calc((var(--title-size) * 0.98 - 0.74rem * 1.4) / 2);
   color: var(--ink-soft);
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   line-height: 1.4;
   text-transform: uppercase;
 }
 
-.section-index {
-  color: var(--vermilion);
-  font-family: var(--display);
-  font-size: 1.55rem;
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
 .section-title {
-  font-size: clamp(2.3rem, 4.9vw, 4.3rem);
+  font-size: var(--title-size);
   font-weight: 800;
   line-height: 0.98;
   letter-spacing: -0.045em;
@@ -284,8 +258,8 @@ svg {
 }
 
 .section-aside {
-  max-width: 40ch;
-  margin-bottom: 0.3rem;
+  max-width: 58ch;
+  margin: 0;
   color: var(--ink-soft);
   font-size: 0.9rem;
   line-height: 1.65;
@@ -419,7 +393,7 @@ svg {
   padding: 0.5rem var(--gutter);
   background: var(--ink);
   color: rgba(255, 253, 248, 0.78);
-  font-size: 0.64rem;
+  font-size: 0.74rem;
   letter-spacing: 0.13em;
   line-height: 1.4;
   text-align: center;
@@ -486,7 +460,7 @@ svg {
   padding-left: 0.75rem;
   border-left: 1px solid var(--rule-strong);
   color: var(--ink-faint);
-  font-size: 0.58rem;
+  font-size: 0.74rem;
   letter-spacing: 0.16em;
   line-height: 1.35;
   text-transform: uppercase;
@@ -516,7 +490,7 @@ svg {
   gap: 0.4rem;
   padding: 0.35rem 0;
   border-bottom: 1px solid transparent;
-  font-size: 0.82rem;
+  font-size: 0.86rem;
   text-decoration: none;
   white-space: nowrap;
   transition: border-color 0.2s ease;
@@ -526,18 +500,14 @@ svg {
   color: var(--on-dark);
 }
 
-.site-nav-list a:hover {
+.site-nav-list a:hover,
+.site-nav-list a[aria-current] {
   border-color: var(--vermilion);
 }
 
-.nav-num {
-  color: var(--ink-faint);
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
-}
-
-.site-header .nav-num {
-  color: rgba(255, 253, 248, 0.62);
+/* Solo nel pannello mobile: gli orari accompagnano l'azione WhatsApp. */
+.site-nav-hours {
+  display: none;
 }
 
 .menu-toggle {
@@ -561,12 +531,12 @@ svg {
   display: grid;
   grid-template-columns: minmax(0, 1.32fr) minmax(260px, 0.68fr);
   align-items: center;
-  gap: clamp(2rem, 4.5vw, 4.5rem);
+  gap: var(--space-6);
 }
 
 .hero-title {
   max-width: 13ch;
-  margin: 0 0 1.5rem;
+  margin: 0 0 var(--space-4);
   font-size: clamp(2.85rem, 7.4vw, 6.9rem);
   font-weight: 800;
   letter-spacing: -0.055em;
@@ -683,7 +653,7 @@ svg {
 
 .hero-video-label-meta {
   color: var(--ink-faint);
-  font-size: 0.58rem;
+  font-size: 0.74rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -699,8 +669,8 @@ svg {
 /* Indice dei percorsi */
 
 .hero-index {
-  margin-top: clamp(1.8rem, 3.2vw, 2.6rem);
-  padding-top: 0.9rem;
+  margin-top: var(--space-5);
+  padding-top: var(--space-3);
   border-top: 2px solid var(--ink);
 }
 
@@ -714,7 +684,7 @@ svg {
 
 .hero-index-title {
   color: var(--ink-faint);
-  font-size: 0.62rem;
+  font-size: 0.74rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -754,7 +724,7 @@ svg {
 
 .hero-index-num {
   color: var(--vermilion-deep);
-  font-size: 0.66rem;
+  font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.12em;
 }
@@ -810,7 +780,7 @@ svg {
   align-items: center;
   gap: 0.55rem;
   color: var(--ink-soft);
-  font-size: 0.66rem;
+  font-size: 0.74rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -829,17 +799,18 @@ svg {
 .section-head {
   display: grid;
   grid-template-columns: minmax(110px, 13%) minmax(0, 1fr);
-  gap: clamp(1.2rem, 3vw, 3rem);
-  margin-bottom: clamp(2.2rem, 4.5vw, 4rem);
+  align-items: start;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
   padding-top: 1.35rem;
   border-top: 1px solid var(--rule-strong);
 }
 
+/* Titolo e testo stanno in colonna: nessun paragrafo affiancato al titolo. */
 .section-head-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 30%);
-  align-items: end;
-  gap: clamp(1.2rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
 }
 
 /* ---------- 01 · Percorsi ---------- */
@@ -873,7 +844,7 @@ svg {
 
 .path-num {
   color: var(--ink-faint);
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   letter-spacing: 0.14em;
 }
 
@@ -924,7 +895,7 @@ svg {
   justify-content: flex-end;
   gap: 0.55rem;
   color: var(--ink-soft);
-  font-size: 0.66rem;
+  font-size: 0.74rem;
   letter-spacing: 0.14em;
   text-align: right;
   text-transform: uppercase;
@@ -972,7 +943,7 @@ svg {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
   align-items: start;
-  gap: clamp(2.5rem, 6vw, 6rem);
+  gap: var(--space-6);
 }
 
 .method-title {
@@ -1056,7 +1027,7 @@ svg {
   padding-top: 1.05rem;
   border-top: 1px solid var(--on-dark-rule);
   color: rgba(255, 253, 248, 0.62);
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -1071,7 +1042,7 @@ svg {
   display: grid;
   grid-template-columns: minmax(230px, 340px) minmax(0, 1fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
+  gap: var(--space-6);
 }
 
 .manual-cover-wrap {
@@ -1126,7 +1097,7 @@ svg {
   align-self: flex-start;
   padding: 0.28rem 0.45rem;
   border: 1px solid rgba(255, 246, 231, 0.55);
-  font-size: 0.56rem;
+  font-size: 0.74rem;
   letter-spacing: 0.16em;
   line-height: 1.4;
   text-transform: uppercase;
@@ -1146,7 +1117,7 @@ svg {
   position: relative;
   z-index: 1;
   margin-top: auto;
-  font-size: 0.6rem;
+  font-size: 0.74rem;
   letter-spacing: 0.19em;
   text-transform: uppercase;
 }
@@ -1176,7 +1147,7 @@ svg {
   z-index: 1;
   padding-top: 0.65rem;
   border-top: 1px solid rgba(255, 246, 231, 0.4);
-  font-size: 0.56rem;
+  font-size: 0.74rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -1185,7 +1156,7 @@ svg {
   max-width: 340px;
   margin-top: 1rem;
   color: var(--ink-faint);
-  font-size: 0.64rem;
+  font-size: 0.74rem;
   letter-spacing: 0.12em;
   line-height: 1.5;
   text-transform: uppercase;
@@ -1229,7 +1200,7 @@ svg {
 .manual-facts dt {
   margin-bottom: 0.35rem;
   color: var(--ink-faint);
-  font-size: 0.6rem;
+  font-size: 0.74rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -1253,9 +1224,9 @@ svg {
 .materials-request {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
-  margin-top: clamp(2.5rem, 5vw, 4.5rem);
-  padding-top: 1.5rem;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
   border-top: 1px solid var(--rule-strong);
 }
 
@@ -1293,19 +1264,119 @@ svg {
 
 /* ---------- 04 · Video ---------- */
 
-.video-grid {
+.video-feature {
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+/* Due video verticali, poi il testo che li accompagna */
+
+.video-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 260px));
   align-items: start;
-  gap: clamp(2rem, 5vw, 5rem);
+  gap: var(--space-3);
+}
+
+.video-card {
+  margin: 0;
+}
+
+.video-card-screen {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #0b1c3f;
+  box-shadow: 0 24px 44px -34px rgba(13, 35, 80, 0.6);
+}
+
+.video-card-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-card-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--vermilion);
+  color: var(--on-dark);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+/* Il tasto sovrapposto esiste solo quando lo script può avviare il video. */
+.enhanced .video-card-play {
+  display: grid;
+}
+
+.video-card-play[hidden] {
+  display: none;
+}
+
+.video-card-play svg {
+  width: 13px;
+  height: 15px;
+  margin-left: 2px;
+}
+
+.video-card-caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+}
+
+.video-card-title {
+  font-family: var(--display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.video-card-meta {
+  color: var(--ink-faint);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Testo e canali formano una colonna sola accanto ai video: le tre righe
+dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. */
+.video-side {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.video-copy {
+  max-width: 58ch;
+}
+
+/* Nessun paragrafo spezzato a metà colonna quando il testo va a due colonne. */
+.video-copy p {
+  break-inside: avoid-column;
 }
 
 .video-copy p {
-  max-width: 42ch;
-  margin-bottom: 1.25rem;
+  margin: 0 0 var(--space-3);
   color: var(--ink-soft);
   font-size: 0.97rem;
   line-height: 1.7;
+}
+
+.video-copy p:last-child {
+  margin-bottom: 0;
 }
 
 .channel-list {
@@ -1315,18 +1386,12 @@ svg {
 
 .channel-row {
   display: grid;
-  grid-template-columns: 2.6rem minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.9rem;
-  padding: clamp(1rem, 2vw, 1.45rem) 0;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
   border-bottom: 1px solid var(--rule);
   text-decoration: none;
-}
-
-.channel-num {
-  color: var(--ink-faint);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
 }
 
 .channel-name {
@@ -1342,7 +1407,7 @@ svg {
   align-items: center;
   gap: 0.5rem;
   color: var(--ink-soft);
-  font-size: 0.66rem;
+  font-size: 0.74rem;
   letter-spacing: 0.12em;
   line-height: 1.5;
   text-align: right;
@@ -1393,7 +1458,7 @@ svg {
 
 .community-kicker {
   color: var(--vermilion-deep);
-  font-size: 0.62rem;
+  font-size: 0.74rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -1422,11 +1487,17 @@ svg {
 
 /* ---------- 06 · Domande ---------- */
 
+.faq-head {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
 .faq-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
   align-items: start;
-  gap: clamp(2rem, 5vw, 5rem);
+  gap: var(--space-6);
 }
 
 .faq-head .section-title {
@@ -1538,16 +1609,12 @@ svg {
   color: var(--on-dark);
 }
 
-.contact .kicker-index {
-  color: var(--on-dark);
-}
-
 .contact-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
   align-items: end;
-  gap: clamp(1.5rem, 5vw, 5rem);
-  margin-top: 0.5rem;
+  gap: var(--space-6);
+  margin-top: var(--space-2);
 }
 
 .contact-title {
@@ -1583,7 +1650,7 @@ svg {
 .contact-facts dt {
   margin-bottom: 0.3rem;
   color: var(--on-dark);
-  font-size: 0.6rem;
+  font-size: 0.74rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -1636,13 +1703,13 @@ svg {
 .footer-top {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.95fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  padding-bottom: clamp(2rem, 4vw, 3rem);
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
 }
 
 .footer-brand p {
   max-width: 34ch;
-  margin-top: 1.3rem;
+  margin-top: var(--space-4);
   color: rgba(255, 253, 248, 0.58);
   font-size: 0.86rem;
   line-height: 1.65;
@@ -1651,20 +1718,20 @@ svg {
 .footer-nav {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: var(--space-4);
 }
 
 .footer-col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.45rem;
+  gap: var(--space-1);
 }
 
 .footer-label {
-  margin-bottom: 0.55rem;
+  margin-bottom: var(--space-2);
   color: rgba(255, 253, 248, 0.58);
-  font-size: 0.6rem;
+  font-size: 0.74rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -1687,11 +1754,11 @@ svg {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem 2rem;
-  padding-top: 1.1rem;
+  gap: var(--space-3) var(--space-5);
+  padding-top: var(--space-3);
   border-top: 1px solid rgba(255, 253, 248, 0.16);
   color: rgba(255, 253, 248, 0.6);
-  font-size: 0.7rem;
+  font-size: 0.74rem;
   line-height: 1.65;
 }
 
@@ -1717,7 +1784,7 @@ svg {
   gap: 0.6rem;
   margin-bottom: clamp(1.8rem, 3.5vw, 2.8rem);
   color: var(--ink-faint);
-  font-size: 0.66rem;
+  font-size: 0.74rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -1788,7 +1855,7 @@ svg {
   top: 0.9rem;
   left: 1rem;
   color: var(--ink-faint);
-  font-size: 0.6rem;
+  font-size: 0.74rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -1798,7 +1865,7 @@ svg {
   right: 1rem;
   bottom: 0.9rem;
   color: var(--ink-faint);
-  font-size: 0.6rem;
+  font-size: 0.74rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -1816,7 +1883,7 @@ svg {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   align-items: start;
-  gap: clamp(1.5rem, 5vw, 4.5rem);
+  gap: var(--space-6);
 }
 
 .body-split .section-label {
@@ -1887,10 +1954,6 @@ svg {
 
 .body-group .section-label {
   color: rgba(255, 253, 248, 0.6);
-}
-
-.body-group .section-index {
-  color: var(--vermilion-light);
 }
 
 .body-group .body-title-sm {
@@ -1968,7 +2031,7 @@ svg {
   flex-direction: column;
   gap: 0.35rem;
   color: var(--ink-soft);
-  font-size: 0.6rem;
+  font-size: 0.74rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -2114,6 +2177,26 @@ svg {
 
 /* ---------- Adattamenti ---------- */
 
+@media (max-width: 1150px) {
+  /* Sotto i 1150px il testo non sta più accanto alle schede: va sotto, a tutta
+     riga, e le due schede si dividono lo spazio per non lasciare vuoti. */
+  .video-feature {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+
+  .video-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Il testo va a due colonne per riempire la riga senza allungarla a 95 caratteri. */
+  .video-copy {
+    max-width: none;
+    columns: 2;
+    column-gap: var(--space-5);
+  }
+}
+
 @media (max-width: 1180px) {
   .wordmark-sub {
     display: none;
@@ -2183,7 +2266,7 @@ svg {
     border-radius: 2px;
     background: transparent;
     color: var(--on-dark);
-    font-size: 0.68rem;
+    font-size: 0.74rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     cursor: pointer;
@@ -2255,6 +2338,14 @@ svg {
 
   .enhanced .site-nav.is-open {
     display: flex;
+    animation: nav-panel-in 0.18s ease both;
+  }
+
+  @keyframes nav-panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
   }
 
   .enhanced .site-nav-list {
@@ -2266,10 +2357,31 @@ svg {
   .enhanced .site-nav-list a {
     display: flex;
     width: 100%;
+    align-items: center;
     justify-content: flex-start;
-    padding: 0.9rem 0;
+    gap: 0.6rem;
+    padding: 1rem 0;
     border-bottom: 1px solid var(--on-dark-rule);
-    font-size: 0.92rem;
+    font-family: var(--display);
+    font-size: 1.12rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .enhanced .site-nav-list a::after {
+    content: "\2197";
+    margin-left: auto;
+    font-size: 0.9rem;
+    opacity: 0.45;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .enhanced .site-nav-list a:hover::after,
+  .enhanced .site-nav-list a[aria-current]::after {
+    opacity: 1;
+    transform: translate(2px, -2px);
   }
 
   .enhanced .site-nav-list li {
@@ -2277,13 +2389,25 @@ svg {
   }
 
   .enhanced .site-nav-cta {
-    align-self: flex-start;
-    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+    align-self: stretch;
+    margin-top: 1.1rem;
+  }
+
+  .enhanced .site-nav-hours {
+    display: block;
+    margin: 0.7rem 0 0;
+    color: rgba(255, 253, 248, 0.66);
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-align: center;
+    text-transform: uppercase;
   }
 
   .section-head {
     grid-template-columns: minmax(0, 1fr);
-    gap: 0.9rem;
+    gap: var(--space-2);
   }
 
   .section-head-body {
@@ -2291,12 +2415,25 @@ svg {
   }
 
   .method-grid,
-  .video-grid,
+  .video-feature,
   .faq-grid,
   .materials-request,
   .body-split {
     grid-template-columns: minmax(0, 1fr);
-    gap: 2rem;
+    gap: var(--space-5);
+  }
+
+  .video-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .video-card-title {
+    font-size: 0.92rem;
+  }
+
+  .video-card-meta {
+    font-size: 0.74rem;
   }
 
   .manual {
@@ -2389,6 +2526,11 @@ svg {
 }
 
 @media (max-width: 760px) {
+  .video-copy {
+    columns: 1;
+    max-width: 58ch;
+  }
+
   .hero-title {
     font-size: clamp(2.7rem, 10.5vw, 4.4rem);
     letter-spacing: -0.05em;
@@ -2496,12 +2638,12 @@ svg {
   }
 
   .channel-row {
-    grid-template-columns: 2rem minmax(0, 1fr);
-    gap: 0.4rem 0.8rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4rem;
   }
 
   .channel-cta {
-    grid-column: 2;
+    grid-column: 1;
     justify-content: flex-start;
     text-align: left;
   }
@@ -2585,7 +2727,7 @@ svg {
   }
 
   .preview-bar {
-    font-size: 0.57rem;
+    font-size: 0.74rem;
     letter-spacing: 0.08em;
     padding-block: 0.45rem;
   }
@@ -2630,15 +2772,11 @@ svg {
   }
 
   .hero-facts li {
-    font-size: 0.6rem;
+    font-size: 0.74rem;
   }
 
   .section-label {
-    font-size: 0.62rem;
-  }
-
-  .section-index {
-    font-size: 1.3rem;
+    font-size: 0.74rem;
   }
 
   .btn {
