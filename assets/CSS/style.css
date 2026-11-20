@@ -64,8 +64,28 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 18px);
+}
+
+/* Lenis (scroll fluido): il CSS richiesto dalla libreria è qui perché il sito
+   non ha build. Fonte: https://github.com/darkroomengineering/lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 body {
@@ -582,13 +602,12 @@ svg {
   gap: 0.7rem;
 }
 
-/* Poster del video di presentazione */
+/* Video di presentazione */
 
 .hero-video {
   display: block;
   justify-self: center;
   width: min(100%, 300px);
-  text-decoration: none;
 }
 
 .hero-video-phone {
@@ -602,78 +621,45 @@ svg {
 
 .hero-video-screen {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   aspect-ratio: 9 / 16;
-  padding: 1.7rem 1.25rem 1.15rem;
   overflow: hidden;
   border-radius: 26px;
-  background:
-    radial-gradient(120% 70% at 85% 0%, rgba(255, 90, 69, 0.3), transparent 62%),
-    linear-gradient(158deg, #16336a, #0b1c3f 72%);
-  color: var(--on-dark);
+  background: #0b1c3f;
 }
 
-.hero-video-screen::before {
-  content: "";
-  position: absolute;
-  top: 9px;
-  left: 50%;
-  width: 54px;
-  height: 5px;
-  border-radius: 999px;
-  background: rgba(255, 253, 248, 0.22);
-  transform: translateX(-50%);
-}
-
-.hero-video-top {
-  font-family: var(--display);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
-.hero-video-top span {
-  color: var(--vermilion-light);
-}
-
-.hero-video-claim {
-  font-family: var(--display);
-  font-size: 1.32rem;
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1;
-}
-
-.hero-video-claim em {
-  color: var(--vermilion-light);
-  font-family: var(--editorial);
-  font-size: 1.08em;
-  font-weight: 400;
-}
-
-.hero-video-note {
-  padding-top: 0.6rem;
-  border-top: 1px solid var(--on-dark-rule);
-  color: var(--on-dark-soft);
-  font-size: 0.56rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+.hero-video-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero-video-play {
   position: absolute;
   top: 50%;
   left: 50%;
-  display: grid;
+  display: none;
   place-items: center;
   width: 56px;
   height: 56px;
+  padding: 0;
+  border: 0;
   border-radius: 50%;
   background: var(--vermilion);
   box-shadow: 0 0 0 12px rgba(255, 253, 248, 0.07);
+  color: var(--on-dark);
+  cursor: pointer;
   transform: translate(-50%, -50%);
+}
+
+/* Il tasto sovrapposto esiste solo quando lo script può avviare il video:
+   senza JavaScript restano i comandi nativi del player. */
+.enhanced .hero-video-play {
+  display: grid;
+}
+
+.hero-video-play[hidden] {
+  display: none;
 }
 
 .hero-video-play svg {
@@ -686,7 +672,7 @@ svg {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  margin-top: 1rem;
+  margin: 1rem 0 0;
   text-align: center;
 }
 
@@ -702,13 +688,11 @@ svg {
   text-transform: uppercase;
 }
 
-.hero-video:hover .hero-video-phone,
-.hero-video:focus-visible .hero-video-phone {
+.hero-video:hover .hero-video-phone {
   transform: translateY(-4px);
 }
 
-.hero-video:hover .hero-video-label-main,
-.hero-video:focus-visible .hero-video-label-main {
+.hero-video:hover .hero-video-label-main {
   color: var(--vermilion-deep);
 }
 
@@ -2098,6 +2082,11 @@ svg {
     transform: none;
   }
 
+  /* Con GSAP attivo l'ingresso è una sua timeline: niente doppia transizione. */
+  html.motion-on.gsap .reveal {
+    transition: none;
+  }
+
   html.motion-on .hero-line {
     animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
@@ -2629,7 +2618,7 @@ svg {
   }
 
   .hero-video {
-    width: min(100%, 230px);
+    width: min(100%, 280px);
   }
 
   .hero-foot {

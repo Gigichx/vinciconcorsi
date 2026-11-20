@@ -10,6 +10,7 @@
     <link rel="preload" href="assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/CSS/style.css">
+    <script defer src="assets/vendor/gsap.min.js"></script>
     <script type="module" src="assets/JS/site.js"></script>
   </head>
   <body>
@@ -69,22 +70,20 @@
               </div>
             </div>
 
-            <a class="hero-video" href="#video">
-              <span class="hero-video-phone">
-                <span class="hero-video-screen">
-                  <span class="hero-video-top">vinciconcorsi<span aria-hidden="true">.</span></span>
-                  <span class="hero-video-claim">Preparazione ai test<br>e al <em>colloquio.</em></span>
-                  <span class="hero-video-note" aria-hidden="true">01 · Presentazione</span>
-                  <span class="hero-video-play" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" focusable="false"><path d="M9 6.2 18.4 12 9 17.8z" fill="currentColor"/></svg>
-                  </span>
-                </span>
-              </span>
-              <span class="hero-video-label">
+            <div class="hero-video">
+              <div class="hero-video-phone">
+                <div class="hero-video-screen">
+                  <video class="hero-video-media" src="assets/video/presentazione.mp4" poster="assets/img/video-presentazione.jpg" controls playsinline preload="metadata" data-hero-video></video>
+                  <button class="hero-video-play" type="button" data-hero-play aria-label="Riproduci la presentazione">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6.2 18.4 12 9 17.8z" fill="currentColor"/></svg>
+                  </button>
+                </div>
+              </div>
+              <p class="hero-video-label">
                 <span class="hero-video-label-main">Guarda la presentazione</span>
-                <span class="hero-video-label-meta">Anteprima · video in arrivo</span>
-              </span>
-            </a>
+                <span class="hero-video-label-meta">01 · Presentazione · 37 secondi</span>
+              </p>
+            </div>
           </div>
 
           <nav class="hero-index" aria-labelledby="hero-index-title">
@@ -377,13 +376,13 @@
             <p class="section-label"><span class="section-index">04</span>Video</p>
             <div class="section-head-body">
               <h2 class="section-title" id="video-title">I contenuti vivono <em>sui canali.</em></h2>
-              <p class="section-aside">Nessun player incorporato: i video pubblicati sono su TikTok, Instagram e Facebook.</p>
+              <p class="section-aside">La presentazione è in apertura; gli altri contenuti sono su TikTok, Instagram e Facebook.</p>
             </div>
           </header>
 
           <div class="video-grid">
             <div class="video-copy reveal">
-              <p>Su TikTok e Instagram trovi i contenuti già pubblicati, tra video aperti e materiali pensati per chi segue un percorso. In questa anteprima non incorporiamo player: i canali sono il posto giusto per guardare.</p>
+              <p>La presentazione in apertura spiega in meno di un minuto come funziona la preparazione. Su TikTok e Instagram trovi i contenuti già pubblicati, tra video aperti e materiali pensati per chi segue un percorso.</p>
               <p class="fineprint">Alcuni contenuti sono riservati e non vengono pubblicati qui.</p>
             </div>
 
