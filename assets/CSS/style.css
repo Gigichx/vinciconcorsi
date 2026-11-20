@@ -438,9 +438,9 @@ svg {
   position: sticky;
   z-index: 40;
   top: 0;
-  overflow-x: clip;
   border-bottom: 1px solid var(--on-dark-rule);
   background: rgba(13, 35, 80, 0.96);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
@@ -2240,8 +2240,8 @@ svg {
   .enhanced .site-nav {
     position: absolute;
     top: 100%;
-    right: calc(var(--gutter) * -1);
-    left: calc(var(--gutter) * -1);
+    right: 0;
+    left: 0;
     display: none;
     width: auto;
     flex-direction: column;
