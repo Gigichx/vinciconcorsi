@@ -55,7 +55,59 @@ function setupMenu() {
     });
 }
 
-/** Ingresso delle sezioni allo scorrimento, disattivabile e non bloccante. */
+/**
+ * Video di presentazione: il tasto sopra il poster avvia la riproduzione.
+ * Senza JavaScript il video resta utilizzabile con i comandi nativi.
+ */
+function setupHeroVideo() {
+  const video = document.querySelector("[data-hero-video]");
+  const play = document.querySelector("[data-hero-play]");
+  if (!video || !play) return;
+
+  play.addEventListener("click", () => {
+    play.hidden = true;
+    video.play();
+  });
+}
+
+/**
+ * Scorrimento fluido con Lenis (MIT, copia locale in assets/vendor).
+ * Lavora sullo scroll nativo, quindi ancore, sticky e tastiera restano validi.
+ * Con prefers-reduced-motion, senza la libreria o senza JavaScript resta lo
+ * scorrimento del browser.
+ */
+async function setupSmoothScroll() {
+  if (prefersReducedMotion()) return;
+
+  let Lenis;
+  try {
+    ({ default: Lenis } = await import("../vendor/lenis.mjs"));
+  } catch {
+    return;
+  }
+
+  const lenis = new Lenis({ autoRaf: true, duration: 1.05 });
+
+  // Le ancore passano da Lenis, che rispetta lo scroll-padding-top del CSS
+  // (lo scarto dell'header). Lo skip link resta al browser: deve spostare il focus.
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || link.classList.contains("skip-link")) return;
+    const hash = link.getAttribute("href");
+    const target = hash && hash.length > 1 ? document.querySelector(hash) : null;
+    if (!target) return;
+
+    event.preventDefault();
+    lenis.scrollTo(target, { duration: 1.05 });
+    history.replaceState(null, "", hash);
+  });
+}
+
+/**
+ * Ingresso delle sezioni allo scorrimento: con GSAP disponibile l'animazione è
+ * una sua timeline, altrimenti valgono le transizioni CSS. Disattivabile e non
+ * bloccante.
+ */
 function setupReveal() {
   const items = [...document.querySelectorAll(".reveal")];
   if (!items.length) return;
@@ -72,12 +124,26 @@ function setupReveal() {
     item.style.setProperty("--i", String(Math.min(siblings.indexOf(item), 4)));
   }
 
+  const gsap = window.gsap;
+  if (gsap) root.classList.add("gsap");
+
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
-        entry.target.classList.add("is-in");
-        observer.unobserve(entry.target);
+        const item = entry.target;
+        observer.unobserve(item);
+        if (!gsap) {
+          item.classList.add("is-in");
+          continue;
+        }
+        gsap.to(item, {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "expo.out",
+          delay: Number(item.style.getPropertyValue("--i") || 0) * 0.07,
+        });
       }
     },
     { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
@@ -117,5 +183,7 @@ root.classList.add("enhanced");
 
 hydrateWhatsAppLinks();
 setupMenu();
+setupHeroVideo();
 setupRouter();
 setupReveal();
+setupSmoothScroll();

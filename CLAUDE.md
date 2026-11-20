@@ -9,7 +9,7 @@ Lingua del sito e delle comunicazioni: italiano.
 
 ## Stato al 16 novembre 2026
 
-Il repository contiene un'anteprima statica completa, senza build e senza dipendenze: homepage e tre pagine dei percorsi. Stack in uso da rispettare: HTML, CSS e JavaScript modulare nativo. Non è configurato hosting né deploy; il dominio non è stato toccato.
+Il repository contiene un'anteprima statica completa, senza build: homepage e tre pagine dei percorsi. Stack in uso da rispettare: HTML, CSS e JavaScript modulare nativo, più due librerie copiate in `assets/vendor` (Lenis per lo scorrimento fluido, GSAP per l'ingresso delle sezioni). Non è configurato hosting né deploy; il dominio non è stato toccato.
 
 Il 16 novembre 2026 il cliente ha confermato i dati elencati sotto e la nuova direzione grafica è stata implementata come proposta da mostrare, non come identità approvata.
 
@@ -75,7 +75,8 @@ La pagina dei corpi usa un template coerente (hero, materiali, gruppo, video/soc
 - `assets/CSS/style.css`: tokens, componenti, layout responsive, movimento. Font locali in `assets/fonts/`.
 - `assets/img/logo.svg`: segnaposto del logo, unico file da sostituire quando il cliente fornisce il marchio definitivo.
 - `assets/JS/content.js`: **solo** numero WhatsApp, messaggi delle azioni e mappa `routerKey` del selettore. Il testo pubblicato vive nell'HTML.
-- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), l'ingresso delle sezioni e rigenera gli href WhatsApp da `content.js`.
+- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), lo scorrimento fluido con Lenis, l'ingresso delle sezioni con GSAP (fallback CSS) e rigenera gli href WhatsApp da `content.js`.
+- `assets/vendor/`: Lenis 1.3.27 (MIT) e GSAP 3.15.1 (licenza Standard «No Charge»), copie locali senza CDN; versioni, fonti e licenze in `NOTICE.md` e `LICENSE-lenis.txt`.
 - `assets/JS/whatsapp.mjs`: valida il numero e codifica il messaggio con `encodeURIComponent`.
 - `tests/`: verificano numero e link WhatsApp, `noindex`, assenza di prezzi e link vuoti, un solo `h1` per pagina, `main`, skip link e assenza di `id` duplicati.
 
@@ -85,7 +86,7 @@ Regole tecniche:
 - Percorsi relativi per asset e navigazione (`assets/...` dalla homepage, `../assets/...` dalle pagine interne): il sito deve funzionare sia dalla radice sia dalla sottocartella `/vinciconcorsi/` di GitHub Pages. Nessun `href`/`src` che inizi con `/` e nessun `url("/assets/...")` nel CSS.
 - Il numero WhatsApp non compare come testo né come link `tel:`: resta solo negli href dei link `wa.me`. Il test controlla che non torni visibile.
 - Il contenuto deve restare leggibile e navigabile senza JavaScript. Non introdurre testi vecchi nell'HTML.
-- Niente framework, build, CMS, backend, autenticazione o dipendenze non necessarie.
+- Niente framework, build, CMS, backend, autenticazione o dipendenze non necessarie: le sole eccezioni sono Lenis e GSAP in `assets/vendor`, copiati in locale e senza CDN.
 - Non caricare nel repository il CSV o le risposte integrali del cliente: contengono dati privati.
 
 ## Direzione grafica adottata (18/11/2026)
@@ -98,7 +99,7 @@ Proposta per l'anteprima, da validare con il cliente.
 - Tipografia: Bricolage Grotesque per titoli e interfaccia, Instrument Sans per il testo, Instrument Serif corsivo per poche parole editoriali all'interno dei titoli.
 - Composizioni asimmetriche ma leggibili, intestazioni con numero di sezione e filetto, liste invece di griglie di riquadri identici, alternanza chiaro/scuro: una sola sezione scura di forte impatto (Il metodo), una chiusura blu.
 - Titoli display in peso 800, spaziatura stretta: più vicini al materiale promozionale approvato dal cliente.
-- Apertura: a destra il poster del video di presentazione dentro una cornice telefono verticale (9:16), con tasto play ed etichetta «Guarda la presentazione»; il poster porta alla sezione Video e dichiara «video in arrivo», nessun player finto. Quando il cliente fornirà il file, il poster si sostituisce con un `<video poster controls playsinline>` locale, senza embed di terzi.
+- Apertura: a destra il video di presentazione dentro una cornice telefono verticale (9:16), con tasto play sovrapposto ed etichetta «Guarda la presentazione». Il video è locale (`assets/video/presentazione.mp4`, 37 s, 720×1280, 4,6 MB) con poster `assets/img/video-presentazione.jpg` (9:16, ritagliato sopra la fascia col numero); nessun embed di terzi. Senza JavaScript restano i comandi nativi del player.
 - Sotto l'apertura, l'indice dei tre percorsi numerati 01–03 (Carabinieri, Polizia di Stato, Guardia di Finanza) con la V del marchio come firma: su desktop tre colonne, su mobile tre righe.
 - Nessun poligono, nessuna parallasse: l'unico movimento è l'ingresso della pagina, sospeso con `prefers-reduced-motion`.
 - Segni originali per i tre percorsi (V, cerchi aperti, gradini), nessuno stemma.
@@ -161,5 +162,8 @@ Incorporare i dati approvati; validare catalogo, contatti, gruppi, video e socia
 
 - 18/11/2026 · Hero: la scultura «Scala V» è sostituita dall'indice cliccabile dei tre percorsi con la V del marchio come firma; rimossi poligoni, gruppi di stile `.plate*`/`.art-*` e parallasse. L'indice passa poi sotto l'apertura per lasciare la colonna destra al poster del video di presentazione, ancora segnaposto.
 - 18/11/2026 · Materiale del cliente: le locandine con persone in divisa e stemmi dei Corpi non vanno online, restano riferimento interno. Nome e qualifica della psicologa e i punti delle locandine entrano solo dopo conferma esplicita del cliente.
+- 20/11/2026 · Video di presentazione ricevuto dal cliente e pubblicato in locale nella cornice del telefono, poster ricavato dal primo fotogramma. Il file originale (15 MB, 1080×1920) è stato ricompreso a 4,8 MB in 720×1280 H.264 (durata e 9:16 invariati, nessun artefatto visibile) e il poster è stato ritagliato sopra la fascia col numero di telefono. La stessa fascia (icona WhatsApp, numero e «Preparazione ai test e al colloquio») è stata rimossa dal filmato nei due segmenti in cui compare (circa 9–15 s e 21–28 s) ricostruendo il tavolo dallo stesso ciak: non resta né il numero né un rettangolo visibile. Resta da decidere dove collocare gli altri due video (criteri del perito selettore, preparazione a test e colloquio).
+
+- 20/11/2026 · Scorrimento e animazioni: aggiunte Lenis 1.3.27 (MIT) e GSAP 3.15.1 (Standard «No Charge», uso commerciale incluso) copiate in `assets/vendor`, senza build né CDN. Lenis lavora sullo scroll nativo e si spegne con `prefers-reduced-motion`; le ancore passano da lui con lo scarto dell'header, lo skip link resta al browser per spostare il focus. Con GSAP l'ingresso delle sezioni è una sua timeline, con fallback alle transizioni CSS se la libreria manca.
 
 Da registrare quando confermate: identità visiva approvata, catalogo completo, gestione video, hosting e processo di deploy, perimetro del lancio, dati legali.
