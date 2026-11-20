@@ -46,6 +46,9 @@ I test verificano la validazione del numero WhatsApp, la coerenza tra ogni pulsa
 - Avorio luminoso `#fffdf8`, blu navy `#0d2350`, rosso acceso `#e2231a` usato con parsimonia, verde riservato alle azioni WhatsApp `#0a7f45`.
 - Bricolage Grotesque per titoli e interfaccia, Instrument Sans per il testo, Instrument Serif corsivo per poche parole editoriali.
 - Apertura asimmetrica: a destra il video di presentazione in una cornice telefono (tasto play ed etichetta), sotto l'indice dei tre percorsi numerati 01–03 con la V del marchio come firma.
+- Navigazione senza numeri: le cifre restano solo nell'indice dei tre percorsi; le voci della nav hanno filetto rosso sulla voce attiva; nel menu mobile ogni voce porta una freccia, la CTA WhatsApp è a tutta larghezza e sotto compaiono gli orari.
+- Sezione Video: due schede verticali a sinistra e, a destra, una colonna sola con il testo e l'elenco dei canali (nome a sinistra, invito a destra), così le due colonne finiscono alla stessa altezza. Sotto i 1150px la colonna scende sotto le schede e il testo va su due colonne.
+- Intestazioni di sezione: etichetta, titolo e testo in colonna, mai affiancati; etichetta centrata sulla prima riga del titolo. Distanze prese dalla scala `--space-1`…`--space-7` in `style.css`, anche nelle griglie di sezione e nel footer; nessun testo sotto 0.74 rem.
 - Numerazione delle sezioni, filetti sottili, intestazioni editoriali, lista percorsi a righe invece di riquadri uguali, una sola sezione scura di forte impatto e una chiusura blu con filetto tricolore sopra il footer.
 - Titoli display in peso 800, spaziatura stretta.
 - Conversione: barra WhatsApp fissa su mobile, selettore percorso/necessità in homepage, FAQ su prezzo e tempi, passi d'acquisto in tre tempi.
@@ -57,7 +60,7 @@ I test verificano la validazione del numero WhatsApp, la coerenza tra ogni pulsa
 - Nessun prezzo è pubblicato: prezzi e disponibilità si concordano su WhatsApp.
 - Il numero di telefono non è mostrato come testo: ogni contatto passa dal pulsante WhatsApp.
 - Un solo manuale è confermato (Manuale attitudinale Allievo Carabiniere). Per Polizia di Stato e Guardia di Finanza esistono solo richieste di informazioni sui materiali.
-- Un solo video è incorporato: la presentazione locale in apertura, senza embed di terzi. I canali social reali sono collegati, i contenuti riservati non sono pubblicati.
+- Tre video locali, senza embed di terzi: la presentazione in apertura, «Test e colloquio» e «I sei criteri del perito» nella sezione Video. I canali social reali sono collegati, i contenuti riservati non sono pubblicati.
 - I gruppi sono community di Vinciconcorsi, non canali ufficiali dei Corpi; l'ingresso è su richiesta e approvato dal preparatore.
 - La copertina del manuale è dichiarata come proposta grafica, non come copertina definitiva.
 
