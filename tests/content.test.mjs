@@ -9,6 +9,7 @@ const pages = [
   "carabinieri/index.html",
   "polizia-di-stato/index.html",
   "guardia-di-finanza/index.html",
+  "polizia-penitenziaria/index.html",
 ];
 
 function readPage(page) {
@@ -57,8 +58,16 @@ test("le pagine sono noindex, senza link vuoti e senza prezzi", () => {
 
 test("il selettore sceglie il messaggio giusto per percorso e necessità", () => {
   assert.equal(routerKey("Carabinieri", "manuale"), "manualCarabinieri");
-  assert.equal(routerKey("Polizia di Stato", "manuale"), "materialiPolizia");
+  assert.equal(routerKey("Polizia di Stato", "manuale"), "manualPolizia");
   assert.equal(routerKey("Guardia di Finanza", "gruppo"), "gruppoGdf");
+  assert.equal(
+    routerKey("Polizia Penitenziaria", "manuale"),
+    "manualPenitenziaria",
+  );
+  assert.equal(
+    routerKey("Polizia Penitenziaria", "gruppo"),
+    "gruppoPenitenziaria",
+  );
   assert.equal(routerKey("", "info"), "info");
   assert.equal(routerKey("Carabinieri", "altro"), "info");
 });
