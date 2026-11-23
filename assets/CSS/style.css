@@ -413,9 +413,8 @@ svg {
   z-index: 40;
   top: 0;
   border-bottom: 1px solid var(--on-dark-rule);
-  background: rgba(13, 35, 80, 0.96);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  /* Piena opacità: il contenuto che scorre sotto non si intravede. */
+  background: var(--ink);
 }
 
 .site-header-inner {
@@ -698,7 +697,7 @@ svg {
 
 .hero-index-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 0;
   padding: 0;
   border-top: 1px solid var(--rule);
@@ -1262,21 +1261,123 @@ svg {
   letter-spacing: -0.02em;
 }
 
+/* Griglia dei quattro manuali: copertine reali, stesso peso visivo. */
+.manual-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.manual-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.manual-card-cover {
+  aspect-ratio: 0.707;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow:
+    10px 12px 0 rgba(13, 35, 80, 0.08),
+    0 26px 50px -30px rgba(13, 35, 80, 0.5);
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.45s ease;
+}
+
+.manual-card-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (hover: hover) {
+  .manual-card:hover .manual-card-cover {
+    transform: translateY(-4px) rotate(-0.6deg);
+    box-shadow:
+      14px 18px 0 rgba(13, 35, 80, 0.08),
+      0 32px 60px -30px rgba(13, 35, 80, 0.55);
+  }
+}
+
+.manual-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.manual-card-title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.12rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.16;
+}
+
+.manual-card-note {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.manual-card-meta {
+  margin: 0.35rem 0 0.7rem;
+  color: var(--ink-faint);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.manual-card-body .link-arrow {
+  margin-top: auto;
+}
+
+@media (max-width: 1150px) {
+  .manual-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .manual-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .manual-card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .manual-card-cover {
+    flex: 0 0 42%;
+    max-width: 210px;
+  }
+}
+
 /* ---------- 04 · Video ---------- */
 
 .video-feature {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
   gap: var(--space-6);
 }
 
-/* Due video verticali, poi il testo che li accompagna */
+/* Quattro video verticali in fila; sotto, testo e canali si dividono la riga. */
 
 .video-cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 260px));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: start;
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
 
 .video-card {
@@ -1356,7 +1457,9 @@ svg {
 dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. */
 .video-side {
   display: grid;
-  gap: var(--space-5);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-6);
+  align-items: start;
 }
 
 .video-copy {
@@ -1431,7 +1534,300 @@ dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. *
   }
 }
 
-/* ---------- 05 · Community ---------- */
+/* ---------- 05 · Recensioni ---------- */
+
+.reviews {
+  position: relative;
+}
+
+/* Senza JavaScript la fila si scorre a mano, con lo snap del CSS. */
+.reviews-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.reviews-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.reviews-viewport:focus-visible {
+  outline: 2px solid var(--vermilion);
+  outline-offset: 4px;
+}
+
+.reviews-track {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* La prospettiva dà profondità alle laterali, che arretrano e si inclinano. */
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+
+/* Spazi ai due lati del binario: da 861px la diapositiva attiva sta al centro
+   e le laterali si intravedono ai bordi. Il gap del binario entra nel conto,
+   così la prima e l'ultima si fermano davvero al centro. Sotto 861px non
+   esistono, altrimenti lascierebbero 24px di vuoto prima della prima scheda. */
+@media (min-width: 861px) {
+  .reviews-track::before,
+  .reviews-track::after {
+    content: "";
+    flex: 0 0 max(56px, calc((100% - 940px) / 2 - var(--space-4)));
+  }
+}
+
+.review {
+  display: flex;
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+}
+
+/* Da 861px la scheda si ferma prima dei bordi e lascia intravedere le altre
+   due; il tetto di 940px evita righe di testo troppo lunghe. */
+@media (min-width: 861px) {
+  .review {
+    flex: 0 0 min(calc(100% - 160px), 940px);
+  }
+
+  /* Solo con lo script: le laterali sono cliccabili e portano al centro. */
+  .reviews.is-focus .review:not(.is-active) {
+    cursor: pointer;
+  }
+}
+
+.review-card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+  padding: clamp(1.4rem, 2.4vw, 2.5rem);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  background: var(--paper-2);
+  transition: border-color 0.3s ease;
+}
+
+.review.is-active .review-card {
+  border-color: var(--rule-strong);
+}
+
+/* Da 861px la scheda ha due colonne: citazione a sinistra, firma in basso a
+   destra. Sotto restano in colonna, nell'ordine di lettura. */
+@media (min-width: 861px) {
+  .review-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.9fr) minmax(190px, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    column-gap: var(--space-6);
+  }
+
+  .review-mark {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .review-quote {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .review-meta {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: end;
+  }
+}
+
+.review-mark {
+  color: var(--vermilion);
+  font-family: var(--editorial);
+  font-size: 3.2rem;
+  font-style: italic;
+  line-height: 0.7;
+}
+
+.review-quote {
+  margin: 0;
+  font-family: var(--editorial);
+  font-size: clamp(1.12rem, 1.5vw + 0.6rem, 1.95rem);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.review-meta {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+.review-name {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.review-role {
+  color: var(--ink-faint);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* Terza scheda: la chiusura del carosello, non un esito. Fondo navy, frase
+   breve, azione WhatsApp e una riga piccola sul giudizio della commissione. */
+.review-card-dark {
+  border-color: transparent;
+  background: var(--ink);
+  color: var(--on-dark);
+}
+
+/* La chiusura resta in colonna anche da 861px: non ha citazione né firma. Il
+   blocco sta al centro dell'altezza che la scheda eredita dalla prima
+   recensione, così lo spazio in più si divide sopra e sotto. */
+.review-card-dark.review-close {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-5);
+}
+
+/* La frase è il peso visivo della scheda: su due righe riempie l'altezza che
+   la diapositiva eredita dalla prima recensione. */
+.review-close-line {
+  max-width: 22ch;
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 3.4vw, 3.1rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.review-close-note {
+  align-self: stretch;
+  margin: 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--on-dark-rule);
+  color: var(--on-dark-soft);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.reviews-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.reviews-count {
+  color: var(--ink-faint);
+  font-family: var(--editorial);
+  font-size: 0.95rem;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.reviews-dots {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reviews-dots[hidden] {
+  display: none;
+}
+
+.reviews-dots button {
+  display: flex;
+  width: clamp(28px, 5vw, 48px);
+  height: 24px;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.reviews-dots button::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--rule-strong);
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.reviews-dots button[aria-current="true"]::before {
+  background: var(--vermilion);
+  transform: scaleY(2);
+}
+
+.reviews-nav {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.reviews-nav button {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.reviews-nav button[hidden] {
+  display: none;
+}
+
+.reviews-nav button:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-dark);
+}
+
+.reviews-nav svg {
+  width: 15px;
+  height: 12px;
+}
+
+.section-reviews .fineprint {
+  margin-top: var(--space-4);
+}
+
+/* ---------- 06 · Community ---------- */
 
 .section-community {
   background: var(--paper-2);
@@ -1439,7 +1835,7 @@ dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. *
 
 .community-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   list-style: none;
   border-top: 1px solid var(--rule-strong);
 }
@@ -1485,7 +1881,7 @@ dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. *
   margin-top: 1.4rem;
 }
 
-/* ---------- 06 · Domande ---------- */
+/* ---------- 07 · Domande ---------- */
 
 .faq-head {
   display: grid;
@@ -1593,7 +1989,7 @@ dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. *
   line-height: 1.7;
 }
 
-/* ---------- 07 · Contatto ---------- */
+/* ---------- 08 · Contatto ---------- */
 
 .contact {
   padding-block: clamp(3rem, 6.5vw, 6rem);
@@ -1921,6 +2317,17 @@ dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. *
   border-top: 1px solid var(--rule-strong);
 }
 
+.material-panel-cover {
+  display: block;
+  width: min(100%, 240px);
+  height: auto;
+  margin-bottom: 1.3rem;
+  border-radius: 3px;
+  box-shadow:
+    10px 12px 0 rgba(13, 35, 80, 0.08),
+    0 26px 50px -30px rgba(13, 35, 80, 0.5);
+}
+
 .material-panel-head {
   display: flex;
   flex-wrap: wrap;
@@ -2178,15 +2585,34 @@ dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. *
 /* ---------- Adattamenti ---------- */
 
 @media (max-width: 1150px) {
-  /* Sotto i 1150px il testo non sta più accanto alle schede: va sotto, a tutta
-     riga, e le due schede si dividono lo spazio per non lasciare vuoti. */
-  .video-feature {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-5);
+  /* Quattro percorsi e quattro gruppi su due righe, con i filetti coerenti. */
+  .hero-index-list,
+  .community-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-index-list li:nth-child(3) a {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .hero-index-list li:nth-child(3) a,
+  .hero-index-list li:nth-child(4) a {
+    border-top: 1px solid var(--rule);
+  }
+
+  .community-item:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .community-item:nth-child(3),
+  .community-item:nth-child(4) {
+    border-top: 1px solid var(--rule);
   }
 
   .video-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
   }
 
   /* Il testo va a due colonne per riempire la riga senza allungarla a 95 caratteri. */
@@ -2425,7 +2851,12 @@ dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. *
 
   .video-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-2);
+    gap: var(--space-3);
+  }
+
+  .video-side {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
   }
 
   .video-card-title {
@@ -2530,6 +2961,7 @@ dei canali riempiono l'altezza delle schede e non resta bianco sotto il testo. *
     columns: 1;
     max-width: 58ch;
   }
+
 
   .hero-title {
     font-size: clamp(2.7rem, 10.5vw, 4.4rem);

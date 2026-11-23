@@ -15,24 +15,36 @@ export const waMessages = {
     "Ciao Salvatore, vorrei informazioni sulla preparazione per il concorso in Polizia di Stato.",
   infoGdf:
     "Ciao Salvatore, vorrei informazioni sulla preparazione per il concorso in Guardia di Finanza.",
+  infoPenitenziaria:
+    "Ciao Salvatore, vorrei informazioni sulla preparazione per il concorso in Polizia Penitenziaria.",
   manualCarabinieri:
     "Ciao Salvatore, vorrei informazioni per acquistare il Manuale attitudinale Allievo Carabiniere.",
   indiceCarabinieri:
     "Ciao Salvatore, vorrei ricevere l'indice del Manuale attitudinale Allievo Carabiniere.",
-  prezzoCarabinieri:
-    "Ciao Salvatore, vorrei conoscere il prezzo del Manuale attitudinale Allievo Carabiniere.",
-  tempiCarabinieri:
-    "Ciao Salvatore, vorrei sapere i tempi di consegna del Manuale attitudinale Allievo Carabiniere.",
-  materialiPolizia:
-    "Ciao Salvatore, vorrei informazioni sui materiali per il concorso in Polizia di Stato.",
-  materialiGdf:
-    "Ciao Salvatore, vorrei informazioni sui materiali per il concorso in Guardia di Finanza.",
+  manualPolizia:
+    "Ciao Salvatore, vorrei informazioni per acquistare il Manuale di preparazione Allievo Agente Polizia di Stato.",
+  indicePolizia:
+    "Ciao Salvatore, vorrei ricevere l'indice del Manuale di preparazione Allievo Agente Polizia di Stato.",
+  manualGdf:
+    "Ciao Salvatore, vorrei informazioni per acquistare il Manuale di preparazione Allievo Finanziere Guardia di Finanza.",
+  indiceGdf:
+    "Ciao Salvatore, vorrei ricevere l'indice del Manuale di preparazione Allievo Finanziere Guardia di Finanza.",
+  manualPenitenziaria:
+    "Ciao Salvatore, vorrei informazioni per acquistare il Manuale di preparazione Allievo Agente Polizia Penitenziaria.",
+  indicePenitenziaria:
+    "Ciao Salvatore, vorrei ricevere l'indice del Manuale di preparazione Allievo Agente Polizia Penitenziaria.",
+  prezzoManuali:
+    "Ciao Salvatore, vorrei conoscere il prezzo dei manuali di preparazione.",
+  tempiManuali:
+    "Ciao Salvatore, vorrei sapere i tempi di consegna dei manuali in PDF.",
   gruppoCarabinieri:
     "Ciao Salvatore, vorrei richiedere l'accesso al gruppo di preparazione per Carabinieri.",
   gruppoPolizia:
     "Ciao Salvatore, vorrei richiedere l'accesso al gruppo di preparazione per Polizia di Stato.",
   gruppoGdf:
     "Ciao Salvatore, vorrei richiedere l'accesso al gruppo di preparazione per Guardia di Finanza.",
+  gruppoPenitenziaria:
+    "Ciao Salvatore, vorrei richiedere l'accesso al gruppo di preparazione per Polizia Penitenziaria.",
 };
 
 /**
@@ -47,13 +59,18 @@ const routerByBody = {
   },
   "Polizia di Stato": {
     info: "infoPolizia",
-    manuale: "materialiPolizia",
+    manuale: "manualPolizia",
     gruppo: "gruppoPolizia",
   },
   "Guardia di Finanza": {
     info: "infoGdf",
-    manuale: "materialiGdf",
+    manuale: "manualGdf",
     gruppo: "gruppoGdf",
+  },
+  "Polizia Penitenziaria": {
+    info: "infoPenitenziaria",
+    manuale: "manualPenitenziaria",
+    gruppo: "gruppoPenitenziaria",
   },
 };
 

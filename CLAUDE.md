@@ -7,9 +7,9 @@ Questo file è il riferimento operativo del progetto: leggilo prima di pianifica
 Repository: https://github.com/Gigichx/vinciconcorsi
 Lingua del sito e delle comunicazioni: italiano.
 
-## Stato al 16 novembre 2026
+## Stato al 23 novembre 2026
 
-Il repository contiene un'anteprima statica completa, senza build: homepage e tre pagine dei percorsi. Stack in uso da rispettare: HTML, CSS e JavaScript modulare nativo, più due librerie copiate in `assets/vendor` (Lenis per lo scorrimento fluido, GSAP per l'ingresso delle sezioni). Non è configurato hosting né deploy; il dominio non è stato toccato.
+Il repository contiene un'anteprima statica completa, senza build: homepage e quattro pagine dei percorsi. Stack in uso da rispettare: HTML, CSS e JavaScript modulare nativo, più due librerie copiate in `assets/vendor` (Lenis per lo scorrimento fluido, GSAP per l'ingresso delle sezioni). Non è configurato hosting né deploy; il dominio non è stato toccato.
 
 Il 16 novembre 2026 il cliente ha confermato i dati elencati sotto e la nuova direzione grafica è stata implementata come proposta da mostrare, non come identità approvata.
 
@@ -19,7 +19,7 @@ Il 16 novembre 2026 il cliente ha confermato i dati elencati sotto e la nuova di
 
 - Nome da mostrare: **Vinciconcorsi**, una parola sola. Il wordmark è tipografico e provvisorio; accanto c'è il segnaposto `assets/img/logo.svg`, da sostituire con il logo fornito dal cliente (quadrato, sfondo trasparente), usato in header e footer di tutte le pagine.
 - Attività: preparazione personalizzata ai concorsi, con attenzione a test psico-attitudinali e colloquio con la commissione esaminatrice e il perito selettore.
-- Corpi: Carabinieri, Polizia di Stato, Guardia di Finanza.
+- Corpi: Carabinieri, Polizia di Stato, Guardia di Finanza, Polizia Penitenziaria.
 - Pubblico: chi affronta il primo concorso e chi ha già tentato e vuole riprovare.
 - Il preparatore descrive il proprio approccio come «introspezione personalizzata». Si può citare come sua descrizione, senza presentarlo come metodo scientificamente validato né inventarne le fasi.
 
@@ -41,42 +41,43 @@ Il 16 novembre 2026 il cliente ha confermato i dati elencati sotto e la nuova di
 - Formato PDF, scritti dal cliente o dal suo team; nessuna spedizione.
 - Prezzi comunicati solo su WhatsApp, mai sul sito, nel codice pubblico o nei dati strutturati. Pagamento tramite bonifico; invio del PDF su WhatsApp.
 - Anteprima disponibile: l'indice, su richiesta.
-- Unico titolo confermato: **Manuale attitudinale Allievo Carabiniere**. Il cliente prevede 2–3 manuali, ma gli altri titoli non sono stati forniti: per Polizia di Stato e Guardia di Finanza mostrare solo richieste di informazioni sui materiali, senza inventare prodotti.
+- Quattro titoli confermati il 23/11/2026, uno per corpo: **Manuale attitudinale Allievo Carabiniere**, **Manuale di preparazione Allievo Finanziere Guardia di Finanza**, **Manuale di preparazione Allievo Agente Polizia di Stato**, **Manuale di preparazione Allievo Agente Polizia Penitenziaria**. Le copertine reali dell'edizione novembre 2026 sono in `assets/img/manuali/`; non sono più proposte grafiche.
 - Non promettere consegna entro un'ora né aggiornamenti gratuiti illimitati: i dettagli operativi sono da precisare.
 
 ### Gruppi
 
-- Esistono gruppi dedicati ai tre corpi. Ingresso su richiesta, con approvazione del preparatore e accettazione delle regole.
+- Esistono gruppi dedicati ai quattro corpi. Ingresso su richiesta, con approvazione del preparatore e accettazione delle regole.
 - Usare «Richiedi accesso», mai «Entra subito».
 - Sono community di Vinciconcorsi, non canali ufficiali dei Corpi.
 
 ### Video
 
-- Esistono contenuti sui social, ma non sono ancora disponibili gli URL dei video da incorporare. Alcuni contenuti saranno pubblici, altri riservati.
+- Cinque filmati locali in `assets/video/`: presentazione (37 s), Test e colloquio (1:01), I sei criteri del perito (0:46), Preparazione e perito (1:03, aggiunto il 23/11/2026), Analisi individuale (0:20, aggiunto il 23/11/2026). Alcuni contenuti restano riservati e non vengono pubblicati.
 - In anteprima: sezione video visibile e raggiungibile dall'alto, collegamenti ai canali reali, nessun player finto, nessuna area riservata.
 
 ## Informazioni ancora da confermare
 
-Titoli e dettagli degli altri manuali; URL dei video e distinzione pubblico/riservato; tempi di consegna con bonifico e durata degli aggiornamenti; concorsi e prove effettivamente coperti; dati dell'attività, qualifiche pubblicabili e informative; hosting, dominio e responsabile degli aggiornamenti; significato di «ditte»/partner (modulo disattivato).
+URL dei video e distinzione pubblico/riservato; tempi di consegna con bonifico e durata degli aggiornamenti; concorsi e prove effettivamente coperti; dati dell'attività, qualifiche pubblicabili e informative; hosting, dominio e responsabile degli aggiornamenti; significato di «ditte»/partner (modulo disattivato).
 
 Non inventare prezzi, recensioni, risultati, qualifiche, numeri di studenti o percentuali di successo. Non garantire il superamento dei concorsi. Non usare stemmi, marchi di terzi o fotografie di persone in divisa. Non suggerire affiliazioni istituzionali.
 
 ## Architettura
 
-Quattro pagine statiche, contenuto completo già nell'HTML:
+Cinque pagine statiche, contenuto completo già nell'HTML:
 
 - `index.html` (homepage)
 - `carabinieri/index.html`
 - `polizia-di-stato/index.html`
 - `guardia-di-finanza/index.html`
+- `polizia-penitenziaria/index.html`
 
-La pagina dei corpi usa un template coerente (hero, materiali, gruppo, video/social, contatto finale) con contenuti e segno grafico specifici. Non duplicare la homepage né ripetere blocchi di copy identici nelle tre pagine: se un contenuto è comune, vive nella homepage o in un componente condiviso. Header, footer e fascia di contatto sono l'unica ripetizione ammessa, perché ogni pagina statica deve restare completa senza JavaScript.
+La pagina dei corpi usa un template coerente (hero, materiali, gruppo, video/social, contatto finale) con contenuti e segno grafico specifici. Non duplicare la homepage né ripetere blocchi di copy identici nelle quattro pagine: se un contenuto è comune, vive nella homepage o in un componente condiviso. Header, footer e fascia di contatto sono l'unica ripetizione ammessa, perché ogni pagina statica deve restare completa senza JavaScript.
 
 - `assets/CSS/style.css`: tokens, componenti, layout responsive, movimento. Font locali in `assets/fonts/`.
 - `assets/img/logo.svg`: segnaposto del logo, unico file da sostituire quando il cliente fornisce il marchio definitivo.
 - `assets/JS/content.js`: **solo** numero WhatsApp, messaggi delle azioni e mappa `routerKey` del selettore. Il testo pubblicato vive nell'HTML.
-- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), segna con `aria-current` la sezione in lettura nella nav della homepage, avvia i video delle schede mettendo in pausa gli altri, gestisce lo scorrimento fluido con Lenis, l'ingresso delle sezioni con GSAP (fallback CSS) e rigenera gli href WhatsApp da `content.js`.
-- `assets/video/`: `presentazione.mp4` (37 s, 720×1280, in apertura), `test-e-colloquio.mp4` (1:01, 600×1066) e `criteri-perito-selettore.mp4` (0:46, 478×850) nella sezione Video; i poster 9:16 sono in `assets/img/video-*.jpg`. I due video nuovi sono tagliati prima delle code con la locandina e il numero di telefono.
+- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), segna con `aria-current` la sezione in lettura nella nav della homepage, avvia i video delle schede mettendo in pausa gli altri, gestisce il carosello delle recensioni (frecce, linee di avanzamento, contatore, tastiera; nessun avanzamento automatico), lo scorrimento fluido con Lenis, l'ingresso delle sezioni con GSAP (fallback CSS) e rigenera gli href WhatsApp da `content.js`.
+- `assets/video/`: `presentazione.mp4` (37 s, 720×1280, in apertura), `test-e-colloquio.mp4` (1:01, 600×1066), `criteri-perito-selettore.mp4` (0:46, 478×850), `preparazione-perito-selettore.mp4` (1:03, 576×1024, 13 MB) e `analisi-individuale.mp4` (0:20, 576×1024, 4,4 MB) nella sezione Video; i poster 9:16 sono in `assets/img/video-*.jpg`. I primi due filmati sono tagliati prima delle code con la locandina e il numero di telefono; negli ultimi due il numero è ancora nella fascia in basso, da rimuovere o tagliare prima del lancio.
 - `assets/vendor/`: Lenis 1.3.27 (MIT) e GSAP 3.15.1 (licenza Standard «No Charge»), copie locali senza CDN; versioni, fonti e licenze in `NOTICE.md` e `LICENSE-lenis.txt`.
 - `assets/JS/whatsapp.mjs`: valida il numero e codifica il messaggio con `encodeURIComponent`.
 - `tests/`: verificano numero e link WhatsApp, `noindex`, assenza di prezzi e link vuoti, un solo `h1` per pagina, `main`, skip link e assenza di `id` duplicati.
@@ -85,7 +86,7 @@ Regole tecniche:
 
 - Ogni azione WhatsApp usa `<a href="https://wa.me/393277897381?text=…">` con `data-wa="chiave"`. L'href statico garantisce il funzionamento senza JavaScript; `site.js` lo rigenera dal modulo dei contenuti. I test falliscono se non sono allineati.
 - Percorsi relativi per asset e navigazione (`assets/...` dalla homepage, `../assets/...` dalle pagine interne): il sito deve funzionare sia dalla radice sia dalla sottocartella `/vinciconcorsi/` di GitHub Pages. Nessun `href`/`src` che inizi con `/` e nessun `url("/assets/...")` nel CSS.
-- CSS e JavaScript si caricano con un parametro di versione: `assets/CSS/style.css?v=20261120` e `assets/JS/site.js?v=20261120` (`../assets/...?v=20261120` dalle pagine interne). GitHub Pages serve gli asset con dieci minuti di cache e senza il parametro un telefono può continuare a usare il CSS o il JavaScript vecchio. **A ogni modifica di `assets/CSS/style.css` o `assets/JS/site.js` alzare la versione in tutte e quattro le pagine HTML**, con lo stesso valore ovunque: la data del giorno in forma `?v=AAAAMMGG` (a più modifiche nello stesso giorno, `?v=AAAAMMGG-2`, `-3`…). `content.js` e `whatsapp.mjs` sono importati da `site.js` con un URL proprio: se cambiano, aggiungere lo stesso `?v=` ai loro import in `site.js`.
+- CSS e JavaScript si caricano con un parametro di versione: `assets/CSS/style.css?v=20261123-8` e `assets/JS/site.js?v=20261123-8` (`../assets/...?v=20261123-8` dalle pagine interne). GitHub Pages serve gli asset con dieci minuti di cache e senza il parametro un telefono può continuare a usare il CSS o il JavaScript vecchio. **A ogni modifica di `assets/CSS/style.css` o `assets/JS/site.js` alzare la versione in tutte e quattro le pagine HTML**, con lo stesso valore ovunque: la data del giorno in forma `?v=AAAAMMGG` (a più modifiche nello stesso giorno, `?v=AAAAMMGG-2`, `-3`…). `content.js` e `whatsapp.mjs` sono importati da `site.js` con un URL proprio: se cambiano, aggiungere lo stesso `?v=` ai loro import in `site.js`.
 - Il numero WhatsApp non compare come testo né come link `tel:`: resta solo negli href dei link `wa.me`. Il test controlla che non torni visibile.
 - Il contenuto deve restare leggibile e navigabile senza JavaScript. Non introdurre testi vecchi nell'HTML.
 - Niente framework, build, CMS, backend, autenticazione o dipendenze non necessarie: le sole eccezioni sono Lenis e GSAP in `assets/vendor`, copiati in locale e senza CDN.
@@ -102,9 +103,9 @@ Proposta per l'anteprima, da validare con il cliente.
 - Composizioni asimmetriche ma leggibili, intestazioni con etichetta di sezione in maiuscoletto e filetto, liste invece di griglie di riquadri identici, alternanza chiaro/scuro: una sola sezione scura di forte impatto (Il metodo), una chiusura blu.
 - Titoli display in peso 800, spaziatura stretta: più vicini al materiale promozionale approvato dal cliente.
 - Apertura: a destra il video di presentazione dentro una cornice telefono verticale (9:16), con tasto play sovrapposto ed etichetta «Guarda la presentazione». Il video è locale (`assets/video/presentazione.mp4`, 37 s, 720×1280, 4,6 MB) con poster `assets/img/video-presentazione.jpg` (9:16, ritagliato sopra la fascia col numero); nessun embed di terzi. Senza JavaScript restano i comandi nativi del player.
-- Sotto l'apertura, l'indice dei tre percorsi numerati 01–03 (Carabinieri, Polizia di Stato, Guardia di Finanza) con la V del marchio come firma: su desktop tre colonne, su mobile tre righe.
+- Sotto l'apertura, l'indice dei quattro percorsi numerati 01–04 (Carabinieri, Polizia di Stato, Guardia di Finanza, Polizia Penitenziaria) con la V del marchio come firma: su desktop quattro colonne, due sotto i 1150 px, una a 960 px.
 - Nessun poligono, nessuna parallasse: l'unico movimento è l'ingresso della pagina, sospeso con `prefers-reduced-motion`.
-- Segni originali per i tre percorsi (V, cerchi aperti, gradini), nessuno stemma.
+- Segni originali per i quattro percorsi (V, cerchi aperti, gradini, sbarre), nessuno stemma.
 - Movimento: ingresso della pagina misurato, comparsa delle sezioni allo scorrimento, microinterazioni su righe e pulsanti. Nessun carosello automatico, nessun cursore personalizzato, nessuna animazione continua necessaria alla comprensione.
 - Mobile: il messaggio e le azioni dell'apertura compaiono prima del poster del video; le anteprime vanno verificate a 360–390 px, oltre che a 1440 px.
 
@@ -118,7 +119,7 @@ Proposta per l'anteprima, da validare con il cliente.
 - Tutte le pagine sono `noindex, nofollow`. `robots.txt` non è una protezione della riservatezza.
 - Nessun analytics, pixel, checkout o pagamento integrato. Nessuna pubblicazione in produzione, nessuna modifica al dominio.
 - Nessun prezzo nel sito; nessun video o player finto; nessun link vuoto o `href="#"`.
-- La copertina del manuale è dichiarata come proposta grafica; i contenuti mancanti sono omessi o indicati come in preparazione.
+- Le copertine dei manuali sono quelle reali fornite dal cliente (edizione novembre 2026); nessun titolo è indicato come in preparazione.
 - Non promettere risposte immediate, consegne entro un'ora, tutoraggio o aggiornamenti gratuiti senza conferma.
 
 ## Accessibilità e prestazioni
@@ -180,4 +181,22 @@ Incorporare i dati approvati; validare catalogo, contatti, gruppi, video e socia
 
 - 20/11/2026 · Cache degli asset: `style.css` e `site.js` sono richiesti con `?v=20261120` nelle quattro pagine, così un telefono non può restare su CSS o JavaScript vecchi serviti dalla cache di GitHub Pages; la versione va alzata a ogni modifica degli asset. Nello stesso intervento l'header non ha più `overflow-x: clip` (su Safari iOS ritagliava la tendina del menu) e il pannello del menu occupa esattamente la larghezza della pagina, senza i 20 px di sconfinamento orizzontale che aveva a menu aperto.
 
-Da registrare quando confermate: identità visiva approvata, catalogo completo, gestione video, hosting e processo di deploy, perimetro del lancio, dati legali.
+- 23/11/2026 · Header opaco: fondo navy pieno (`var(--ink)`) al posto del 96% con `backdrop-filter`, così il contenuto che scorre sotto non si intravede e non restano aloni sotto la testata. Nav a cinque voci (aggiunta Recensioni) e menu mobile verificati a 360, 390 e 1440 px: nessun overflow orizzontale, pannello opaco a tutta larghezza, CTA WhatsApp e orari sotto le voci.
+
+- 23/11/2026 · Schede video: sotto i 1150 px non superano i 478 px, la larghezza nativa del filmato più stretto (`criteri-perito-selettore.mp4`, 478×850), così nessun video viene ingrandito oltre i suoi pixel. Misure: 423 px a 961, 452 a 1024, 478 a 1100 (16 px liberi a destra) e 478 a 1150 (61 px liberi a destra); sopra i 974 px di riga resta quindi un margine a destra, sotto resta zero.
+
+- 23/11/2026 · Recensioni: nuova sezione in homepage sotto i Video (`id="recensioni"`, in nav e nel footer). Carosello a una scheda per volta, senza avanzamento automatico: frecce, linee di avanzamento, contatore e tastiera, così nulla si muove mentre si legge. Da 861 px la scheda si ferma a 940 px (`min(calc(100% - 160px), 940px)`) e sta al centro, con un accenno delle altre due ai lati (poi offuscato: vedi la voce sul carosello centrato). Citazione a sinistra (538 px di colonna, 4 righe e 36 px sotto a 1440 invece degli 88 di prima) e firma in basso a destra. Con GSAP il movimento è interpolato (`power3.inOut`); senza GSAP o senza JavaScript restano lo scorrimento nativo e lo snap CSS, con frecce e linee nascoste finché lo script non le abilita. Contenuti iniziali: la recensione scritta di Vincenzo Paonessa, un estratto di messaggio ricevuto in chat e il giudizio «IDONEO/A» (poi sostituito dalla chiusura navy; per nomi ed esiti reali vale la decisione del 23/11/2026). Date di nascita e indirizzi PEC delle comunicazioni allegate restano fuori dal sito.
+
+- 23/11/2026 · Terza diapositiva delle Recensioni: non è più una scheda-esito con «IDONEO/A» in grande. È la chiusura del carosello, su fondo navy: frase breve («Il colloquio si prepara prima di entrarci.»), pulsante WhatsApp con il messaggio generico `info` e una sola riga piccola sul giudizio della commissione («Il giudizio spetta alla commissione; il modo di arrivarci si prepara.»), che afferma la preparazione senza promettere esiti. Classi `.review-close`, `.review-close-line`, `.review-close-note`; la diapositiva resta in colonna anche da 861 px, senza la griglia citazione/firma, e le vecchie regole `.review-verdict*` sono state rimosse. Le etichette delle linee di avanzamento leggono l'`aria-label` della diapositiva (la terza si chiama «Chiusura»).
+
+- 23/11/2026 · Carosello centrato: la diapositiva attiva sta al centro della vista, non più incollata al bordo sinistro, e le due laterali restano visibili ai lati offuscate (opacità 0.6, scala 0.97 e 1 px di sfocatura, continui anche durante il trascinamento). Lo script calcola il fuoco a ogni scorrimento con GSAP (`gsap.set`) e, senza GSAP, con gli stili in linea; il centraggio usa `offsetLeft` di layout, perché la scala sposterebbe i rettangoli. Cliccare una laterale la porta al centro (i link dentro restano link), il focus da tastiera riporta piena la diapositiva che lo riceve e con `prefers-reduced-motion` nessuna scheda viene offuscata. Spazi ai due lati del binario come pseudo-elementi `::before`/`::after` solo da 861 px; misure: 705 px di scheda e 56 px di accenno per lato a 961, 940 e 146 a 1440, a tutta larghezza a 390. La chiusura navy centra il suo blocco in verticale (24–58 px sopra e sotto secondo la larghezza) e la frase grande occupa due righe. Versione asset `?v=20261123-5`.
+
+- 23/11/2026 · Quattro corpi e quattro manuali: aggiunta la pagina `polizia-penitenziaria/` con lo stesso schema delle altre (hero, materiali, gruppo, video/social, contatto), il quarto percorso in indice, percorsi, selettore, community, footer e FAQ. La sezione Manuali diventa una griglia di quattro copertine reali (`assets/img/manuali/*.webp`), ognuna con il proprio messaggio WhatsApp; ogni pagina corpo mostra la copertina del proprio manuale. Messaggi e test aggiornati (`manualPolizia`, `manualGdf`, `manualPenitenziaria`, `indice*`, `infoPenitenziaria`, `gruppoPenitenziaria`, `prezzoManuali`, `tempiManuali`).
+
+- 23/11/2026 · Nuovi video: «Preparazione e perito» (1:03) e «Analisi individuale» (0:20) entrano nella sezione Video, che passa a quattro schede in fila con testo e canali sotto; poster locali ricavati dal primo fotogramma. I filmati mostrano ancora il numero di telefono nella fascia in basso: da tagliare o sostituire prima del lancio.
+
+- 23/11/2026 · Recensioni: pubblicata la recensione reale di Mariateresa Rocchetto (concorso Carabinieri, CAR26) con l'esito «idonea alla commissione» e il ringraziamento a Oriano. Il cliente ha chiesto di mostrare i risultati reali, cambiando la regola precedente che non pubblicava i nomi accanto agli esiti: restano fuori data di nascita e PEC, e ogni esito convive con la nota «Nessun risultato è garantito» e con «un esito positivo non è una promessa per nessuno». Nessun esito inventato.
+
+- 23/11/2026 · Carosello a profondità: le laterali non sono più solo offuscate. Opacità 0.6, scala 0.84, inclinazione 14° e profondità −160 px seguono lo scorrimento con continuità (GSAP `set`, fallback a stili in linea); la sfocatura di 1,4 px si applica solo a vista ferma, con un ritardo di 160 ms, e viene azzerata appena riparte lo scorrimento. Restano il clic sulla laterale per centrarla, il focus da tastiera e lo spegnimento con `prefers-reduced-motion`. Verificato a 961 e 1440 px: durante lo scorrimento `filter: none` su tutte le schede; a fermo 1,4 px sulle laterali, 0 sulla attiva. Versione asset `?v=20261123-8`.
+
+Da registrare quando confermate: identità visiva approvata, gestione video, hosting e processo di deploy, perimetro del lancio, dati legali.
