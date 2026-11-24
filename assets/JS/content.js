@@ -9,6 +9,8 @@ export const whatsappNumber = "+393277897381";
 
 export const waMessages = {
   info: "Ciao Salvatore, vorrei informazioni sulla preparazione per i concorsi.",
+  privacyRimozione:
+    "Ciao Salvatore, vorrei chiedere la rimozione di una recensione pubblicata sul sito.",
   infoCarabinieri:
     "Ciao Salvatore, vorrei informazioni sulla preparazione per il concorso in Carabinieri.",
   infoPolizia:

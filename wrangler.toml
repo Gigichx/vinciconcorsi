@@ -1,0 +1,20 @@
+# Cloudflare Pages: sito statico + Functions.
+# I valori di database_id e bucket vanno sostituiti con quelli creati in Cloudflare.
+# I segreti (GOOGLE_CLIENT_SECRET, SESSION_SECRET) non stanno qui:
+# in locale vanno in .dev.vars, in produzione nelle variabili del progetto Pages.
+
+name = "vinciconcorsi"
+compatibility_date = "2025-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "vinciconcorsi-reviews"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "vinciconcorsi-reviews"
+
+# Le variabili (GOOGLE_CLIENT_ID, APP_ORIGIN, ADMIN_EMAILS) e i segreti
+# (GOOGLE_CLIENT_SECRET, SESSION_SECRET) si impostano nel progetto Pages.
+# In locale vivono in .dev.vars, che non va committato.
