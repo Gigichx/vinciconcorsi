@@ -10,6 +10,7 @@ const pages = [
   "polizia-di-stato/index.html",
   "guardia-di-finanza/index.html",
   "polizia-penitenziaria/index.html",
+  "privacy/index.html",
 ];
 
 function readPage(page) {

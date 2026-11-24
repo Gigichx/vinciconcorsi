@@ -7,9 +7,9 @@ Questo file è il riferimento operativo del progetto: leggilo prima di pianifica
 Repository: https://github.com/Gigichx/vinciconcorsi
 Lingua del sito e delle comunicazioni: italiano.
 
-## Stato al 23 novembre 2026
+## Stato al 24 novembre 2026
 
-Il repository contiene un'anteprima statica completa, senza build: homepage e quattro pagine dei percorsi. Stack in uso da rispettare: HTML, CSS e JavaScript modulare nativo, più due librerie copiate in `assets/vendor` (Lenis per lo scorrimento fluido, GSAP per l'ingresso delle sezioni). Non è configurato hosting né deploy; il dominio non è stato toccato.
+Il repository contiene l'anteprima completa: homepage, quattro pagine dei percorsi e una pagina di moderazione. Il sito resta statico e senza build (HTML, CSS e JavaScript modulare nativo) con Lenis e GSAP copiati in `assets/vendor`. Alle recensioni verificate si aggiungono Cloudflare Pages Functions per Google OAuth, database D1 dei testi e bucket R2 delle foto; Wrangler è l'unica dipendenza di sviluppo. Hosting previsto: GitHub + Cloudflare Pages. Non è ancora stato pubblicato nulla e il dominio non è stato toccato.
 
 Il 16 novembre 2026 il cliente ha confermato i dati elencati sotto e la nuova direzione grafica è stata implementata come proposta da mostrare, non come identità approvata.
 
@@ -26,7 +26,7 @@ Il 16 novembre 2026 il cliente ha confermato i dati elencati sotto e la nuova di
 ### Contatto
 
 - WhatsApp Business, unico numero per informazioni, acquisti e richieste di ingresso ai gruppi: **+393277897381** (`+39 327 789 7381`).
-- Risponde personalmente Salvatore. Orari indicati: tutti i giorni, 16:00–21:00. Tempo di risposta indicativo: entro qualche ora. Non promettere risposta immediata.
+- Risponde personalmente Salvatore. Giorni e orari non sono pubblicati sul sito (rimossi il 24/11/2026 su richiesta): non reintrodurli senza una conferma. Tempo di risposta indicativo: entro qualche ora. Non promettere risposta immediata.
 - Il numero è confermato dal cliente, ma non è stato verificato con un messaggio di prova: farlo prima del lancio.
 
 ### Social
@@ -63,20 +63,25 @@ Non inventare prezzi, recensioni, risultati, qualifiche, numeri di studenti o pe
 
 ## Architettura
 
-Cinque pagine statiche, contenuto completo già nell'HTML:
+Sei pagine statiche, contenuto completo già nell'HTML:
 
 - `index.html` (homepage)
 - `carabinieri/index.html`
 - `polizia-di-stato/index.html`
 - `guardia-di-finanza/index.html`
 - `polizia-penitenziaria/index.html`
+- `recensioni-admin/index.html` (moderazione, `noindex`, senza dati finché non si accede)
+- `privacy/index.html` (informativa sulle recensioni, `noindex`: dati pubblicati, email, conservazione, rimozione e titolare; i dati legali sono segnaposto)
 
 La pagina dei corpi usa un template coerente (hero, materiali, gruppo, video/social, contatto finale) con contenuti e segno grafico specifici. Non duplicare la homepage né ripetere blocchi di copy identici nelle quattro pagine: se un contenuto è comune, vive nella homepage o in un componente condiviso. Header, footer e fascia di contatto sono l'unica ripetizione ammessa, perché ogni pagina statica deve restare completa senza JavaScript.
 
 - `assets/CSS/style.css`: tokens, componenti, layout responsive, movimento. Font locali in `assets/fonts/`.
 - `assets/img/logo.svg`: segnaposto del logo, unico file da sostituire quando il cliente fornisce il marchio definitivo.
 - `assets/JS/content.js`: **solo** numero WhatsApp, messaggi delle azioni e mappa `routerKey` del selettore. Il testo pubblicato vive nell'HTML.
-- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), segna con `aria-current` la sezione in lettura nella nav della homepage, avvia i video delle schede mettendo in pausa gli altri, gestisce il carosello delle recensioni (frecce, linee di avanzamento, contatore, tastiera; nessun avanzamento automatico), lo scorrimento fluido con Lenis, l'ingresso delle sezioni con GSAP (fallback CSS) e rigenera gli href WhatsApp da `content.js`.
+- `assets/JS/site.js`: miglioramento progressivo. Aggiunge la classe `enhanced` per il menu mobile, gestisce il menu (Escape, chiusura al clic, ripristino del focus, chiusura al breakpoint desktop), segna con `aria-current` la sezione in lettura nella nav della homepage, avvia i video delle schede mettendo in pausa gli altri, carica il modulo delle recensioni, gestisce lo scorrimento fluido con Lenis, l'ingresso delle sezioni con GSAP (fallback CSS) e rigenera gli href WhatsApp da `content.js`.
+- `assets/JS/reviews.js`: carosello a schede verticali (frecce ai lati, linee di avanzamento, contatore, tastiera, avanzamento automatico ogni 6 s che si mette in pausa con puntatore o focus dentro, finestre aperte, scheda in secondo piano o fuori vista), recensioni pubbliche da `/api/reviews`, finestra di lettura completa, accesso con Google, invio con testo, percorso, fino a tre foto ridimensionate nel browser e anteprima della scheda aggiornata mentre si scrive. Il carosello si accende subito sulle recensioni statiche; quelle pubblicate si aggiungono davanti mantenendo al centro la scheda in lettura.
+- `functions/`: Pages Functions. `_lib/` contiene sessione firmata HMAC, verifica crittografica dell'ID token Google, validazione e query, e il controllo dei percorsi di ritorno (`safeNext`: solo percorsi interni risolti su una base interna, niente barre rovesciate); `api/auth/*` gestisce OAuth e sessione; `api/reviews` elenca e accetta invii; `api/photos/[id]` serve le immagini da R2 solo se approvate; `api/admin/reviews` è riservato alle email in `ADMIN_EMAILS`.
+- `schema.sql`, `wrangler.toml`, `package.json`: schema D1, binding locali/remoti e comandi Wrangler. `.dev.vars.example` è il modello delle credenziali locali; `.dev.vars`, `node_modules` e `.wrangler` restano fuori dal repository.
 - `assets/video/`: `presentazione.mp4` (37 s, 720×1280, in apertura), `test-e-colloquio.mp4` (1:01, 600×1066), `criteri-perito-selettore.mp4` (0:46, 478×850), `preparazione-perito-selettore.mp4` (1:03, 576×1024, 13 MB) e `analisi-individuale.mp4` (0:20, 576×1024, 4,4 MB) nella sezione Video; i poster 9:16 sono in `assets/img/video-*.jpg`. I primi due filmati sono tagliati prima delle code con la locandina e il numero di telefono; negli ultimi due il numero è ancora nella fascia in basso, da rimuovere o tagliare prima del lancio.
 - `assets/vendor/`: Lenis 1.3.27 (MIT) e GSAP 3.15.1 (licenza Standard «No Charge»), copie locali senza CDN; versioni, fonti e licenze in `NOTICE.md` e `LICENSE-lenis.txt`.
 - `assets/JS/whatsapp.mjs`: valida il numero e codifica il messaggio con `encodeURIComponent`.
@@ -89,7 +94,8 @@ Regole tecniche:
 - CSS e JavaScript si caricano con un parametro di versione: `assets/CSS/style.css?v=20261123-8` e `assets/JS/site.js?v=20261123-8` (`../assets/...?v=20261123-8` dalle pagine interne). GitHub Pages serve gli asset con dieci minuti di cache e senza il parametro un telefono può continuare a usare il CSS o il JavaScript vecchio. **A ogni modifica di `assets/CSS/style.css` o `assets/JS/site.js` alzare la versione in tutte e quattro le pagine HTML**, con lo stesso valore ovunque: la data del giorno in forma `?v=AAAAMMGG` (a più modifiche nello stesso giorno, `?v=AAAAMMGG-2`, `-3`…). `content.js` e `whatsapp.mjs` sono importati da `site.js` con un URL proprio: se cambiano, aggiungere lo stesso `?v=` ai loro import in `site.js`.
 - Il numero WhatsApp non compare come testo né come link `tel:`: resta solo negli href dei link `wa.me`. Il test controlla che non torni visibile.
 - Il contenuto deve restare leggibile e navigabile senza JavaScript. Non introdurre testi vecchi nell'HTML.
-- Niente framework, build, CMS, backend, autenticazione o dipendenze non necessarie: le sole eccezioni sono Lenis e GSAP in `assets/vendor`, copiati in locale e senza CDN.
+- Niente framework, build, CMS o dipendenze non necessarie. L'unico backend è quello delle recensioni (`functions/`, Cloudflare Pages Functions con D1 e R2, Google OAuth); le sole librerie restano Lenis e GSAP in `assets/vendor`, copiati in locale e senza CDN.
+- Le recensioni inviate dal pubblico non sono mai fidate: nome e identità vengono dalla sessione Google verificata sul server, il testo è trattato come testo (mai HTML), le foto sono validate dai byte iniziali e restano in attesa di approvazione. Le mutazioni richiedono stessa origine e cookie `HttpOnly`; l'email non viene salvata né pubblicata.
 - Non caricare nel repository il CSV o le risposte integrali del cliente: contengono dati privati.
 
 ## Direzione grafica adottata (18/11/2026)
@@ -106,7 +112,7 @@ Proposta per l'anteprima, da validare con il cliente.
 - Sotto l'apertura, l'indice dei quattro percorsi numerati 01–04 (Carabinieri, Polizia di Stato, Guardia di Finanza, Polizia Penitenziaria) con la V del marchio come firma: su desktop quattro colonne, due sotto i 1150 px, una a 960 px.
 - Nessun poligono, nessuna parallasse: l'unico movimento è l'ingresso della pagina, sospeso con `prefers-reduced-motion`.
 - Segni originali per i quattro percorsi (V, cerchi aperti, gradini, sbarre), nessuno stemma.
-- Movimento: ingresso della pagina misurato, comparsa delle sezioni allo scorrimento, microinterazioni su righe e pulsanti. Nessun carosello automatico, nessun cursore personalizzato, nessuna animazione continua necessaria alla comprensione.
+- Movimento: ingresso della pagina misurato, comparsa delle sezioni allo scorrimento, microinterazioni su righe e pulsanti. L'unico movimento continuo è il cambio automatico delle recensioni, che si ferma appena il visitatore legge o interagisce; nessun cursore personalizzato.
 - Mobile: il messaggio e le azioni dell'apertura compaiono prima del poster del video; le anteprime vanno verificate a 360–390 px, oltre che a 1440 px.
 
 ## Modalità anteprima
@@ -181,7 +187,7 @@ Incorporare i dati approvati; validare catalogo, contatti, gruppi, video e socia
 
 - 20/11/2026 · Cache degli asset: `style.css` e `site.js` sono richiesti con `?v=20261120` nelle quattro pagine, così un telefono non può restare su CSS o JavaScript vecchi serviti dalla cache di GitHub Pages; la versione va alzata a ogni modifica degli asset. Nello stesso intervento l'header non ha più `overflow-x: clip` (su Safari iOS ritagliava la tendina del menu) e il pannello del menu occupa esattamente la larghezza della pagina, senza i 20 px di sconfinamento orizzontale che aveva a menu aperto.
 
-- 23/11/2026 · Header opaco: fondo navy pieno (`var(--ink)`) al posto del 96% con `backdrop-filter`, così il contenuto che scorre sotto non si intravede e non restano aloni sotto la testata. Nav a cinque voci (aggiunta Recensioni) e menu mobile verificati a 360, 390 e 1440 px: nessun overflow orizzontale, pannello opaco a tutta larghezza, CTA WhatsApp e orari sotto le voci.
+- 23/11/2026 · Header opaco: fondo navy pieno (`var(--ink)`) al posto del 96% con `backdrop-filter`, così il contenuto che scorre sotto non si intravede e non restano aloni sotto la testata. Nav a cinque voci (aggiunta Recensioni) e menu mobile verificati a 360, 390 e 1440 px: nessun overflow orizzontale, pannello opaco a tutta larghezza, CTA WhatsApp sotto le voci.
 
 - 23/11/2026 · Schede video: sotto i 1150 px non superano i 478 px, la larghezza nativa del filmato più stretto (`criteri-perito-selettore.mp4`, 478×850), così nessun video viene ingrandito oltre i suoi pixel. Misure: 423 px a 961, 452 a 1024, 478 a 1100 (16 px liberi a destra) e 478 a 1150 (61 px liberi a destra); sopra i 974 px di riga resta quindi un margine a destra, sotto resta zero.
 
@@ -199,4 +205,18 @@ Incorporare i dati approvati; validare catalogo, contatti, gruppi, video e socia
 
 - 23/11/2026 · Carosello a profondità: le laterali non sono più solo offuscate. Opacità 0.6, scala 0.84, inclinazione 14° e profondità −160 px seguono lo scorrimento con continuità (GSAP `set`, fallback a stili in linea); la sfocatura di 1,4 px si applica solo a vista ferma, con un ritardo di 160 ms, e viene azzerata appena riparte lo scorrimento. Restano il clic sulla laterale per centrarla, il focus da tastiera e lo spegnimento con `prefers-reduced-motion`. Verificato a 961 e 1440 px: durante lo scorrimento `filter: none` su tutte le schede; a fermo 1,4 px sulle laterali, 0 sulla attiva. Versione asset `?v=20261123-8`.
 
-Da registrare quando confermate: identità visiva approvata, gestione video, hosting e processo di deploy, perimetro del lancio, dati legali.
+- 24/11/2026 · Recensioni verticali: le schede passano da orizzontali a 9:16 (`aspect-ratio: 9 / 16`, larghezza `--review-w` legata all'altezza della finestra). Le laterali non sono più quasi trasparenti: opacità 0.88, scala 0.92, inclinazione 8°, profondità −90 px e al massimo 0.5 px di sfocatura a vista ferma. Il testo in eccesso si legge con «Leggi tutto», che apre una finestra con il testo completo e le foto; a 390 px le schede misurano 350×622 e a 1440 px 380×676, senza overflow.
+
+- 24/11/2026 · Recensioni verificate con Google: chi ha fatto il percorso può inviarne una dopo l'accesso con Google OAuth diretto, allegando fino a tre foto JPEG/PNG/WebP da 5 MB ciascuna, ridimensionate nel browser a 1600 px e ricodificate in JPEG (i dati EXIF non partono). La recensione resta `pending` finché un'amministratrice o un amministratore, indicato in `ADMIN_EMAILS`, non la approva da `recensioni-admin/`; una sola recensione in attesa per account e massimo tre al giorno. Google verifica l'account, non il rapporto con il percorso: la dicitura è «Verificata con Google», non «cliente verificato». L'email non viene salvata.
+
+- 24/11/2026 · Hosting GitHub + Cloudflare Pages: il sito statico resta nel repository; le Functions in `functions/` aggiungono OAuth, D1 e R2 senza build. `noindex` resta su tutte le pagine, inclusa la moderazione. La pagina `privacy/`, collegata dal footer e dal form, spiega dati pubblicati, email non salvata, conservazione, rimozione e diritti; denominazione e sede del titolare, partita IVA o codice fiscale, email o PEC e tempi di risposta restano da confermare e vanno inseriti prima di raccogliere recensioni reali.
+
+- 24/11/2026 · Cache: CSS e JavaScript passano a `?v=20261124-2` in tutte le pagine, e `reviews.js` è importato con la stessa versione.
+
+- 24/11/2026 · Ritorno dal login e avvio OAuth: `safeNext` accetta solo percorsi interni risolti su una base interna, quindi barre rovesciate e caratteri di controllo ricadono sul percorso di riserva; il ritorno ricontrolla il percorso anche se il cookie è firmato. `/api/auth/google/start` risponde 500 senza `GOOGLE_CLIENT_SECRET`, così nessuno parte verso Google per un accesso che non potrebbe completarsi.
+
+- 24/11/2026 · Schede recensioni più corte e leggibili: la scheda resta 9:16 ma la larghezza scende a `clamp(15rem, (100svh − 21rem) × 0.5625, 21rem)` — circa 317×564 a 1440×900 invece di 380×676 — così l'altezza non invade la vista e il testo non si perde sotto la scheda vicina: le laterali ora hanno opacità piena e solo la scala (fino a 0.9) più 0.5 px di sfocatura a vista ferma; rotazione e profondità 3D sono state rimosse perché la prospettiva del binario tirava le laterali verso il centro e il loro bordo copriva il testo dell'attiva. Le etichette delle diapositive non contengono più «di 4» ma il nome della recensione, quindi `refresh()` non deve riscriverle quando arrivano quelle pubblicate e allinea in modo sincrono, senza il doppio passaggio in `requestAnimationFrame`. La privacy è linkata anche nel riquadro prima dell'accesso con Google, che ora spiega i tre passaggi (accesso, scrittura con foto, approvazione); il form mostra i limiti di testo e foto e il pulsante «Scrivi una recensione» è primario.
+
+- 24/11/2026 · Recensioni più leggibili e invio più diretto: la scheda non è più 9:16 né legata all'altezza della finestra. Larghezza `clamp(19rem, 26vw, 22rem)` (304–352 px) e altezza minima `clamp(21rem, 52svh, 27rem)`, con il contenuto libero di crescere: le citazioni firmate non hanno `line-clamp` e si leggono per intero (via i «Leggi tutto» ridondanti), mentre quelle inviate dal pubblico restano a 10 righe con la finestra completa. Misure verificate: 350×432 a 390 px, 304×438 a 961, 352×438 a 1440; nessuna sovrapposizione (39–42 px tra le schede) e nessun overflow orizzontale. Sotto 861 px la scheda usa `flex: 0 0 100%` invece di `calc(100vw - 2 × gutter)`: il doppio margine e il `100vw` la facevano allargare oltre il bordo del telefono. Frecce ai lati senza cerchi: 38×46 px (30×44 su telefono), solo il segno su fondo carta, 10 px fuori dalla scheda attiva; `.reviews` è una griglia e le frecce occupano la stessa cella della fila, così si centrano sulla scheda e non sui comandi. Cambio automatico ogni 6 s, sospeso con puntatore o focus dentro, finestre aperte, fuori dallo schermo, scheda in secondo piano o `prefers-reduced-motion`; un comando manuale lo sospende per 12 s. Il controllo gira a ogni giro anche in pausa, così la ripresa non dipende da un evento di uscita che può non arrivare; durante uno scorrimento comandato (`scrollingTo`) il contatore resta sulla scheda di destinazione invece di attraversare le intermedie. Verificato in una finestra visibile: una variazione ogni 6,002 s; pause di 16–21 s con puntatore sopra, focus dentro, finestra aperta, carosello fuori schermo e scheda in secondo piano, con ripresa entro 6 s in tutti i casi. Invio più visibile: CTA in testa alla sezione, invito nella scheda di chiusura e form con anteprima della scheda (testo, nome, percorso) aggiornata mentre si scrive; su telefono dialogo più stretto, testo da 108 px e passaggi compatti. Giorni e orari «Tutti i giorni 16:00–21:00» rimossi dal menu mobile e dal contatto di tutte le pagine. Versioni asset: `site.js`/`reviews.js` `?v=20261124-9`, `style.css` `?v=20261124-6`.
+
+Da registrare quando confermate: identità visiva approvata, gestione video, dominio e processo di deploy, perimetro del lancio, dati legali.

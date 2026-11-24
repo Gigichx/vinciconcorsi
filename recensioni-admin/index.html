@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#fffdf8">
+    <title>Moderazione recensioni — Vinciconcorsi</title>
+    <link rel="preload" href="../assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/CSS/style.css?v=20261124-6">
+    <link rel="stylesheet" href="../assets/CSS/admin.css?v=20261124-2">
+    <script type="module" src="../assets/JS/admin.js?v=20261124-2"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Salta al contenuto</a>
+
+    <div class="preview-bar">
+      <span class="preview-dot" aria-hidden="true"></span>
+      Area riservata · Moderazione delle recensioni.
+    </div>
+
+    <header class="site-header">
+      <div class="shell site-header-inner">
+        <a class="wordmark" href="../" aria-label="Vinciconcorsi — pagina iniziale">
+          <img class="wordmark-logo" src="../assets/img/logo.svg" alt="" width="30" height="30">
+          <span class="wordmark-text">vinciconcorsi<span class="wordmark-period">.</span></span>
+          <span class="wordmark-sub">Preparazione concorsi</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <div class="shell admin-page">
+        <p class="kicker">Moderazione</p>
+        <h1>Recensioni in attesa.</h1>
+        <p class="admin-lede">
+          Le recensioni inviate con Google restano qui finché non vengono approvate.
+          Controlla testo e foto prima di pubblicarle: compaiono nella homepage dopo
+          l'approvazione e restano modificabili.
+        </p>
+
+        <div class="admin-bar">
+          <p data-admin-user>Verifica dell'accesso…</p>
+          <a class="btn btn-outline btn-sm" href="../">Torna al sito</a>
+          <button class="btn btn-sm" type="button" data-admin-logout hidden>Esci</button>
+        </div>
+
+        <div data-admin-gate hidden>
+          <p class="admin-lede">Accedi con l'account Google indicato come amministratore.</p>
+          <a class="btn btn-google" data-admin-login href="../api/auth/google/start">Continua con Google</a>
+        </div>
+
+        <div data-admin-denied hidden>
+          <p class="admin-empty">Questo account non può moderare le recensioni.</p>
+        </div>
+
+        <div data-admin-app hidden>
+          <div class="admin-actions">
+            <button class="btn btn-sm" type="button" data-admin-tab="pending" aria-pressed="true">In attesa</button>
+            <button class="btn btn-outline btn-sm" type="button" data-admin-tab="approved" aria-pressed="false">Pubblicate</button>
+            <button class="btn btn-outline btn-sm" type="button" data-admin-refresh>Aggiorna</button>
+          </div>
+          <p class="admin-status" data-admin-status role="status"></p>
+          <ul class="admin-list" data-admin-list></ul>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,3 +1,10 @@
 # Screenshot e output locali delle verifiche
 artifacts/
 /freebuff-sites-build/
+
+# Sviluppo locale Cloudflare
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example

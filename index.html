@@ -9,9 +9,9 @@
     <title>Vinciconcorsi — Il tuo futuro. Il tuo impegno. Il prossimo passo.</title>
     <link rel="preload" href="assets/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="assets/CSS/style.css?v=20261123-8">
+    <link rel="stylesheet" href="assets/CSS/style.css?v=20261124-6">
     <script defer src="assets/vendor/gsap.min.js"></script>
-    <script type="module" src="assets/JS/site.js?v=20261123-8"></script>
+    <script type="module" src="assets/JS/site.js?v=20261124-9"></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Salta al contenuto</a>
@@ -47,7 +47,6 @@
             <svg class="i-wa" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.2 4h13.6v9.4H8.9L4.6 17v-3.6H3.2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 8.6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             WhatsApp
           </a>
-          <p class="site-nav-hours">Tutti i giorni 16:00–21:00</p>
         </nav>
       </div>
     </header>
@@ -515,14 +514,18 @@
             <p class="section-label">Recensioni</p>
             <div class="section-head-body">
               <h2 class="section-title" id="recensioni-title">Le parole di chi <em>c'è passato.</em></h2>
-              <p class="section-aside">Racconti reali di chi ha affrontato il percorso. Pubblichiamo anche gli esiti, quando i candidati scelgono di raccontarli: un esito positivo non è una promessa per nessuno.</p>
+              <p class="section-aside">Racconti reali di chi ha affrontato il percorso. Pubblichiamo anche gli esiti, quando i candidati scelgono di raccontarli. Puoi aggiungere il tuo accedendo con Google: un esito positivo non è una promessa per nessuno.</p>
+              <div class="reviews-intro">
+                <button class="btn btn-primary" type="button" data-review-write>Scrivi una recensione</button>
+                <p class="fineprint">Accesso con Google, due minuti. La pubblichiamo dopo il controllo.</p>
+              </div>
             </div>
           </header>
 
           <div class="reviews reveal" data-reviews>
             <div class="reviews-viewport" data-reviews-viewport tabindex="0" role="group" aria-roledescription="carosello" aria-label="Recensioni dei candidati">
               <ul class="reviews-track" data-reviews-track>
-                <li class="review" aria-roledescription="diapositiva" aria-label="Recensione 1 di 4">
+                <li class="review" aria-roledescription="diapositiva" aria-label="Recensione di Mariateresa Rocchetto">
                   <figure class="review-card">
                     <span class="review-mark" aria-hidden="true">“</span>
                     <blockquote class="review-quote"><p>È appena arrivata la pec e sono risultata idonea alla commissione. Dietro questo risultato ci sono sacrifici, impegno, momenti di sconforto, paure e tanta determinazione. Un pensiero speciale e un sincero ringraziamento ad Oriano, che mi ha accompagnata in questo percorso con grande professionalità, disponibilità e umanità.</p></blockquote>
@@ -532,7 +535,7 @@
                     </figcaption>
                   </figure>
                 </li>
-                <li class="review" aria-roledescription="diapositiva" aria-label="Recensione 2 di 4">
+                <li class="review" aria-roledescription="diapositiva" aria-label="Recensione di Vincenzo Paonessa">
                   <figure class="review-card">
                     <span class="review-mark" aria-hidden="true">“</span>
                     <blockquote class="review-quote"><p>Mi avete fatto presentare pronto e con pochissimo stress: non vi ringrazierò mai abbastanza. Indubbiamente, da come vada la Pec, mi sono sentito me stesso e penso di aver risposto bene.</p></blockquote>
@@ -542,7 +545,7 @@
                     </figcaption>
                   </figure>
                 </li>
-                <li class="review" aria-roledescription="diapositiva" aria-label="Recensione 3 di 4">
+                <li class="review" aria-roledescription="diapositiva" aria-label="Recensione di un candidato">
                   <figure class="review-card">
                     <span class="review-mark" aria-hidden="true">“</span>
                     <blockquote class="review-quote"><p>Grazie per la pazienza, per i consigli e per le parole dette al momento giusto. Sapere di poter contare su una persona sempre disponibile, pronta ad ascoltarti e a incoraggiarti, ha fatto davvero la differenza.</p></blockquote>
@@ -559,6 +562,7 @@
                       <svg class="i-wa" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.2 4h13.6v9.4H8.9L4.6 17v-3.6H3.2z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 8.6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                       Scrivi su WhatsApp
                     </a>
+                    <button class="review-close-write" type="button" data-review-write>Scrivi la tua recensione</button>
                     <p class="review-close-note">Il giudizio spetta alla commissione; il modo di arrivarci si prepara.</p>
                   </div>
                 </li>
@@ -568,18 +572,108 @@
             <div class="reviews-controls">
               <p class="reviews-count" data-reviews-count hidden aria-hidden="true">01 / 04</p>
               <ol class="reviews-dots" data-reviews-dots hidden aria-label="Vai alla recensione"></ol>
-              <div class="reviews-nav">
-                <button class="reviews-btn" type="button" data-reviews-prev hidden aria-label="Recensione precedente">
-                  <svg viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M17 6H1M6.5 1.5 2 6l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-                </button>
-                <button class="reviews-btn" type="button" data-reviews-next hidden aria-label="Recensione successiva">
-                  <svg viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M1 6h16M11.5 1.5 16 6l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
-                </button>
-              </div>
+            </div>
+
+            <div class="reviews-nav">
+              <button class="reviews-btn" type="button" data-reviews-prev hidden aria-label="Recensione precedente">
+                <svg viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M17 6H1M6.5 1.5 2 6l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </button>
+              <button class="reviews-btn" type="button" data-reviews-next hidden aria-label="Recensione successiva">
+                <svg viewBox="0 0 18 12" aria-hidden="true" focusable="false"><path d="M1 6h16M11.5 1.5 16 6l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </button>
             </div>
           </div>
 
-          <p class="fineprint reveal">Nessun risultato è garantito: le recensioni raccontano esperienze personali.</p>
+          <div class="reviews-foot reveal">
+            <p class="fineprint">Nessun risultato è garantito: le recensioni raccontano esperienze personali.</p>
+          </div>
+
+          <dialog class="review-modal" data-review-read aria-labelledby="review-read-name">
+            <div class="review-modal-inner">
+              <button class="review-modal-close" type="button" data-modal-close aria-label="Chiudi">×</button>
+              <p class="review-modal-kicker">Recensione</p>
+              <h3 class="review-modal-name" id="review-read-name" data-read-name></h3>
+              <p class="review-modal-role" data-read-role></p>
+              <div class="review-modal-photos" data-read-photos hidden></div>
+              <blockquote class="review-modal-quote" data-read-quote></blockquote>
+              <p class="fineprint">Nessun risultato è garantito: la recensione racconta un'esperienza personale.</p>
+            </div>
+          </dialog>
+
+          <dialog class="review-modal review-form-modal" data-review-form-dialog aria-labelledby="review-form-title">
+            <div class="review-modal-inner">
+              <button class="review-modal-close" type="button" data-modal-close aria-label="Chiudi">×</button>
+              <p class="review-modal-kicker">La tua esperienza</p>
+              <h3 class="review-modal-name" id="review-form-title">Scrivi una recensione</h3>
+
+              <div data-review-gate>
+                <p class="review-form-lede">Chi ha fatto il percorso può raccontarlo qui: il nome del tuo account Google accompagna il testo e l'identità resta verificabile. Non pubblichiamo la tua email.</p>
+                <ol class="review-form-steps">
+                  <li>Accedi con Google.</li>
+                  <li>Scrivi la recensione, scegli il percorso e allega fino a tre foto.</li>
+                  <li>La pubblichiamo dopo il controllo: prima non è visibile a nessuno.</li>
+                </ol>
+                <p class="review-form-note">Prima di accedere puoi leggere la <a href="privacy/">privacy delle recensioni</a>: che cosa pubblichiamo, dove restano i dati e come chiedere la rimozione.</p>
+                <a class="btn btn-google" data-review-login href="api/auth/google/start?next=%2F%3Frecensione%3Dlogin%23recensioni">Continua con Google</a>
+              </div>
+
+              <form data-review-form-el hidden>
+                <p class="review-form-user">Firmi come <strong data-review-user></strong>. <button class="review-link-button" type="button" data-review-logout>Non sei tu?</button></p>
+
+                <div class="review-form-grid">
+                  <label class="review-field" for="review-body">La tua recensione
+                    <textarea id="review-body" name="body" minlength="40" maxlength="700" required placeholder="Com'è andato il percorso? Cosa ti è stato utile?"></textarea>
+                    <span class="review-counter" data-review-counter>0 / 700</span>
+                    <span class="review-field-hint">Almeno 40 caratteri. Il testo oltre lo spazio della scheda si legge con «Leggi tutto».</span>
+                  </label>
+
+                  <label class="review-field" for="review-path">Percorso
+                    <select id="review-path" name="percorso">
+                      <option value="">Non specificato</option>
+                      <option>Carabinieri</option>
+                      <option>Polizia di Stato</option>
+                      <option>Guardia di Finanza</option>
+                      <option>Polizia Penitenziaria</option>
+                      <option>Altro</option>
+                    </select>
+                  </label>
+
+                  <label class="review-field" for="review-photos">Foto (facoltative, massimo 3)
+                    <input id="review-photos" type="file" accept="image/jpeg,image/png,image/webp" multiple data-review-photos>
+                    <span class="review-field-hint">JPEG, PNG o WebP fino a 5 MB. Vengono ridimensionate e i dati di posizione vengono rimossi.</span>
+                  </label>
+                  <div class="review-photo-list" data-review-photo-list></div>
+
+                  <label class="review-consent">
+                    <input type="checkbox" name="consent" required>
+                    <span>Acconsento alla pubblicazione del testo, del mio nome e delle foto caricate. La recensione sarà visibile a tutti dopo l'approvazione.</span>
+                  </label>
+
+                  <p class="review-form-note"><a href="privacy/">Come trattiamo testo, nome e foto</a></p>
+
+                  <figure class="review-preview" aria-label="Anteprima della scheda">
+                    <p class="review-preview-kicker">Anteprima della scheda</p>
+                    <blockquote class="review-preview-quote is-empty" data-preview-quote>Il testo della recensione comparirà qui mentre scrivi.</blockquote>
+                    <figcaption class="review-preview-meta">
+                      <span class="review-preview-name" data-preview-name>Il tuo nome</span>
+                      <span class="review-preview-role" data-preview-role>Recensione Google</span>
+                    </figcaption>
+                  </figure>
+
+                  <p class="review-form-status" data-review-status role="status"></p>
+
+                  <div class="review-form-actions">
+                    <button class="btn btn-primary" type="submit">Invia recensione</button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="review-success" data-review-success hidden>
+                <p>Recensione inviata. La pubblichiamo dopo averla controllata: grazie per aver condiviso la tua esperienza.</p>
+                <button class="btn btn-outline" type="button" data-modal-close>Chiudi</button>
+              </div>
+            </div>
+          </dialog>
         </div>
       </section>
 
@@ -701,7 +795,6 @@
           </div>
           <dl class="contact-facts">
             <div><dt>Risponde</dt><dd>Salvatore</dd></div>
-            <div><dt>Orari</dt><dd>Tutti i giorni, 16:00–21:00</dd></div>
             <div><dt>Risposta</dt><dd>In genere entro qualche ora</dd></div>
           </dl>
           <p class="contact-note">Il pulsante apre WhatsApp con un messaggio già pronto. I dettagli si concordano in conversazione.</p>
@@ -748,7 +841,7 @@
 
         <div class="footer-bottom">
           <p><strong>Vinciconcorsi</strong> è un'iniziativa indipendente: non è collegata ai Carabinieri, alla Polizia di Stato, alla Guardia di Finanza, alla Polizia Penitenziaria né ad altri enti istituzionali.</p>
-          <p>Anteprima di progetto · 2026</p>
+          <p><a href="privacy/">Privacy delle recensioni</a> · Anteprima di progetto · 2026</p>
         </div>
       </div>
     </footer>

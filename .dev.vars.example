@@ -1,0 +1,14 @@
+# Copia questo file in .dev.vars e inserisci i valori reali.
+# .dev.vars non va committato.
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+# Stringa casuale lunga, almeno 32 caratteri. Genera con:
+#   openssl rand -hex 32
+SESSION_SECRET=
+
+# Origine locale usata per il redirect OAuth.
+APP_ORIGIN=http://localhost:8788
+
+# Email Google autorizzate ad approvare le recensioni, separate da virgola.
+ADMIN_EMAILS=
